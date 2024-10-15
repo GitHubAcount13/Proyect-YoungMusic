@@ -2190,3 +2190,93 @@ audio {
       margin-top: 1rem;
   }
 }
+.album-cover {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.song-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.song-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.song-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.audio-player-container {
+  margin-left: 1rem;
+}
+
+.custom-audio-player {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.custom-audio-player::-webkit-media-controls-panel {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .album-cover {
+      max-width: 200px;
+  }
+  
+  .song-item {
+      flex-direction: column;
+      text-align: center;
+  }
+  
+  .song-thumbnail {
+      margin-bottom: 1rem;
+  }
+  
+  .audio-player-container {
+      margin-left: 0;
+      margin-top: 1rem;
+      width: 100%;
+  }
+}
+.custo-label {
+
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  background-color: #f1f1f1 !important;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: black;
+}
+.lanza{
+  color: #dcaaeb;
+}
+.note{
+  color: #dcaaeb;
+}
+.fond-albu{
+  background-color: #343a40;
+}
+
+.album-title{color: #dcaaeb;
+}
+
+.musica-from-container{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+
+}

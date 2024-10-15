@@ -1,3 +1,82 @@
+document.addEventListener('DOMContentLoaded', function() {
+  // Obtener los valores de los campos de texto
+  let redes = [
+    document.getElementById('Red1').value,
+    document.getElementById('Red2').value,
+    document.getElementById('Red3').value,
+    document.getElementById('Red4').value
+  ];
+
+  // Mostrar los iconos de las redes sociales
+  redes.forEach(function(link) {
+    if (link !== '') {
+      if (!link.startsWith('http://') && !link.startsWith('https://')) {
+        link = 'https://' + link; 
+      }
+
+      // Convertir el enlace a minúsculas para compararlo correctamente
+      let linkLowerCase = link.toLowerCase();
+
+      // TikTok
+      if (linkLowerCase.includes("tiktok.com")) {
+        document.getElementById('tiktok').style.display = 'inline-block';
+        document.getElementById('tiktok').href = link;
+      }
+
+      // Instagram
+      if (linkLowerCase.includes("instagram.com")) {
+        document.getElementById('instagram').style.display = 'inline-block';
+        document.getElementById('instagram').href = link;
+      }
+
+      // YouTube
+      if (linkLowerCase.includes("youtube.com")) {
+        document.getElementById('youtube').style.display = 'inline-block';
+        document.getElementById('youtube').href = link;
+      }
+
+      // Spotify
+      if (linkLowerCase.includes("spotify.com")) {
+        document.getElementById('spotify').style.display = 'inline-block';
+        document.getElementById('spotify').href = link;
+      }
+    }
+  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPlayers = document.querySelectorAll('.custom-audio-player');
+  
+  // Detener otras canciones cuando se reproduce una nueva
+  audioPlayers.forEach(player => {
+      player.addEventListener('play', function() {
+          audioPlayers.forEach(otherPlayer => {
+              if (otherPlayer !== player && !otherPlayer.paused) {
+                  otherPlayer.pause();
+              }
+          });
+      });
+  });
+
+  // Mejorar la experiencia del usuario al hacer clic en la canción
+  const songItems = document.querySelectorAll('.song-item');
+  songItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+          // Si el clic no fue en el control de audio
+          if (!e.target.closest('audio')) {
+              const audio = this.querySelector('audio');
+              if (audio.paused) {
+                  audio.play();
+              } else {
+                  audio.pause();
+              }
+          }
+      });
+  });
+});
+
 
 function canciones(){
 let cancionesAgregadas = 0;
@@ -63,8 +142,7 @@ async function actualizarListaCanciones() {
 // Cargar canciones existentes al cargar la página
 document.addEventListener('DOMContentLoaded', actualizarListaCanciones);
 
-
-function VerficarDatos(){
+function VerificarDatos(){
   const form = document.querySelector('form');
   const nombreInput = document.getElementById('nombre');
   const emailInput = document.getElementById('email');
@@ -73,113 +151,87 @@ function VerficarDatos(){
   const biografiaInput = document.getElementById('biografia');
   const fileInput = document.getElementById('file');
 
-  const errorContainer = document.createElement('div');
-  errorContainer.classList.add('error-container');
-  form.insertAdjacentElement('beforeend', errorContainer);
+  // Crear el contenedor de errores solo si no existe
+  let errorContainer = document.querySelector('.error-container');
+  if (!errorContainer) {
+    errorContainer = document.createElement('div');
+    errorContainer.classList.add('error-container');
+    form.insertAdjacentElement('beforeend', errorContainer);
+  }
 
+  // Eliminar el evento submit anterior si existe
+  const oldListener = form.onsubmit;
+  form.onsubmit = null;
+
+  // Agregar el nuevo evento submit
   form.addEventListener('submit', function (event) {
-      errorContainer.innerHTML = ''; // Limpiar errores previos
-      let hasError = false;
+    errorContainer.innerHTML = ''; // Limpiar errores previos
+    let hasError = false;
 
-      // Validar Nombre
-      if (nombreInput.value.trim() === '' || nombreInput.value.length > 35) {
-          showError('El nombre es obligatorio y no puede tener más de 35 caracteres.');
-          hasError = true;
-      }
+    // Validar Nombre
+    if (nombreInput.value.trim() === '' || nombreInput.value.length > 35) {
+      showError('El nombre es obligatorio y no puede tener más de 35 caracteres.');
+      hasError = true;
+    }
 
-      // Validar Email
-      if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
-          showError('Ingrese un correo válido y que no supere los 50 caracteres.');
-          hasError = true;
-      }
+    // Validar Email
+    if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
+      showError('Ingrese un correo válido y que no supere los 50 caracteres.');
+      hasError = true;
+    }
 
-      // Validar Contraseña
-      if (!validatePassword(passInput.value) || passInput.value.length > 30) {
-          showError('La contraseña debe tener al menos 7 caracteres y maximo 30, incluyendo una mayúscula, una letra y un número.');
-          hasError = true;
-      }
+    // Validar Contraseña
+    if (!validatePassword(passInput.value) || passInput.value.length > 30) {
+      showError('La contraseña debe tener al menos 7 caracteres y máximo 30, incluyendo una mayúscula, una letra y un número, no debe contener caracteres especiales.');
+      hasError = true;
+    }
 
-      // Validar Ubicación
-      if (ubicacionInput.value === '') {
-          showError('Seleccione una ubicación válida.');
-          hasError = true;
-      }
+    // Validar Ubicación
+    if (ubicacionInput.value === '') {
+      showError('Seleccione una ubicación válida.');
+      hasError = true;
+    }
 
-      // Validar Biografía
-      if (biografiaInput.value.length > 100) {
-          showError('La biografía no puede tener más de 100 caracteres.');
-          hasError = true;
-      }
+    // Validar Biografía
+    if (biografiaInput.value.length > 100) {
+      showError('La biografía no puede tener más de 100 caracteres.');
+      hasError = true;
+    }
 
-      // Validar archivo de imagen
-      if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
-          showError('La imagen no puede superar los 2MB.');
-          hasError = true;
-      }
+    // Validar archivo de imagen
+    if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
+      showError('La imagen no puede superar los 2MB.');
+      hasError = true;
+    }
 
-      // Evitar el envío si hay errores
-      if (hasError) {
-          event.preventDefault();
-      }
+    // Evitar el envío si hay errores
+    if (hasError) {
+      event.preventDefault();
+    }
   });
 
   // Función para mostrar errores
   function showError(message) {
-      const errorMessage = document.createElement('p');
-      errorMessage.classList.add('text-danger');
-      errorMessage.textContent = message;
-      errorContainer.appendChild(errorMessage);
+    const errorMessage = document.createElement('p');
+    errorMessage.classList.add('text-danger');
+    errorMessage.textContent = message;
+    errorContainer.appendChild(errorMessage);
   }
 
   // Validar formato de email
   function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(String(email).toLowerCase());
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
   }
 
   // Validar contraseña (mínimo 7 caracteres, una mayúscula, una letra y un número)
   function validatePassword(password) {
-      const re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$/;
-      return re.test(password);
+    const re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$/;
+    return re.test(password);
   }
 }
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  redes.forEach(function(link) {
-
-      if (!link.startsWith('http://') && !link.startsWith('https://')) {
-          link = 'https://' + link; 
-      }
-
-      // Convertir el enlace a minúsculas para compararlo correctamente
-      let linkLowerCase = link.toLowerCase();
-
-      // TikTok
-      if (linkLowerCase.includes("tiktok.com")) {
-          document.getElementById('tiktok').style.display = 'inline-block';
-          document.getElementById('tiktok').href = link;
-      }
-
-      // Instagram
-      if (linkLowerCase.includes("instagram.com")) {
-          document.getElementById('instagram').style.display = 'inline-block';
-          document.getElementById('instagram').href = link;
-      }
-
-      // YouTube
-      if (linkLowerCase.includes("youtube.com")) {
-          document.getElementById('youtube').style.display = 'inline-block';
-          document.getElementById('youtube').href = link;
-      }
-
-      // Spotify
-      if (linkLowerCase.includes("spotify.com")) {
-          document.getElementById('spotify').style.display = 'inline-block';
-          document.getElementById('spotify').href = link;
-      }
-  });
-});
+// Llamar a la función una sola vez al cargar la página
+document.addEventListener('DOMContentLoaded', VerificarDatos);
 
 
 function loginUser() {
