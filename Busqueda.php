@@ -1,6 +1,6 @@
 <?php
 require("Header_YM.php");
-require("RF_Usuario_YM.php");
+require("RF_Datos_Busqueda_YM.php");
 ?>
 <nav class="navbar navbar-expand-md nav_index_ym">
     <a class="navbar-brand d-flex align-items-center" href="Usuario_YM.php">

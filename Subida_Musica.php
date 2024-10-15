@@ -16,9 +16,12 @@ if (!$album_id || !$categoria) {
 
 $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1 : 999);
 ?>
+  <h2 class="lanza text-center my-4">Agregar Música al Álbum</h2>
+  <hr class="bg-custom-loginu my-4 barra_loginu">
 
 <div class="container">
-    <h2>Agregar Música al Álbum</h2>
+<div class="musica-from-container">
+  
     <br>
     <form id="formMusica" enctype="multipart/form-data">
         <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($album_id); ?>">
@@ -39,6 +42,7 @@ $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1
         <div class="form-group">
 
     <label for="Generos">Géneros:</label>
+    
     <select id="Generos" name="Generos[]" multiple>
         <?php
         $generos = json_decode(file_get_contents('JSON/generos.json'), true);
@@ -50,16 +54,19 @@ $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1
     <h2>Mantener Ctrl para seleccionar</h2>
 </div>
    
+ <div class="botones  text-center text-md-left">
+    <div class="btn-group flex-md-row text-center mt-3">
         <button type="submit" class="btn btn-primary" onclick="canciones()">Agregar Canción</button>
     </form>
 
-    <form action="Artista_YM.php"><button style="margin-bottom: -610%; margin-left:-100%" type="submit" class="btn btn-primary">Salir</button></form>
-
+    <form action="Artista_YM.php"><button  type="submit" class="btn btn-primary">Salir</button></form>
+</div> 
+</div>
     <div id="canciones-agregadas">
         <!-- Aquí se mostrarán las canciones agregadas -->
     </div>
 </div>
-
+</div>
 
 
 <?php require("Footer_YM.php"); ?>

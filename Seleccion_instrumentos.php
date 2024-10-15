@@ -1,6 +1,6 @@
 <?php
 require("Header_YM.php");
-require("RF_Usuario_YM.php");
+require("RF_Datos_Busqueda_YM.php");
 $jsonData = file_get_contents('JSON/instrumentos.json');
 $instrumentos = json_decode($jsonData, true)['instrumentos'];
 

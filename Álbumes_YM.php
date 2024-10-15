@@ -21,32 +21,36 @@ $email = $_SESSION["email"];
 </nav>
 
 <div class="container-fluid">
-    <h1 class="text-center my-4">LANZAMIENTOS</h1>
-    <div class="bg-black p-3">
+    <h1 class="lanza text-center my-4">LANZAMIENTOS</h1>
+    <hr class="bg-custom-loginu my-4 barra_loginu">
+    <div class="fond-albu p-3">
         <form action="Subida_Album.php">
             <button type="submit" class="btn btn-secondary w-100 mb-4">
                 <h3 class="text-center m-0">Nuevo</h3>
             </button>
         </form>
-        
+
         <div class="album-container">
+
             <?php
             $albumes = obtenerAlbumes($email);
             if (empty($albumes)) {
                 echo '<div class="text-center text-white">No hay álbumes para mostrar</div>';
             } else {
-                foreach($albumes as $album) {
-                    ?>
-                    <div class="album-card">
-                        <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>" 
-                             alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>">
-                        <div class="album-info">
-                            <h4><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
-                            <p><?php echo htmlspecialchars($album['Categoria']); ?></p>
-                            <p><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                foreach ($albumes as $album) {
+            ?>
+                    <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link">
+                        <div class="album-card">
+                            <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
+                                alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>">
+                            <div class="album-info">
+                                <h4><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
+                                <p><?php echo htmlspecialchars($album['Categoria']); ?></p>
+                                <p><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <?php
+                    </a>
+            <?php
                 }
             }
             ?>

@@ -9,6 +9,22 @@ if (!isset($_SESSION["email"])) {
 }
 
 $email = $_SESSION["email"];
+
+$Consulta = "SELECT CorrOyen FROM oyente WHERE CorrOyen = ?";
+$Resultado = $con->prepare($Consulta);
+$Resultado->bind_param("s", $email);
+$Resultado->execute();
+$Resultado->store_result();
+
+if ($Resultado->num_rows == 0) {
+
+    header("Location: Login_YM.php");
+    exit();
+}
+
+$Resultado->close();
+
+$email = $_SESSION["email"];
 $usuario = obtenerDatosUsuario($email);
 
 if ($usuario) {

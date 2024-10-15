@@ -69,17 +69,14 @@ require("RF_Artista_YM.php");
     <div class="form-container fondo_perfil_editar" id="editarPerfil" style="display: none;">
         <h3>Editar Perfil</h3>
         <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
-            <div class="form-group">
-
+        <div class="form-group">
                 <input type="file" name="nuevaFoto" id="file" class="custom-file-input" accept="image/*" onchange="previewImage(event)">
-                <label for="file" class="custom-file-label">
+                <label for="file" class="custo-label">
 
-                    <img id="preview" class="imagen_perfil preview-image" alt="Preview" src="<?php echo htmlspecialchars($fotoPerfil); ?>">
-                    <i class="bi bi-folder2-open icon-label"></i>
-
+                        <img id="preview" class="previe-image-2" alt="Preview" src="<?php echo htmlspecialchars($fotoPerfil); ?>">
+                    
                 </label>
                 <br>
-
             </div>
 
             <div class="form-group">
