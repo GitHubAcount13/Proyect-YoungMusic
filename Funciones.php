@@ -120,6 +120,40 @@ function obtenerDatosUsuario($email)
         return false;
     }
 }
+function obtenerDatosDisco($email)
+{
+    $con = conectar_bd();
+    $email = mysqli_real_escape_string($con, $email);
+    $consulta = "SELECT * FROM Discografica WHERE CorrDisc = '$email'";
+    $resultado = mysqli_query($con, $consulta);
+
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+      
+       // Consulta para obtener redes sociales de la discografica
+
+       $consulta = "SELECT * FROM redesd WHERE CorrDisc = '$email'";
+       $resultado_Redes = mysqli_query($con, $consulta);
+
+       if ($resultado_Redes && mysqli_num_rows($resultado_Redes) > 0) {
+           $Redes = mysqli_fetch_assoc($resultado_Redes);
+           $Instagram = $Redes['Instagram'];
+           $Youtube = $Redes['Youtube'];
+           $TikTok  = $Redes['TikTok'];
+           $Spotify = $Redes['Spotify'];
+       }
+       $usuario['Instagram'] = $Instagram;
+       $usuario['Youtube'] = $Youtube;
+       $usuario['TikTok'] = $TikTok;
+       $usuario['Spotify'] = $Spotify;
+
+       mysqli_close($con);
+       return $usuario;
+   } else {
+       mysqli_close($con);
+       return false;
+   }
+}
 function obtenerDatosArtista($email)
 {
     $con = conectar_bd();

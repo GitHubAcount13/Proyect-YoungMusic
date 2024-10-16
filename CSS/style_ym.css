@@ -651,31 +651,8 @@ button:after {
 .search-bus .bus {
   background-color: white !important;
 }
-.carousel {
-  display: flex;
-  position: relative;
-  width: 80%;
-  left: 10%;
-  top: -239px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
 
-.carousel div {
-  min-width: 25%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
-  box-sizing: border-box;
-  padding: 10px;
-  text-align: center;
-}
-.carousel div img {
-  width: 100px; /* Ancho deseado */
-  height: 100px; /* Alto deseado */
-  object-fit: cover; /* Ajusta la imagen para que cubra el área */
-}
-.carousel img {
-  width: 100%;
-  height: auto;
-}
+
 .cont-u {
   padding-top: 50px;
   padding-bottom: 20px;
@@ -852,9 +829,7 @@ textarea {
 }
 
 @media (max-width: 2500px) {
-  .carousel div {
-    min-width: 17%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
-  }
+  
   .parte-reg-discografica {
     height: 171px;
   }
@@ -876,9 +851,7 @@ textarea {
   .button-scroll {
     bottom: 60%;
   }
-  .carousel div {
-    min-width: 17%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
-  }
+
 }
 @media (max-width: 1024px) {
   .resultado {
@@ -890,9 +863,7 @@ textarea {
   .resultado1 {
     left: 0% !important;
   }
-  .carousel {
-    top: -275px;
-  }
+ 
   .boton-scroll {
     left: 92% !important;
     bottom: 67%;
@@ -931,9 +902,7 @@ textarea {
     transform: translate(-50%, 150%);
   }
 
-  .carousel div {
-    min-width: 23%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
-  }
+  
 }
 @media (max-width: 768px) {
   .archivos_perfil {
@@ -953,11 +922,7 @@ textarea {
   .search-bus {
     width: 100%;
   }
-  .carousel {
-    width: 82% !important;
-    left: 0%;
-    top: -284px;
-  }
+
   .boton-scroll {
     left: 84% !important;
     bottom: 68%;
@@ -991,9 +956,6 @@ textarea {
   .registro {
     font-size: 50px;
   }
-  #carouselExample {
-    margin-left: 60px; /* Ajusta el margen cuando el sidebar esté colapsado */
-  }
   .login {
     font-size: 40px;
   }
@@ -1008,9 +970,6 @@ textarea {
   }
   .bg-mask {
     backdrop-filter: blur(0px);
-  }
-  .carousel div {
-    min-width: 25%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
   }
   .parte-reg-discografica {
     position: relative;
@@ -1180,9 +1139,7 @@ textarea {
   .modal-content {
     bottom: -400px;
   }
-  .carousel {
-    top: -333px;
-  }
+
   .boton-scroll {
     bottom: 74%;
   }
@@ -1225,10 +1182,7 @@ textarea {
     position: relative;
     left: 0%;
   }
-  .carousel {
-    top: -186px !important;
-    left: 5%;
-  }
+
 }
 @media (min-width: 375px) and (max-width: 375px) and (min-height: 667px) and (max-height: 667px) {
   #resultado {
@@ -1240,9 +1194,7 @@ textarea {
   #resultado1 {
     left: 1%;
   }
-  .carousel {
-    top: -205px !important;
-  }
+
   .button-scroll {
     left: 17%;
     bottom: 100px;
@@ -1261,15 +1213,10 @@ textarea {
   }
   #resultado1 {
     left: 1% !important;
-  }
-  .carousel {
-    top: -263px !important;
-  }
+}
 }
 @media (min-width: 390px) and (max-width: 390px) and (min-height: 844px) and (max-height: 844px) {
-  .carousel {
-    top: -252px !important;
-  }
+
   #resultado {
     max-height: 600px;
     left: -237% !important;
@@ -1285,9 +1232,7 @@ textarea {
   }
 }
 @media (min-width: 430px) and (max-width: 430px) and (min-height: 932px) and (max-height: 932px) {
-  .carousel {
-    top: -272px !important;
-  }
+
   #resultado {
     max-height: 722px;
     left: -179% !important;
@@ -1299,9 +1244,7 @@ textarea {
   }
 }
 @media (min-width: 412px) and (max-width: 412px) and (min-height: 915px) and (max-height: 915px) {
-  .carousel {
-    top: -271px !important;
-  }
+
   #resultado {
     max-height: 600px;
     left: -190% !important;
@@ -1317,9 +1260,7 @@ textarea {
   }
 }
 @media (min-width: 412px) and (max-width: 412px) and (min-height: 914px) and (max-height: 914px) {
-  .carousel {
-    top: -271px !important;
-  }
+ 
   #resultado {
     max-height: 600px;
     left: -190% !important;
@@ -1331,9 +1272,7 @@ textarea {
   }
 }
 @media (min-width: 360px) and (max-width: 360px) and (min-height: 740px) and (max-height: 740px) {
-  .carousel {
-    top: -252px !important;
-  }
+ 
   #resultado {
     max-height: 515px;
     left: -377% !important;
@@ -1386,9 +1325,6 @@ textarea {
   }
   .resultado1 {
     left: 0% !important;
-  }
-  .carousel {
-    top: -380px !important;
   }
   .boton-scroll {
     bottom: 74%;
@@ -1444,10 +1380,7 @@ textarea {
   .parte_izquierda_registro_discog h2 {
     font-size: 64px;
   }
-  .carousel {
-    left: 5%;
-    top: -430px !important;
-  }
+  
   .boton-scroll {
     bottom: 75%;
   }
@@ -1499,9 +1432,7 @@ textarea {
   .info_datosreg {
     width: 100% !important;
   }
-  .carousel {
-    top: -412px !important;
-  }
+
   .boton-scroll {
     bottom: 74%;
   }
@@ -1518,9 +1449,7 @@ textarea {
   #resultado1 {
     left: 0% !important;
   }
-  .carousel {
-    top: -222px !important;
-  }
+ 
   .form-control {
     max-width: 300px;
   }
@@ -1542,9 +1471,7 @@ textarea {
   #resultado1 {
     left: 0%;
   }
-  .carousel {
-    top: -252px !important;
-  }
+  
   .desplazador-busqueda {
     left: -1%;
   }
@@ -1553,17 +1480,12 @@ textarea {
   }
 }
 @media (max-width: 1369px) and (max-height: 734px) {
-  .carousel {
-    top: -190px !important;
-  }
   .boton-scroll {
     left: 95% !important;
   }
 }
 @media (max-width: 1014px) and (max-height: 734px) {
-  .carousel {
-    left: 5%;
-  }
+ 
   .boton-scroll {
     bottom: 63% !important;
     left: 92.9% !important;
@@ -1573,17 +1495,13 @@ textarea {
   }
 }
 @media (max-width: 863px) and (max-height: 734px) {
-  .carousel {
-    top: -190px !important;
-  }
+
   .boton-scroll {
     left: 92% !important;
   }
 }
 @media (max-width: 764px) and (max-height: 734px) {
-  .carousel {
-    top: -190px !important;
-  }
+
   .boton-scroll {
     left: 88% !important;
   }
@@ -1611,55 +1529,38 @@ textarea {
   .info_datosreg {
     width: 100%;
   }
-  .carousel {
-    top: -392px !important;
-  }
-  .carousel div img {
-    height: 120px;
-    width: 120px !important;
-  }
+
   .boton-scroll {
     bottom: 74%;
   }
 }
 @media (max-width: 502px) and (max-height: 734px) {
-  .carousel {
-    top: 116px !important;
-  }
+ 
   .boton-scroll {
     left: 86% !important;
     bottom: 34% !important;
   }
 }
 @media (max-width: 453px) and (max-height: 734px) {
-  .carousel {
-    top: -211px !important;
-  }
+
   .boton-scroll {
     left: 85% !important;
   }
 }
 @media (max-width: 333px) and (max-height: 734px) {
-  .carousel {
-    top: -217px !important;
-  }
+ 
   .boton-scroll {
     left: 84% !important;
   }
 }
 @media (max-width: 1027px) and (max-height: 551px) {
-  .carousel {
-    top: -162px !important;
-    left: 3%;
-  }
+  
   .boton-scroll {
     left: 93% !important;
   }
 }
 @media (max-width: 871px) and (max-height: 551px) {
-  .carousel {
-    top: -190px !important;
-  }
+
   .boton-scroll {
     left: 87% !important;
     bottom: 68% !important;
@@ -1683,9 +1584,7 @@ textarea {
 }
 
 @media (max-width: 503px) and (max-height: 551px) {
-  .carousel {
-    top: 190px !important;
-  }
+
   .boton-scroll {
     left: 84% !important;
     bottom: 15% !important;
@@ -1693,18 +1592,14 @@ textarea {
 }
 
 @media (max-width: 453px) and (max-height: 551px) {
-  .carousel {
-    top: -160px !important;
-  }
+ 
   .boton-scroll {
     left: 84% !important;
     bottom: 15% !important;
   }
 }
 @media (min-width: 412px) and (max-width: 412px) and (min-height: 914px) and (max-height: 914px) {
-  .carousel {
-    top: -268px !important;
-  }
+
   .bg-mask {
     padding: 100px !important;
   }
@@ -1717,9 +1612,7 @@ textarea {
   }
 }
 @media (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
-  .carousel {
-    top: -196px !important;
-  }
+ 
   #resultado {
     top: 15px;
     max-height: 616px;
@@ -1736,18 +1629,12 @@ textarea {
     left: 37%;
     top: 3%;
   }
-  .carousel div img {
-    width: 80px !important;
-    height: 80px !important;
-  }
+
   .container-recuperacion {
     width: 455px !important;
   }
 
-  .carousel {
-    left: 0%;
-    width: 70% !important;
-  }
+
   .button-scroll {
     position: absolute;
     left: 90%;
@@ -1801,14 +1688,8 @@ textarea {
   .bg-mask {
     backdrop-filter: blur(0px);
   }
-  .carousel {
-    left: 0%;
-    top: -14px;
-  }
-  .carousel div img {
-    height: 54% !important;
-    width: 119% !important;
-  }
+
+
   .bot {
     position: relative;
     margin-top: 10px;
@@ -1821,26 +1702,11 @@ textarea {
     bottom: 337px;
   }
 }
-@media (min-width: 360px) and (max-width: 360px) and (min-height: 740px) and (max-height: 740px) {
-  .carousel {
-    top: -232px !important;
-  }
-}
+
 @media (max-width: 450px) {
   .container-home {
     position: relative;
     bottom: 0px;
-  }
-  .carousel {
-    left: 2%;
-    top: -320px;
-  }
-  .carousel div img {
-    height: 60px;
-    width: 60px;
-  }
-  .carousel div {
-    min-width: 35%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
   }
   .container-recuperacion {
     width: 355px !important;
@@ -1860,16 +1726,7 @@ textarea {
     font-size: 35px;
   }
 }
-@media (max-width: 350px) {
-  .carousel div {
-    min-width: 46%; /* Ajusta este valor según cuántas imágenes quieras mostrar a la vez */
-  }
-}
 @media (max-width: 360px) {
-  .carousel {
-    left: -2%;
-    top: -329px;
-  }
   .boton-scroll {
     left: 80% !important;
   }
@@ -2279,4 +2136,209 @@ audio {
   border-radius: 15px;
   backdrop-filter: blur(10px);
 
+}
+
+/*carousel*/
+.carousel-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.carousel-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  gap: 1.5rem;
+  padding: 1rem 0.5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 300px;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.artist {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-btn, .like-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.play-btn {
+  background: #1DB954;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+  background: #1ed760;
+}
+
+.like-btn {
+  color: #666;
+}
+
+.like-btn:hover {
+  color: #ff4444;
+}
+
+.like-btn.active {
+  color: #ff4444;
+}
+
+.carousel-arrow {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.carousel-arrow:hover {
+  background: #f8f8f8;
+  transform: scale(1.1);
+}
+
+.carousel-arrow.prev {
+  left: -20px;
+}
+
+.carousel-arrow.next {
+  right: -20px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: #1DB954;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .carousel-slide {
+      flex: 0 0 250px;
+  }
+
+  .carousel-arrow {
+      display: none;
+  }
+  
+  .carousel-track {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+  }
+  
+  .carousel-slide {
+      scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+      flex: 0 0 200px;
+  }
 }

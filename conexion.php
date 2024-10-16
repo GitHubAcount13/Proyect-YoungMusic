@@ -1,22 +1,22 @@
-<?php
+    <?php
 
-function conectar_bd()
-{
+    function conectar_bd()
+    {
 
-    $servidor = "localhost";
-    $bd = "bd_ym_proyect";
-    $usuario = "root";
-    $pass = "";
+        $servidor = "localhost";
+        $bd = "bd_ym_proyect";
+        $usuario = "root";
+        $pass = "";
 
-    $conn = mysqli_connect($servidor, $usuario, $pass, $bd);
+        $conn = mysqli_connect($servidor, $usuario, $pass, $bd);
 
 
-    if (!$conn) {
-        die("Error de conexion " . mysqli_connect_error());
+        if (!$conn) {
+            die("Error de conexion " . mysqli_connect_error());
+        }
+
+        return $conn;
     }
 
-    return $conn;
-}
 
-
-$con = conectar_bd();
+    $con = conectar_bd();

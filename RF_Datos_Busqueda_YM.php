@@ -32,6 +32,29 @@ if ($usuario) {
 $ResultadoA->close();
 }
 
+$Consulta = "SELECT CorrDisc FROM discografica WHERE CorrDisc = ? AND Verificacion IS NOT NULL";
+$ResultadoD = $con->prepare($Consulta);
+$ResultadoD->bind_param("s", $email);
+$ResultadoD->execute();
+$ResultadoD->store_result();
+
+if ($ResultadoD->num_rows != 0) {
+    $email = $_SESSION["email"];
+$usuario = obtenerDatosDisco($email);
+
+if ($usuario) {
+    $nombre = $usuario["NombArtis"];
+    $correo = $usuario["Correo"];
+    $biografia = $usuario["Biografia"];
+    $fotoPerfil = $usuario["FotoPerf"] ? $usuario["FotoPerf"] : 'Subida/';
+} else {
+    echo "Error al obtener los datos del usuario.";
+    exit();
+}
+$ResultadoD->close();
+}
+
+
 
 $Consulta = "SELECT CorrOyen FROM oyente WHERE CorrOyen = ?";
 $Resultado = $con->prepare($Consulta);
@@ -74,3 +97,33 @@ $Resultado->close();
 
 
 
+function determinarTipoUsuario($email) {
+    global $con;
+    
+    // Verificar si es artista verificado
+    $consultaArtista = "SELECT CorrArti FROM artistas WHERE CorrArti = ? AND Verificacion IS NOT NULL";
+    $resultadoA = $con->prepare($consultaArtista);
+    $resultadoA->bind_param("s", $email);
+    $resultadoA->execute();
+    $resultadoA->store_result();
+    
+    if ($resultadoA->num_rows > 0) {
+        $resultadoA->close();
+        return "Artista_YM.php";
+    }
+    
+    // Verificar si es discográfica verificada
+    $consultaDisc = "SELECT CorrDisc FROM discografica WHERE CorrDisc = ? AND Verificacion IS NOT NULL";
+    $resultadoD = $con->prepare($consultaDisc);
+    $resultadoD->bind_param("s", $email);
+    $resultadoD->execute();
+    $resultadoD->store_result();
+    
+    if ($resultadoD->num_rows > 0) {
+        $resultadoD->close();
+        return "Discografica_YM.php";
+    }
+    
+    // Si no es ninguno de los anteriores, se considera oyente
+    return "Usuario_YM.php";
+}
