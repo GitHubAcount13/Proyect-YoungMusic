@@ -78,47 +78,51 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function canciones(){
-let cancionesAgregadas = 0;
+let cancionesAgregadas = 0; // Mueve la variable aquí para que sea global
 
-document.getElementById('formMusica').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    if (cancionesAgregadas >= LIMITE_CANCIONES) {
-        alert('Has alcanzado el límite de canciones para este tipo de álbum');
-        return;
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formMusica');
 
-    const formData = new FormData(this);
-
-    try {
-        const response = await fetch('RF_Subida_Musica.php', {
-            method: 'POST',
-            body: formData
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            cancionesAgregadas++;
-            actualizarListaCanciones();
-            
-            if (cancionesAgregadas >= LIMITE_CANCIONES) {
-                document.querySelector('button[type="submit"]').disabled = true;
-            }
-
-            // Limpiar el formulario
-            this.reset();
-            alert('Canción agregada correctamente');
-        } else {
-            alert('Error: ' + data.message);
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (cancionesAgregadas >= LIMITE_CANCIONES) {
+            alert('Has alcanzado el límite de canciones para este tipo de álbum');
+            return;
         }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error al subir la canción');
-    }
-});}
 
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('RF_Subida_Musica.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                cancionesAgregadas++;
+                actualizarListaCanciones();
+                
+                if (cancionesAgregadas >= LIMITE_CANCIONES) {
+                    document.querySelector('button[type="submit"]').disabled = true;
+                }
+
+                // Limpiar el formulario
+                this.reset();
+                alert('Canción agregada correctamente');
+            } else {
+                alert('Error: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al subir la canción');
+        }
+    });
+
+    actualizarListaCanciones(); // Cargar canciones existentes al cargar la página
+});
 async function actualizarListaCanciones() {
     try {
         const response = await fetch(`obtener_canciones.php?album=${ALBUM_ID}`);

@@ -2147,7 +2147,7 @@ audio {
 
 .carousel-title {
   font-size: 2rem;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -2270,7 +2270,6 @@ audio {
 }
 
 .carousel-arrow {
-  background: white;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -2285,7 +2284,6 @@ audio {
 }
 
 .carousel-arrow:hover {
-  background: #f8f8f8;
   transform: scale(1.1);
 }
 
