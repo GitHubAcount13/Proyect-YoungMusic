@@ -2437,7 +2437,7 @@ audio {
    top:20px;
   }
 }
-@media (min-width:768px) and (max-width:2000px){
+@media (min-width:768px) and (max-width:2500px){
   .contenido-bus{
     top: 0px;
   }
