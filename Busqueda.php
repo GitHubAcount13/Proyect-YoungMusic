@@ -40,7 +40,7 @@ require("RF_Datos_Busqueda_YM.php");
         <div class="row resultado" id="resultado" style=" overflow-y: auto;"></div>
     
 </div>
-<div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-custom-slidebar sidebar">
+<div id="sidebar" class="col-md-3 col-lg-3 d-md-block bg-custom-slidebar sidebar">
             <div class="sidebar-header">
                 <button id="toggleSidebar" class="btn btn-custom-slidebar">
                     <p class="arrow">
