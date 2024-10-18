@@ -4,7 +4,9 @@ require_once("conexion.php");
 function obtenerMusicaPorPreferencias($correoUsuario) {
     $conn = conectar_bd();
     
-    $query = "SELECT DISTINCT m.IdMusi, m.NomMusi, m.ImgMusi, a.NomAlbum, art.NombArtis, u.FotoPerf 
+    // Añadimos el campo Archivo a la consulta para obtener la ruta del archivo de audio
+    $query = "SELECT DISTINCT m.IdMusi, m.NomMusi, m.ImgMusi, m.Archivo, a.NomAlbum, 
+              art.NombArtis, u.FotoPerf 
               FROM musica m 
               INNER JOIN albun a ON m.Album = a.IdAlbum
               INNER JOIN artistas art ON a.NomCred = art.CorrArti
@@ -33,10 +35,12 @@ function obtenerMusicaPorPreferencias($correoUsuario) {
     return $musicas;
 }
 
+// Similar modificación para obtenerMusicaReciente()
 function obtenerMusicaReciente() {
     $conn = conectar_bd();
     
-    $query = "SELECT m.IdMusi, m.NomMusi, m.ImgMusi, a.NomAlbum, art.NombArtis, u.FotoPerf 
+    $query = "SELECT m.IdMusi, m.NomMusi, m.ImgMusi, m.Archivo, a.NomAlbum, 
+              art.NombArtis, u.FotoPerf 
               FROM musica m 
               INNER JOIN albun a ON m.Album = a.IdAlbum
               INNER JOIN artistas art ON a.NomCred = art.CorrArti
@@ -44,13 +48,16 @@ function obtenerMusicaReciente() {
               ORDER BY m.IdMusi DESC 
               LIMIT 10";
               
-    $resultado = mysqli_query($conn, $query);
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
     
     $musicas = array();
     while ($fila = mysqli_fetch_assoc($resultado)) {
         $musicas[] = $fila;
     }
     
+    mysqli_stmt_close($stmt);
     mysqli_close($conn);
     
     return $musicas;

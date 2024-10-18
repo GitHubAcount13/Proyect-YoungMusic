@@ -501,17 +501,17 @@ class MusicCarousel {
       this.isMouseDown = false;
       this.startX = 0;
       this.scrollLeft = 0;
-      
-      this.init();
-  }
-  
-  init() {
+      this.init();this.currentAudio = null;
+      this.currentPlayButton = null;
+    }
+    
+    init() {
       this.createDots();
       this.addEventListeners();
       this.updateButtons();
       this.initializeLikeButtons();
-      this.initializePlayButtons();
-  }
+      this.initializeAudioPlayers(); // método para inicializar el audio
+    }
   
   calculateSlidesPerView() {
       const containerWidth = this.container.offsetWidth;
@@ -649,6 +649,84 @@ class MusicCarousel {
               }
           });
       });
+  }
+  initializeAudioPlayers() {
+    const playButtons = this.container.querySelectorAll('.play-btn');
+    
+    playButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const musicId = button.dataset.musicId;
+        const audio = document.getElementById(`audio-${musicId}`);
+        const icon = button.querySelector('i');
+        
+        // Si hay un audio reproduciéndose y no es el mismo que se clickeó
+        if (this.currentAudio && this.currentAudio !== audio) {
+          this.stopCurrentAudio();
+        }
+        
+        // Alternar entre reproducir y pausar
+        if (audio.paused) {
+          audio.play().then(() => {
+            icon.classList.remove('bi-play-fill');
+            icon.classList.add('bi-pause-fill');
+            this.currentAudio = audio;
+            this.currentPlayButton = button;
+          }).catch(error => {
+            console.error('Error al reproducir el audio:', error);
+          });
+        } else {
+          this.pauseCurrentAudio();
+        }
+      });
+
+      // Manejar el fin de la reproducción
+      const audio = document.getElementById(`audio-${button.dataset.musicId}`);
+      audio.addEventListener('ended', () => {
+        this.resetPlayButton(this.currentPlayButton);
+        this.currentAudio = null;
+        this.currentPlayButton = null;
+      });
+    });
+  }
+
+  stopCurrentAudio() {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+      this.resetPlayButton(this.currentPlayButton);
+    }
+  }
+
+  pauseCurrentAudio() {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.resetPlayButton(this.currentPlayButton);
+      this.currentAudio = null;
+      this.currentPlayButton = null;
+    }
+  }
+
+  resetPlayButton(button) {
+    if (button) {
+      const icon = button.querySelector('i');
+      icon.classList.remove('bi-pause-fill');
+      icon.classList.add('bi-play-fill');
+    }
+  }
+
+  // Modificar el método updateCarousel para detener la reproducción al cambiar de slide
+  updateCarousel() {
+    const offset = this.currentIndex * this.slideWidth;
+    this.track.scrollTo({
+      left: offset,
+      behavior: 'smooth'
+    });
+    
+    // Detener la reproducción actual al cambiar de slide
+    this.stopCurrentAudio();
+    
+    this.updateDots();
+    this.updateButtons();
   }
 }
 

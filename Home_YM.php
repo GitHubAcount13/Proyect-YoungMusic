@@ -91,7 +91,7 @@
 
                 <div class="carousel-track">
                     <?php foreach ($musicas as $musica): ?>
-                        <div class="carousel-slide">
+                        <div class="carousel-slide" data-music-id="<?php echo htmlspecialchars($musica['IdMusi']); ?>">
                             <div class="carousel-card">
                                 <div class="card-image">
                                     <img src="<?php echo htmlspecialchars($musica['ImgMusi']); ?>" alt="Portada del álbum">
@@ -104,7 +104,11 @@
                                         <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
                                     </div>
                                     <div class="card-actions">
-                                        <button class="play-btn">
+                                        <!-- Añadimos el audio oculto -->
+                                        <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
+                                            <source src="<?php echo htmlspecialchars($musica['Archivo']); ?>" type="audio/mpeg">
+                                        </audio>
+                                        <button class="play-btn" data-music-id="<?php echo htmlspecialchars($musica['IdMusi']); ?>">
                                             <i class="bi bi-play-fill"></i>
                                         </button>
                                         <button class="like-btn">

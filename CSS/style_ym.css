@@ -2164,7 +2164,7 @@ audio {
   overflow-x: hidden;
   scroll-behavior: smooth;
   gap: 1.5rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem 2rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -2174,7 +2174,7 @@ audio {
 }
 
 .carousel-slide {
-  flex: 0 0 300px;
+  flex: 0 0 200px;
   transition: transform 0.3s ease;
 }
 
@@ -2318,7 +2318,7 @@ audio {
 
 @media (max-width: 768px) {
   .carousel-slide {
-      flex: 0 0 250px;
+      flex: 0 0 150px;
   }
 
   .carousel-arrow {
@@ -2337,6 +2337,6 @@ audio {
 
 @media (max-width: 480px) {
   .carousel-slide {
-      flex: 0 0 200px;
+      flex: 0 0 100px;
   }
 }
