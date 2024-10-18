@@ -11,7 +11,7 @@ require("RF_Datos_Busqueda_YM.php");
         <i class="bi bi-search icono-busqueda"></i>
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto"></ul> <!-- Espacio vacío a la izquierda -->
+            <ul class="navbar-nav me-auto"></ul> <!-- Espacio vacío hacia la izquierda -->
             <form class="d-flex ms-auto" role="search" id="form-buscar-usuario"> <!-- ms-auto para margen a la izquierda -->
                 <input class="form-control me-2" type="text" name="usuario" id="usuario" placeholder="Ingrese el nombre a buscar" aria-label="Search">
                 <input type="submit" value="Buscar" name="envio" class="btn btn-primary" onclick="consultar_en_tiempo_real()">
