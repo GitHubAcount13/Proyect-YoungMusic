@@ -620,16 +620,46 @@ class MusicCarousel {
   }
   
   initializeLikeButtons() {
-      const likeButtons = this.container.querySelectorAll('.like-btn');
-      likeButtons.forEach(button => {
-          button.addEventListener('click', () => {
-              button.classList.toggle('active');
-              const icon = button.querySelector('i');
-              icon.classList.toggle('bi-heart');
-              icon.classList.toggle('bi-heart-fill');
-          });
-      });
-  }
+    const likeButtons = this.container.querySelectorAll('.like-btn');
+    
+    likeButtons.forEach(button => {
+        // Obtener el ID de la música del slide padre
+        const musicId = button.closest('.carousel-slide').dataset.musicId;
+        
+        button.addEventListener('click', async () => {
+            const icon = button.querySelector('i');
+            const isLiked = icon.classList.contains('bi-heart-fill');
+            
+            try {
+                // Crear FormData para enviar
+                const formData = new FormData();
+                formData.append('musicId', musicId);
+                formData.append('action', isLiked ? 'remove' : 'add');
+                
+                // Realizar petición AJAX
+                const response = await fetch('RF_Likes_YM.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Alternar clases de icono
+                    icon.classList.toggle('bi-heart');
+                    icon.classList.toggle('bi-heart-fill');
+                    button.classList.toggle('active');
+                } else {
+                    console.error('Error:', data.message);
+                    alert('Error al procesar el like');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al procesar la solicitud');
+            }
+        });
+    });
+}
   
   initializePlayButtons() {
       const playButtons = this.container.querySelectorAll('.play-btn');

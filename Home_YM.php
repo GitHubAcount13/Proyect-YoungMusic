@@ -90,7 +90,9 @@
                 </button>
 
                 <div class="carousel-track">
-                    <?php foreach ($musicas as $musica): ?>
+                    <?php foreach ($musicas as $musica):
+                        $hasLike = verificarLikeExistente($musica['IdMusi'], $_SESSION['email']);
+                    ?>
                         <div class="carousel-slide" data-music-id="<?php echo htmlspecialchars($musica['IdMusi']); ?>">
                             <div class="carousel-card">
                                 <div class="card-image">
@@ -100,19 +102,20 @@
                                     <h3><?php echo htmlspecialchars($musica['NomMusi']); ?></h3>
                                     <p class="album"><?php echo htmlspecialchars($musica['NomAlbum']); ?></p>
                                     <div class="artist-info">
-                                        <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
+                                        <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>"
+                                            alt="Foto del artista"
+                                            class="artist-avatar">
                                         <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
                                     </div>
                                     <div class="card-actions">
-                                        <!-- Añadimos el audio oculto -->
                                         <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
                                             <source src="<?php echo htmlspecialchars($musica['Archivo']); ?>" type="audio/mpeg">
                                         </audio>
                                         <button class="play-btn" data-music-id="<?php echo htmlspecialchars($musica['IdMusi']); ?>">
                                             <i class="bi bi-play-fill"></i>
                                         </button>
-                                        <button class="like-btn">
-                                            <i class="bi bi-heart"></i>
+                                        <button class="like-btn <?php echo $hasLike ? 'active' : ''; ?>">
+                                            <i class="bi <?php echo $hasLike ? 'bi-heart-fill' : 'bi-heart'; ?>"></i>
                                         </button>
                                     </div>
                                 </div>
