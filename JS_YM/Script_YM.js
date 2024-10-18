@@ -324,7 +324,7 @@ formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real);
       if (data.status === 1) {
           data.usuarios.forEach(user => {
               // se agrega html dentro del div que contiene el mensaje de respuesta
-              resultadoDiv.innerHTML += `<div id="resultado1"><img class="img-fluid img-busqueda" style="width: 70px; height: 70px; border-radius: 50%;" id="item"src="${user.perfil}" alt=""> <hr> <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre}</h2><hr></div> <hr>`;
+              resultadoDiv.innerHTML += `<div id="resultado1" class="col-12 col-sm-6 col-md-4"><img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item"src="${user.perfil}" alt=""> <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre}</h2></div>`;
           });
       } else {
           resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
