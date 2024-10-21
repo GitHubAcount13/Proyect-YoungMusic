@@ -10,6 +10,7 @@
         // Obtener músicas según las preferencias del usuario o música reciente si no hay preferencias
         $musicas = $email ? obtenerMusicaPorPreferencias($email) : obtenerMusicaReciente();
         ?>
+
         <nav class="navbar navbar-expand-md nav_index_ym">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">
                 <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
@@ -131,4 +132,40 @@
 
             <div class="carousel-dots"></div>
         </div>
+        <footer class="footer-home">
+            <div class="container-fluid">
+                <div class="row cont-fot">
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
         <?php require("Footer_YM.php"); ?>
