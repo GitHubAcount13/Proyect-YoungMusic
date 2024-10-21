@@ -16,6 +16,7 @@ body.custom-bg {
   background-image: url("/Proyect-YoungMusic/Subida/Predefinido/blurry-gradient-haikei.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 nav {
   background: #5d0079;
@@ -35,13 +36,6 @@ nav {
   position: absolute;
   top: 5%;
   left: 5%;
-}
-.bg-mask {
-  background-color: #5555552d;
-  padding: 100px;
-  backdrop-filter: blur(50px);
-  border-radius: 1%;
-  box-shadow: inset 10px 20px 100px black;
 }
 .cont-nav {
   position: relative;
@@ -2473,3 +2467,30 @@ audio {
 }
 
 }
+/* Cambios registro*/
+@media (min-width:769px) and (max-width:1025px){
+  .movement {
+    position: relative;
+    left: 0%;
+    bottom: 100px;
+    width: 100%;
+    top: -10px;
+}
+.archivos_perfil{
+  left: -74%;
+}
+}
+/* cambio perfil */
+.previe-image-2{
+  height: 100px;
+    width: 100px;
+    position: relative;
+    box-shadow: -9px 9px 39px #241d23, 9px -9px 39px #5c4b5a;
+}
+
+/* cambio home */
+@media (min-width:1022px) and (max-width:1182px){
+  #sidebar{
+    width: 32vh;
+  }
+} 

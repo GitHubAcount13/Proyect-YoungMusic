@@ -1,9 +1,10 @@
 <?php
 require("Header_YM.php");
 require("RF_Datos_Busqueda_YM.php");
+$paginaPerfil = determinarTipoUsuario($email);
 ?>
 <nav class="navbar navbar-expand-md nav_index_ym">
-    <a class="navbar-brand d-flex align-items-center" href="Usuario_YM.php">
+<a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">
         <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
         <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
     </a>
