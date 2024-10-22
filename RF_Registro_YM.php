@@ -1,4 +1,4 @@
-<?php
+xx<?php
 require_once("conexion.php");
 require("Funciones.php");
 

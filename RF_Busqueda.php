@@ -30,7 +30,7 @@ function buscar_user($con, $nombre)
     $nombre = mysqli_real_escape_string($con, $nombre);
 
     // Consulta para buscar el usuario
-    $consulta_buscar_user = "SELECT FotoPerf,NombArtis FROM usuarios inner join artistas on Correo=CorrArti WHERE NombArtis LIKE '%$nombre%' ";
+    $consulta_buscar_user = "SELECT FotoPerf,NombArtis,CorrArti FROM usuarios inner join artistas on Correo=CorrArti WHERE NombArtis LIKE '%$nombre%' ";
     $resultado_buscar_user = mysqli_query($con, $consulta_buscar_user);
 
     if (mysqli_num_rows($resultado_buscar_user) > 0) {
@@ -39,7 +39,8 @@ function buscar_user($con, $nombre)
             // Agregar cada usuario encontrado al array
             $usuario[] = array(
                 "nombre" => $fila["NombArtis"],
-                "perfil" => $fila["FotoPerf"]
+                "perfil" => $fila["FotoPerf"],
+                "correo" => $fila["CorrArti"], 
             );
         }
         $respuesta_json['status'] = 1; // se encontró el usuario

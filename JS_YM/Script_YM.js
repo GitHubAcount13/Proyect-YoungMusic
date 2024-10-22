@@ -291,11 +291,10 @@ function loginUser() {
 
 
 function consultar_en_tiempo_real(evento) {
-    
   const formularioBusqueda = document.getElementById("form-buscar-usuario");
-const resultadoDiv = document.getElementById('resultado');
+  const resultadoDiv = document.getElementById("resultado");
 
-formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real);
+  formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real);
   // Evita que se recargue la página
   evento.preventDefault();
 
@@ -304,35 +303,39 @@ formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real);
 
   //se crea un objeto para tomar los valores del formulario
   const formData = new FormData();
-  formData.append('usuario', nombre_usuario);
-  formData.append('envio', true);
+  formData.append("usuario", nombre_usuario);
+  formData.append("envio", true);
 
   // se le pasa al fetch el endpoint que genera la consulta de busqueda
-  fetch('RF_Busqueda.php', {
-      method: 'POST',
-      body: formData
+  fetch("RF_Busqueda.php", {
+    method: "POST",
+    body: formData,
   })
-
-  //se toma la respuesta y se devuelve en formato json
-  .then(response => response.json())
-  //la variable data se usa para recorrer el array asociativo del endpoint...
-  .then(data => {
-      
-      resultadoDiv.innerHTML = ''; // Limpia el contenido previo
+    //se toma la respuesta y se devuelve en formato json
+    .then((response) => response.json())
+    //la variable data se usa para recorrer el array asociativo del endpoint...
+    .then((data) => {
+      resultadoDiv.innerHTML = ""; // Limpia el contenido previo
 
       //si el enpoint devuelve 1...
       if (data.status === 1) {
-          data.usuarios.forEach(user => {
-              // se agrega html dentro del div que contiene el mensaje de respuesta
-              resultadoDiv.innerHTML += `<div id="resultado1" class="col-12 col-sm-6 col-md-4"><img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item"src="${user.perfil}" alt=""> <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre}</h2></div>`;
-          });
+        data.usuarios.forEach((user) => {
+          // se agrega html dentro del div que contiene el mensaje de respuesta
+          resultadoDiv.innerHTML += `
+              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+                  <a class="Link" href="Ver_artista_YM.php?correo=${user.correo}">
+                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${user.perfil}" alt="">
+                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre}</h2>
+                  </a>
+              </div>`;
+        });
       } else {
-          resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
+        resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
       }
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 function previewImage(event) {
