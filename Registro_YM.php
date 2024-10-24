@@ -2,8 +2,8 @@
 <div class="bg-mask">
     <img class="logo-reg bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100" height="50" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://res.cloudinary.com/dlii53bu7/image/upload/v1729654882/Subida/rcoe0yvyz6hvjabfqkcy.webp" alt="">
 
-    <div class="container mt-4">
-        <div class="row ">
+    <div class="container mt-4 cont-reg">
+        <div class="row registro-rw">
             <!-- Parte Izquierda -->
             <div class="col-md-7 parte_izquierda_registro">
                 <h2><button><a class="registro" href="#">REGISTRARSE</a></button>
