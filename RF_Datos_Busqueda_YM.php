@@ -43,7 +43,7 @@ if ($ResultadoD->num_rows != 0) {
 $usuario = obtenerDatosDisco($email);
 
 if ($usuario) {
-    $nombre = $usuario["NombArtis"];
+    $nombre = $usuario["CorrDisc"];
     $correo = $usuario["Correo"];
     $biografia = $usuario["Biografia"];
     $fotoPerfil = $usuario["FotoPerf"] ? $usuario["FotoPerf"] : 'Subida/';
