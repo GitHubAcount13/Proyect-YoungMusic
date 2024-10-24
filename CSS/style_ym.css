@@ -13,7 +13,7 @@ body.custom-bg {
   margin: 0;
   min-height: 100vh;
   padding: 0;
-  background-image: url("/Proyect-YoungMusic/Subida/Predefinido/blurry-gradient-haikei.svg");
+  background-image: url("https://res.cloudinary.com/dlii53bu7/image/upload/v1729636232/Subida/Predefinido/qutagboga6kkmyqpmho3.svg");
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -2745,4 +2745,107 @@ audio {
 .Link{
 
   display: flex;
+}
+/* Agregar estos estilos a tu CSS */
+.overlay-carga {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.contenido-carga {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.d-none {
+  display: none !important;
+}
+/* Enlace del álbum */
+.album-link-ym {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin: 10px;
+}
+
+/* Tarjeta del álbum con diseño horizontal */
+.album-card-ym {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  width: 600px; /* Ajusta el ancho según necesites */
+  margin-left: -20px; /* Mueve la tarjeta más a la izquierda */
+}
+
+.album-card-ym:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen del álbum a la izquierda */
+.album-image-ym {
+  width: 250px; /* Ancho de la imagen */
+  height: 250px; /* Altura de la imagen */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Contenedor de la información del álbum a la derecha */
+.album-info-ym {
+  padding: 20px;
+  background-color: #fff;
+  flex-grow: 1;
+}
+
+/* Título del álbum */
+.album-title-ym {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+/* Categoría del álbum */
+.album-category-ym {
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* Fecha de lanzamiento del álbum */
+.album-date-ym {
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .album-card-ym {
+      flex-direction: column;
+      width: 100%;
+      margin-left: 0; /* Restablecer para pantallas pequeñas */
+  }
+
+  .album-image-ym {
+      width: 100%;
+      height: auto;
+  }
+
+  .album-info-ym {
+      padding: 10px;
+  }
 }

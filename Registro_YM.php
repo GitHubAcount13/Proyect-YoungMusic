@@ -1,6 +1,6 @@
 <?php require("Header_YM.php") ?>
 <div class="bg-mask">
-    <img class="logo-reg bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100" height="50" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" src="Subida/oung-removebg.webp" alt="">
+    <img class="logo-reg bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100" height="50" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://res.cloudinary.com/dlii53bu7/image/upload/v1729654882/Subida/rcoe0yvyz6hvjabfqkcy.webp" alt="">
 
     <div class="container mt-4">
         <div class="row ">

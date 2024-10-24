@@ -1,3 +1,41 @@
+function seguirArtista() {
+  const formSeguir = document.getElementById('formSeguir');
+  const formData = new FormData(formSeguir);
+
+  fetch(window.location.href, {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+      alert('Ahora sigues a este artista.');
+      location.reload();  // Recargar la página para actualizar el estado
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Ocurrió un error al intentar seguir al artista.');
+  });
+}
+
+function dejarDeSeguirArtista() {
+  const formSeguir = document.getElementById('formSeguir');
+  const formData = new FormData(formSeguir);
+
+  fetch(window.location.href, {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+      alert('Has dejado de seguir a este artista.');
+      location.reload();  // Recargar la página para actualizar el estado
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Ocurrió un error al intentar dejar de seguir al artista.');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener los valores de los campos de texto
   let redes = [

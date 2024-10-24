@@ -24,15 +24,26 @@ require("RF_Ver_Artista_YM.php");
 
     <div class="row justify-content-left">
 
-
-       <div class="botones text-center text-md-left">
-        <div class="btn-group flex-md-row text-center mt-3">
-            <button class="btn btn-primary">
-                <i class="bi bi-person-plus"></i> Seguir
-            </button>
-        </div>
+    <div class="botones text-center text-md-left">
+    <div class="btn-group flex-md-row text-center mt-3">
+        <form method="POST" id="formSeguir">
+            <?php if ($sigueAlArtista): ?>
+                <!-- Si ya sigue al artista, mostrar el botón de dejar de seguir -->
+                <input type="hidden" name="dejarDeSeguir" value="1">
+                <button type="button" class="btn btn-danger" onclick="dejarDeSeguirArtista()">
+                    <i class="bi bi-person-dash"></i> Dejar de Seguir
+                </button>
+            <?php else: ?>
+                <!-- Si no sigue al artista, mostrar el botón de seguir -->
+                <input type="hidden" name="seguir" value="1">
+                <button type="button" class="btn btn-primary" onclick="seguirArtista()">
+                    <i class="bi bi-person-plus"></i> Seguir
+                </button>
+            <?php endif; ?>
+        </form>
     </div>
-    
+</div>
+
         <div class="cont-u">
 
             <div class="imagen_perfil-container">
@@ -60,8 +71,26 @@ require("RF_Ver_Artista_YM.php");
                     </ul>
 
                     <h2>LANZAMIENTOS</h2>
+                    <div class="album-container">
+                        <?php if (!empty($albumes)): ?>
+                            <?php foreach ($albumes as $album): ?>
+                                <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link-ym">
+                                    <div class="album-card-ym">
+                                        <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
+                                            alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>" class="album-image-ym">
+                                        <div class="album-info-ym">
+                                            <h4 class="album-title-ym"><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
+                                            <p class="album-category-ym"><?php echo htmlspecialchars($album['Categoria']); ?></p>
+                                            <p class="album-date-ym"><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No hay lanzamientos disponibles.</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
-
 
             </div>
 
@@ -69,4 +98,4 @@ require("RF_Ver_Artista_YM.php");
     </div>
 
 
-<?php require("Footer_YM.php"); ?>
+    <?php require("Footer_YM.php"); ?>

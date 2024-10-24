@@ -2,6 +2,7 @@
 session_start();
 require_once("conexion.php");
 require("Funciones.php");
+require_once("RF_Álbumes_YM.php");
 
 if (!isset($_SESSION["email"])) {
     header("Location: Login_YM.php");
@@ -36,6 +37,7 @@ if ($usuario) {
     echo "Error al obtener los datos del usuario.";
     exit();
 }
+$albumes = obtenerAlbumes($email);
 
 if (isset($_POST['editarPerfil'])) {
     $nuevoNombre = $_POST['nuevoNombre'];
@@ -73,3 +75,4 @@ if (isset($_POST['eliminarPerfil'])) {
         echo "Contraseña incorrecta.";
     }
 }
+

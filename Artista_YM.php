@@ -56,82 +56,98 @@ require("RF_Artista_YM.php");
                     </ul>
 
                     <h2>LANZAMIENTOS</h2>
+                    <div class="album-container">
+                        <?php if (!empty($albumes)): ?>
+                            <?php foreach ($albumes as $album): ?>
+                                <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link-ym">
+                                    <div class="album-card-ym">
+                                        <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
+                                            alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>" class="album-image-ym">
+                                        <div class="album-info-ym">
+                                            <h4 class="album-title-ym"><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
+                                            <p class="album-category-ym"><?php echo htmlspecialchars($album['Categoria']); ?></p>
+                                            <p class="album-date-ym"><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No hay lanzamientos disponibles.</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
 
-
             </div>
-
         </div>
-    </div>
 
 
-    <!-- Formulario para Editar Perfil -->
-    <div class="form-container fondo_perfil_editar" id="editarPerfil" style="display: none;">
-        <h3>Editar Perfil</h3>
-        <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
-        <div class="form-group">
-                <input type="file" name="nuevaFoto" id="file" class="custom-file-input" accept="image/*" onchange="previewImage(event)">
-                <label for="file" class="custo-label">
+        <!-- Formulario para Editar Perfil -->
+        <div class="form-container fondo_perfil_editar" id="editarPerfil" style="display: none;">
+            <h3>Editar Perfil</h3>
+            <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
+                <div class="form-group">
+                    <input type="file" name="nuevaFoto" id="file" class="custom-file-input" accept="image/*" onchange="previewImage(event)">
+                    <label for="file" class="custo-label">
 
                         <img id="preview" class="previe-image-2" alt="Preview" src="<?php echo htmlspecialchars($fotoPerfil); ?>">
-                    
-                </label>
+
+                    </label>
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="nuevoNombre" placeholder="Nuevo Nombre" value="<?php echo htmlspecialchars($nombre); ?>">
+                </div><br>
+                <div class="form-group">
+                    <textarea class="form-control input_biografia" name="nuevaBiografia" placeholder="Biografía"><?php echo htmlspecialchars($biografia); ?></textarea>
+                </div><br>
                 <br>
-            </div>
+                <div class="form-group">
+                    <label for="Red1">
+                        <i class="bi bi-instagram icono-redes"></i> Instagram
+                    </label>
+                    <input type="text" class="form-control" name="Red1" id="Red1" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Instagram']); ?>">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="Red2">
+                        <i class="bi bi-youtube icono-redes"></i> YouTube
+                    </label>
+                    <input type="text" class="form-control" name="Red2" id="Red2" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Youtube']); ?>">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="Red3">
+                        <i class="bi bi-spotify icono-redes"></i> Spotify
+                    </label>
+                    <input type="text" class="form-control" name="Red3" id="Red3" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Spotify']); ?>">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="Red4">
+                        <i class="bi bi-tiktok icono-redes"></i> TikTok
+                    </label>
+                    <input type="text" class="form-control" name="Red4" id="Red4" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['TikTok']); ?>">
+                </div><br>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña Actual" required>
+                </div><br>
+                <button type="submit" class="btn btn-primary" name="editarPerfil"><i class="bi bi-check"> | </i>Guardar Cambios</button>
+                <button class="btn btn-danger mt-2 mt-md-0" onclick="mostrarEliminarPerfil()" aria-label="Eliminar Perfil"><i class="bi bi-x-lg"> | </i>Eliminar Perfil</button>
+            </form>
+        </div>
 
-            <div class="form-group">
-                <input type="text" class="form-control" name="nuevoNombre" placeholder="Nuevo Nombre" value="<?php echo htmlspecialchars($nombre); ?>">
-            </div><br>
-            <div class="form-group">
-                <textarea class="form-control input_biografia" name="nuevaBiografia" placeholder="Biografía"><?php echo htmlspecialchars($biografia); ?></textarea>
-            </div><br>
-            <br>
-            <div class="form-group">
-                <label for="Red1">
-                    <i class="bi bi-instagram icono-redes"></i> Instagram
-                </label>
-                <input type="text" class="form-control" name="Red1" id="Red1" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Instagram']); ?>">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="Red2">
-                    <i class="bi bi-youtube icono-redes"></i> YouTube
-                </label>
-                <input type="text" class="form-control" name="Red2" id="Red2" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Youtube']); ?>">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="Red3">
-                    <i class="bi bi-spotify icono-redes"></i> Spotify
-                </label>
-                <input type="text" class="form-control" name="Red3" id="Red3" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Spotify']); ?>">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="Red4">
-                    <i class="bi bi-tiktok icono-redes"></i> TikTok
-                </label>
-                <input type="text" class="form-control" name="Red4" id="Red4" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['TikTok']); ?>">
-            </div><br>
-            <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Contraseña Actual" required>
-            </div><br>
-            <button type="submit" class="btn btn-primary" name="editarPerfil"><i class="bi bi-check"> | </i>Guardar Cambios</button>
-            <button class="btn btn-danger mt-2 mt-md-0" onclick="mostrarEliminarPerfil()" aria-label="Eliminar Perfil"><i class="bi bi-x-lg"> | </i>Eliminar Perfil</button>
-        </form>
+        <!-- Formulario para Eliminar Perfil -->
+        <div class="form-container fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
+            <h3>Eliminar Perfil</h3>
+            <form action="RF_Usuario_YM.php" method="post" onsubmit="return confirmarContrasena('eliminar')">
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña" required>
+                </div><br>
+                <button type="submit" class="btn btn-danger" name="eliminarPerfil">Confirmar Eliminación</button>
+            </form>
+        </div>
     </div>
-
-    <!-- Formulario para Eliminar Perfil -->
-    <div class="form-container fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
-        <h3>Eliminar Perfil</h3>
-        <form action="RF_Usuario_YM.php" method="post" onsubmit="return confirmarContrasena('eliminar')">
-            <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña" required>
-            </div><br>
-            <button type="submit" class="btn btn-danger" name="eliminarPerfil">Confirmar Eliminación</button>
-        </form>
-    </div>
-</div>
 </div>
 
 

@@ -2,7 +2,7 @@
 require("Header_YM.php");
 require("RF_Artista_YM.php");
 require_once("conexion.php");
-require("RF_Álbumes_YM.php");
+require_once("RF_Álbumes_YM.php");
 
 $email = $_SESSION["email"];
 ?>
