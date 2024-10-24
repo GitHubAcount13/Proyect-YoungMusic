@@ -2849,3 +2849,26 @@ audio {
       padding: 10px;
   }
 }
+/* cambio editar y eliminar perfil */
+.form-art{
+  margin-top: -1380px;
+  position: relative;
+  left: 10%;
+}
+.form-art-delete{
+  position: relative;
+  top: -814px;
+  left: 10%;
+}
+.perfil-disc{
+  max-width: 60%;
+    position: relative;
+    left: 80%;
+    top: -550px;
+}
+.form-disc-delete{
+  max-width: 60%;
+  position: relative;
+  left: 90%;
+  top: -350px;
+}

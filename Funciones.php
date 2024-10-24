@@ -129,35 +129,39 @@ function obtenerDatosDisco($email)
 {
     $con = conectar_bd();
     $email = mysqli_real_escape_string($con, $email);
-    $consulta = "SELECT * FROM Discografica WHERE CorrDisc = '$email'";
+
+    // Consulta para obtener datos del artista
+    $consulta = "SELECT * FROM usuarios 
+                     INNER JOIN discografica ON discografica.CorrDisc = usuarios.Correo 
+                     WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         $usuario = mysqli_fetch_assoc($resultado);
-      
-       // Consulta para obtener redes sociales de la discografica
 
-       $consulta = "SELECT * FROM redesd WHERE CorrDisc = '$email'";
-       $resultado_Redes = mysqli_query($con, $consulta);
+        // Consulta para obtener redes sociales del artista
 
-       if ($resultado_Redes && mysqli_num_rows($resultado_Redes) > 0) {
-           $Redes = mysqli_fetch_assoc($resultado_Redes);
-           $Instagram = $Redes['Instagram'];
-           $Youtube = $Redes['Youtube'];
-           $TikTok  = $Redes['TikTok'];
-           $Spotify = $Redes['Spotify'];
-       }
-       $usuario['Instagram'] = $Instagram;
-       $usuario['Youtube'] = $Youtube;
-       $usuario['TikTok'] = $TikTok;
-       $usuario['Spotify'] = $Spotify;
+        $consulta = "SELECT * FROM redesd WHERE CorrDisc = '$email'";
+        $resultado_Redes = mysqli_query($con, $consulta);
 
-       mysqli_close($con);
-       return $usuario;
-   } else {
-       mysqli_close($con);
-       return false;
-   }
+        if ($resultado_Redes && mysqli_num_rows($resultado_Redes) > 0) {
+            $Redes = mysqli_fetch_assoc($resultado_Redes);
+            $Instagram = $Redes['Instagram'];
+            $Youtube = $Redes['Youtube'];
+            $TikTok  = $Redes['TikTok'];
+            $Spotify = $Redes['Spotify'];
+        }
+        $usuario['Instagram'] = $Instagram;
+        $usuario['Youtube'] = $Youtube;
+        $usuario['TikTok'] = $TikTok;
+        $usuario['Spotify'] = $Spotify;
+
+        mysqli_close($con);
+        return $usuario;
+    } else {
+        mysqli_close($con);
+        return false;
+    }
 }
 function obtenerDatosArtista($email)
 {
@@ -365,13 +369,121 @@ function editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, 
     return $resultado;
 }
 
+function editarPerfilDisco($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, $redes)
+{
+    $con = conectar_bd();
+    $email = mysqli_real_escape_string($con, $email);
+    $nuevoNombre = mysqli_real_escape_string($con, $nuevoNombre);
+    $nuevaBiografia = mysqli_real_escape_string($con, $nuevaBiografia);
+
+    $fotoGuardada = "";
+    if (!empty($nuevaFoto['name'])) {
+        try {
+            // Primero, obtener la foto actual del usuario
+            $consultaFoto = "SELECT FotoPerf FROM usuarios WHERE Correo = '$email'";
+            $resultadoFoto = mysqli_query($con, $consultaFoto);
+            $fotoActual = mysqli_fetch_assoc($resultadoFoto);
+
+            // Si existe una foto anterior, eliminarla de Cloudinary
+            if (!empty($fotoActual['FotoPerf'])) {
+                try {
+                    // Extraer el public_id de la URL
+                    $urlPartes = explode('/', $fotoActual['FotoPerf']);
+                    $nombreArchivo = end($urlPartes);
+                    $publicId = 'Subida/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+
+                    // Eliminar la imagen anterior
+                    $admin = new AdminApi();
+                    $admin->deleteAssets($publicId);
+                } catch (Exception $e) {
+                    echo "Advertencia: No se pudo eliminar la imagen anterior: " . $e->getMessage();
+                    // Continuamos con la ejecución aunque falle la eliminación
+                }
+            }
+
+            // Subir la nueva imagen a Cloudinary
+            $resultado = (new UploadApi())->upload($nuevaFoto['tmp_name'], [
+                "folder" => "Subida/",  // Carpeta en Cloudinary
+                "public_id" => "imagen_" . uniqid(),  // Nombre único
+                "resource_type" => "image"
+            ]);
+
+            // Obtener la URL de la imagen subida
+            $fotoGuardada = ", FotoPerf = '" . $resultado['secure_url'] . "'";
+            echo "Foto de perfil actualizada exitosamente en Cloudinary.";
+        } catch (Exception $e) {
+            echo "Error al subir la foto a Cloudinary: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    // Actualizar los datos del usuario
+    $consulta = "UPDATE usuarios SET NomrUsua = '$nuevoNombre', Biografia = '$nuevaBiografia' $fotoGuardada WHERE Correo = '$email'";
+    $resultado = mysqli_query($con, $consulta);
+
+    if ($resultado) {
+        // Verificar si las redes ya existen o se deben insertar
+        $consultaRedes = "SELECT * FROM redesd WHERE CorrDisc = '$email'";
+        $resultadoRedes = mysqli_query($con, $consultaRedes);
+
+        if (mysqli_num_rows($resultadoRedes) == 0) {
+            // Si no existen registros de redes sociales, las insertamos
+            $insertRedes = "INSERT INTO `redesd`(`CorrDisc`, `Instagram`, `Youtube`, `Spotify`, `TikTok`) 
+                            VALUES ('$email', '{$redes[0]}', '{$redes[1]}', '{$redes[2]}', '{$redes[3]}')";
+            mysqli_query($con, $insertRedes);
+        } else {
+            // Si ya existen registros de redes sociales, las actualizamos
+            $updateRedes = "UPDATE `redesd` SET 
+                            `Instagram` = '{$redes[0]}', 
+                            `Youtube` = '{$redes[1]}', 
+                            `Spotify` = '{$redes[2]}', 
+                            `TikTok` = '{$redes[3]}'
+                            WHERE `CorrDisc` = '$email'";
+            mysqli_query($con, $updateRedes);
+        }
+    } else {
+        echo "Error al actualizar el perfil del artista.";
+        return false;
+    }
+
+    mysqli_close($con);
+    return $resultado;
+}
+
 
 function eliminarPerfil($email)
 {
     $con = conectar_bd();
     $email = mysqli_real_escape_string($con, $email);
+    
+    // Primero, obtener la foto actual del usuario
+    $consultaFoto = "SELECT FotoPerf FROM usuarios WHERE Correo = '$email'";
+    $resultadoFoto = mysqli_query($con, $consultaFoto);
+    $fotoActual = mysqli_fetch_assoc($resultadoFoto);
+
+    // Si existe una foto, eliminarla de Cloudinary
+    if (!empty($fotoActual['FotoPerf'])) {
+        try {
+            // Extraer el public_id de la URL
+            $urlPartes = explode('/', $fotoActual['FotoPerf']);
+            $nombreArchivo = end($urlPartes);
+            $publicId = 'Subida/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+
+            // Eliminar la imagen de Cloudinary
+            $admin = new AdminApi();
+            $admin->deleteAssets($publicId);
+            
+            echo "Foto de perfil eliminada exitosamente de Cloudinary.";
+        } catch (Exception $e) {
+            echo "Advertencia: No se pudo eliminar la imagen de Cloudinary: " . $e->getMessage();
+            // Continuamos con la ejecución aunque falle la eliminación de la imagen
+        }
+    }
+
+    // Proceder a eliminar el perfil de la base de datos
     $consulta = "DELETE FROM usuarios WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
+    
     mysqli_close($con);
     return $resultado;
 }

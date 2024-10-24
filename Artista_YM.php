@@ -76,13 +76,7 @@ require("RF_Artista_YM.php");
                         <?php endif; ?>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-
-        <!-- Formulario para Editar Perfil -->
-        <div class="form-container fondo_perfil_editar" id="editarPerfil" style="display: none;">
+                <div class="form-container form-art fondo_perfil_editar" id="editarPerfil" style="display: none;">
             <h3>Editar Perfil</h3>
             <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
                 <div class="form-group">
@@ -138,7 +132,7 @@ require("RF_Artista_YM.php");
         </div>
 
         <!-- Formulario para Eliminar Perfil -->
-        <div class="form-container fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
+        <div class="form-container form-art-delete fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
             <h3>Eliminar Perfil</h3>
             <form action="RF_Usuario_YM.php" method="post" onsubmit="return confirmarContrasena('eliminar')">
                 <div class="form-group">
@@ -147,6 +141,12 @@ require("RF_Artista_YM.php");
                 <button type="submit" class="btn btn-danger" name="eliminarPerfil">Confirmar Eliminación</button>
             </form>
         </div>
+            </div>
+        </div>
+
+
+        <!-- Formulario para Editar Perfil -->
+       
     </div>
 </div>
 
