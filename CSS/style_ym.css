@@ -2903,3 +2903,20 @@ audio {
         left: 13%;
   }
 }
+@media (min-width:768px){
+  .reg-disc-rw{
+    position: relative;
+    display: block !important;
+    left: 50%;
+    transform: translateX(-32%);
+  }
+}
+@media (min-width:992px){
+  .reg-disc-rw{
+    left: 50%;
+    transform: translateX(-44%);
+  }
+  .cont-regd{
+    max-width: 910px !important;
+  }
+}
