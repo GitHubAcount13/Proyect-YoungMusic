@@ -2,7 +2,7 @@
 session_start();
 require_once("conexion.php");
 require("Funciones.php");
-require("RF_Álbumes_YM.php");
+require_once("RF_Álbumes_YM.php");
 
 if (!isset($_SESSION["email"])) {
     header("Location: Login_YM.php");

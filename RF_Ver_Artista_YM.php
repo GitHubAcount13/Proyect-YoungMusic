@@ -1,7 +1,7 @@
 <?php
 require_once("conexion.php");
 require_once("Funciones.php");
-require("RF_Álbumes_YM.php");
+require_once("RF_Álbumes_YM.php");
 
 
 if (!isset($_SESSION["email"])) {
