@@ -19,7 +19,7 @@ $generos = json_decode($jsonData, true)['generos'];
 
 <div class="container my-3">
     <div class="row preferencias">
-        <div class="col-md-4">
+        <div class="col-md-4 content-izq-pref">
             <div class="parte_izquierda_registro_pref">
                 <h2>
                     <a class="registro" href="Login_YM.php">REGISTRARSE</a>
@@ -57,7 +57,7 @@ $generos = json_decode($jsonData, true)['generos'];
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Información Adicional</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick=(cerrarVentanaEmergente())></button>
                             </div>
                             <div class="modal-body">
                                 <p>Con estos datos puedes ingresar a la página. Si eres un artista o discográfica, ingresa otros datos necesarios para continuar. Si no, toca finalizar.</p>

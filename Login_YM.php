@@ -31,7 +31,7 @@
           <div id="error-message" style="color: red; display: none;"></div>
           <div class="form-group text-center mb-3">
             <button class="btn btn-secondary mr-2 bot" type="reset">Cancelar</button>
-            <button class="btn btn-primary bot" type="button" id="submitLogin" onclick="loginUser()">Siguiente</button>
+            <button class="btn btn-primary bot bot-s" type="button" id="submitLogin" onclick="loginUser()">Siguiente</button>
           </div>
         </form>
       </div>
