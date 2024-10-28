@@ -2997,7 +2997,6 @@ audio {
   .parte_izquierda_registro-redis {
     transform: translateX(-40%);
 }
-<<<<<<< HEAD
 }
 /* CSS para la sección de comentarios */
 .comment-item {
@@ -3077,6 +3076,3 @@ audio {
   word-break: break-word;
 }
 
-=======
-}
->>>>>>> f101c8ee8ef4fb61c882800d69ae7e7d29e23b4e
