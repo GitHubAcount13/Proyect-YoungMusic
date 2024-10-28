@@ -2,12 +2,14 @@
 require("Header_YM.php");
 require("RF_Datos_Busqueda_YM.php");
 $paginaPerfil = determinarTipoUsuario($email);
+require_once("RF_Panel_Admin_YM.php")
 ?>
 <nav class="navbar navbar-expand-md nav_index_ym">
 <a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">
         <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
         <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
     </a>
+    <?php if(isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?><a href="Panel_Admin_YM.php"><i class="bi bi-incognito"></i></a><?php endif; ?>
     <button class="navbar-toggler desplazador-busqueda" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-search icono-busqueda"></i>
     </button>

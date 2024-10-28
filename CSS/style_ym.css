@@ -3075,3 +3075,313 @@ audio {
   margin-top: 0.5rem;
   word-break: break-word;
 }
+/* panel_admin */
+
+/* Variables de colores para el panel admin */
+:root {
+  --admin-primary: #3498db;
+  --admin-secondary: #2ecc71;
+  --admin-bg: #f5f6fa;
+  --admin-card: #ffffff;
+  --admin-text: #2c3e50;
+  --admin-header: #34495e;
+}
+
+/* Contenedor principal del panel */
+.admin-panel {
+  background-color: var(--admin-bg);
+  color: var(--admin-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem 1rem;
+}
+
+/* Título del panel */
+.admin-title {
+  color: var(--admin-header);
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--admin-primary);
+}
+
+/* Cards del panel */
+.admin-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+  background-color: var(--admin-card);
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+}
+
+.admin-card-header {
+  background-color: var(--admin-header);
+  border-radius: 15px 15px 0 0 !important;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-card-title {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.admin-card-body {
+  padding: 1.5rem;
+}
+
+/* Contador de pendientes */
+.admin-badge {
+  background-color: var(--admin-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Tabla de datos */
+.admin-table-container {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.admin-table thead th {
+  background-color: #f8f9fa;
+  color: var(--admin-header);
+  font-weight: 600;
+  border-bottom: 2px solid var(--admin-primary);
+  padding: 1rem;
+}
+
+.admin-table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Botón de confirmar */
+.admin-btn-confirm {
+  background-color: var(--admin-secondary);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-btn-confirm:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
+  color: white;
+}
+
+/* Iconos */
+.admin-icon {
+  margin-right: 0.5rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .admin-panel {
+      padding: 1rem;
+  }
+
+  .admin-title {
+      font-size: 2rem;
+  }
+
+  .admin-card-title {
+      font-size: 1.25rem;
+  }
+
+  .admin-table {
+      font-size: 0.9rem;
+  }
+
+  .admin-table-container {
+      overflow-x: auto;
+  }
+}
+
+/* Scrollbar personalizado */
+.admin-table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admin-table-container::-webkit-scrollbar-thumb {
+  background: var(--admin-primary);
+  border-radius: 10px;
+}
+
+.admin-table-container::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
+}
+.admin-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--admin-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.admin-back-btn:hover {
+  transform: scale(1.1);
+  background-color: #2980b9;
+  color: white;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 1200px) {
+  .admin-card {
+      margin: 1rem;
+  }
+  
+  .admin-table th, 
+  .admin-table td {
+      padding: 0.75rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .admin-title {
+      font-size: 2rem;
+      margin-top: 3rem;
+  }
+  
+  .admin-card-title {
+      font-size: 1.2rem;
+  }
+  
+  .admin-badge {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-panel {
+      padding: 0.5rem;
+  }
+
+  .admin-card {
+      margin: 0.5rem;
+  }
+  
+  .admin-table {
+      min-width: 600px; /* Asegura scroll horizontal en móviles */
+  }
+  
+  .admin-table th, 
+  .admin-table td {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+  }
+  
+  .admin-btn-confirm {
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+  }
+  
+  .admin-back-btn {
+      width: 40px;
+      height: 40px;
+      top: 10px;
+      left: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-title {
+      font-size: 1.75rem;
+      margin-top: 3.5rem;
+  }
+  
+  .admin-card-header {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+  }
+  
+  .admin-badge {
+      width: fit-content;
+      margin: 0 auto;
+  }
+  
+  .admin-table {
+      min-width: 450px;
+  }
+}
+
+/* Mejora del scroll en dispositivos táctiles */
+@media (hover: none) {
+  .admin-table-container {
+      -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Indicador de scroll horizontal */
+.admin-table-container {
+  position: relative;
+}
+
+.admin-table-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .admin-table-container::after {
+      opacity: 1;
+  }
+}
