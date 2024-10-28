@@ -130,17 +130,19 @@ function obtenerDatosDisco($email)
     $con = conectar_bd();
     $email = mysqli_real_escape_string($con, $email);
 
-    // Consulta para obtener datos del artista
+    // Consulta para obtener datos de la discográfica
     $consulta = "SELECT * FROM usuarios 
-                     INNER JOIN discografica ON discografica.CorrDisc = usuarios.Correo 
-                     WHERE Correo = '$email'";
+                 INNER JOIN discografica ON discografica.CorrDisc = usuarios.Correo 
+                 WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
 
     if ($resultado && mysqli_num_rows($resultado) > 0) {
         $usuario = mysqli_fetch_assoc($resultado);
 
-        // Consulta para obtener redes sociales del artista
+        // Inicializar las variables de redes sociales
+        $Instagram = $Youtube = $TikTok = $Spotify = '';
 
+        // Consulta para obtener redes sociales de la discográfica
         $consulta = "SELECT * FROM redesd WHERE CorrDisc = '$email'";
         $resultado_Redes = mysqli_query($con, $consulta);
 
@@ -148,9 +150,10 @@ function obtenerDatosDisco($email)
             $Redes = mysqli_fetch_assoc($resultado_Redes);
             $Instagram = $Redes['Instagram'];
             $Youtube = $Redes['Youtube'];
-            $TikTok  = $Redes['TikTok'];
+            $TikTok = $Redes['TikTok'];
             $Spotify = $Redes['Spotify'];
         }
+
         $usuario['Instagram'] = $Instagram;
         $usuario['Youtube'] = $Youtube;
         $usuario['TikTok'] = $TikTok;

@@ -1,7 +1,7 @@
 <?php
-session_start(); // Agregamos esto al inicio
 require("Header_YM.php");
 require_once("RF_VerAlbum.php");
+require_once("RF_Datos_Busqueda_YM.php");
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo "<div class='alert alert-danger'>ID de álbum no proporcionado</div>";
@@ -25,6 +25,7 @@ if (!$album) {
     header("Location: Albumes.php");
     exit();
 }
+$profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['email']) : "Login_YM.php";
 ?>
 
     <div class="container-fluid bg-dark text-white py-4">
@@ -77,115 +78,74 @@ if (!$album) {
             </div>
         </div>
 
-        <!-- Sección de Comentarios -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <h2 class="mb-4">Comentarios</h2>
-                
-                <?php if(isset($_SESSION["email"])): ?>
-                    <!-- Formulario para agregar comentarios -->
-                    <form id="commentForm" class="mb-4" data-album-id="<?php echo $albumId; ?>">
-                        <div class="form-group">
-                            <textarea class="form-control" id="comentario" rows="3" 
-                                      placeholder="Escribe tu comentario aquí..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Publicar Comentario</button>
-                    </form>
-                <?php else: ?>
-                    <div class="alert alert-info">
-                        Debes iniciar sesión para poder comentar.
-                    </div>
-                <?php endif; ?>
+       <!-- Sección de Comentarios -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2 class="mb-4">Comentarios</h2>
 
-                <!-- Lista de comentarios -->
-                <div id="commentsList">
-                    <?php 
-                    $comentarios = obtenerComentarios($albumId, isset($_SESSION["email"]) ? $_SESSION["email"] : null);
-                    foreach($comentarios as $comentario): 
-                        $profileLink = isset($_SESSION['email']) && $_SESSION['email'] === $comentario['CorrUsu']
-                            ? 'artista_YM.php'
-                            : 'Ver_artista_YM.php?correo=' . urlencode($comentario['CorrUsu']);
-                    ?>
-                        <div class="comment-item p-3 mb-3 rounded" data-comment-id="<?php echo $comentario['IdComentario']; ?>">
-                            <div class="d-flex">
-                                <a href="<?php echo $profileLink; ?>" class="Link">
-                                    <img src="<?php echo htmlspecialchars($comentario['FotoPerf']); ?>" 
-                                         alt="<?php echo htmlspecialchars($comentario['NomrUsua']); ?>"
-                                         class="comment-user-img rounded-circle mr-3">
-                                </a>
-                                <div class="flex-grow-1">
-                                    <div class="comment-header">
-                                        <div class="comment-user-info">
-                                            <h5 class="mb-1">
-                                                <a href="<?php echo $profileLink; ?>" class="Link">
-                                                    <?php echo htmlspecialchars($comentario['NomrUsua']); ?>
-                                                </a>
-                                            </h5>
-                                            <p class="comment-date mb-1">
-                                                <?php echo date('d/m/Y H:i', strtotime($comentario['FechaCom'])); ?>
-                                            </p>
-                                        </div>
-                                        <?php if($comentario['puedeEliminar']): ?>
-                                            <div class="comment-actions">
-                                                <button type="button" 
-                                                        class="delete-comment-btn" 
-                                                        data-comment-id="<?php echo $comentario['IdComentario']; ?>">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        <?php endif; ?>
+            <?php if(isset($_SESSION["email"])): ?>
+                <!-- Formulario para agregar comentarios -->
+                <form id="commentForm" class="mb-4" data-album-id="<?php echo $albumId; ?>">
+                    <div class="form-group">
+                        <textarea class="form-control" id="comentario" rows="3" 
+                                  placeholder="Escribe tu comentario aquí..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publicar Comentario</button>
+                </form>
+            <?php else: ?>
+                <div class="alert alert-info">
+                    Debes iniciar sesión para poder comentar.
+                </div>
+            <?php endif; ?>
+
+            <!-- Lista de comentarios -->
+            <div id="commentsList">
+                <?php 
+                $comentarios = obtenerComentarios($albumId, isset($_SESSION["email"]) ? $_SESSION["email"] : null);
+                foreach($comentarios as $comentario): 
+                    $commenterLink = $_SESSION['email'] === $comentario['CorrUsu']
+                        ? $profileLink
+                        : 'Ver_artista_YM.php?correo=' . urlencode($comentario['CorrUsu']);
+                ?>
+                    <div class="comment-item p-3 mb-3 rounded" data-comment-id="<?php echo $comentario['IdComentario']; ?>">
+                        <div class="d-flex">
+                            <a href="<?php echo $commenterLink; ?>" class="Link">
+                                <img src="<?php echo htmlspecialchars($comentario['FotoPerf']); ?>" 
+                                     alt="<?php echo htmlspecialchars($comentario['NomrUsua']); ?>"
+                                     class="comment-user-img rounded-circle mr-3">
+                            </a>
+                            <div class="flex-grow-1">
+                                <div class="comment-header">
+                                    <div class="comment-user-info">
+                                        <h5 class="mb-1">
+                                            <a href="<?php echo $commenterLink; ?>" class="Link">
+                                                <?php echo htmlspecialchars($comentario['NomrUsua']); ?>
+                                            </a>
+                                        </h5>
+                                        <p class="comment-date mb-1">
+                                            <?php echo date('d/m/Y H:i', strtotime($comentario['FechaCom'])); ?>
+                                        </p>
                                     </div>
-                                    <p class="comment-content mb-0">
-                                        <?php echo nl2br(htmlspecialchars($comentario['Comentario'])); ?>
-                                    </p>
+                                    <?php if($comentario['puedeEliminar']): ?>
+                                        <div class="comment-actions">
+                                            <button type="button" 
+                                                    class="delete-comment-btn" 
+                                                    data-comment-id="<?php echo $comentario['IdComentario']; ?>">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
+                                <p class="comment-content mb-0">
+                                    <?php echo nl2br(htmlspecialchars($comentario['Comentario'])); ?>
+                                </p>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-    <footer class="footer-home footer-veralbum">
-            <div class="container-fluid">
-                <div class="row cont-fot">
-                    <div class="col-md-2 contenido-foot">
-                        <a href="Home_YM.php" class="nav-link">
-                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-</body>
-</html>
+</div>
 
->>>>>>> f101c8ee8ef4fb61c882800d69ae7e7d29e23b4e
 <?php require("Footer_YM.php"); ?>
