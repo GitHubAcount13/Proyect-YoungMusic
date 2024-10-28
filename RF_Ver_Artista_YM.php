@@ -28,7 +28,7 @@ if ($usuario) {
     echo "Error al obtener los datos del usuario.";
     exit();
 }
-
+$albumes = obtenerAlbumes($correoArtista);
 
 
 // Verificar si ya sigue al artista

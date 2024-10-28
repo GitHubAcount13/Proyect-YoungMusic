@@ -1,3 +1,77 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const commentForm = document.getElementById('commentForm');
+  
+  // Manejar envío de comentarios
+  if (commentForm) {
+      commentForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const comentario = document.getElementById('comentario').value;
+          const albumId = this.dataset.albumId;
+          
+          const formData = new FormData();
+          formData.append('albumId', albumId);
+          formData.append('comentario', comentario);
+          
+          fetch('procesar_comentario.php', {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Error en la respuesta del servidor');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data.success) {
+                  location.reload();
+              } else {
+                  alert(data.message || 'Error al publicar el comentario');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('Error al procesar la solicitud: ' + error.message);
+          });
+          
+          document.getElementById('comentario').value = '';
+      });
+  }
+
+  // Manejar borrado de comentarios
+  document.querySelectorAll('.delete-comment-btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+          if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
+              const commentId = this.dataset.commentId;
+              const formData = new FormData();
+              formData.append('commentId', commentId);
+              formData.append('action', 'delete');
+              
+              fetch('procesar_comentario.php', {
+                  method: 'POST',
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      // Eliminar el comentario del DOM
+                      const commentItem = document.querySelector(`.comment-item[data-comment-id="${commentId}"]`);
+                      if (commentItem) {
+                          commentItem.remove();
+                      }
+                  } else {
+                      alert(data.message || 'Error al eliminar el comentario');
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error al eliminar el comentario');
+              });
+          }
+      });
+  });
+});
 function seguirArtista() {
   const formSeguir = document.getElementById('formSeguir');
   const formData = new FormData(formSeguir);

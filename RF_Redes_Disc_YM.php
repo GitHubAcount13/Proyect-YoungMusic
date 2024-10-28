@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("conexion.php");
-require("Funciones.php");
+require_once("Funciones.php");
 
 $con = conectar_bd();
 

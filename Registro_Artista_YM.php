@@ -17,7 +17,7 @@ $generos = json_decode($jsonData, true)['generos'];
     </div>
 </nav>
 
-<div class="container">
+<div class="container reg-art">
         <div class="row">
             <div class="col-md-6 parte_izquierda_registro">
                 <h2>

@@ -76,13 +76,7 @@ require("RF_Artista_YM.php");
                         <?php endif; ?>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-
-        <!-- Formulario para Editar Perfil -->
-        <div class="form-container fondo_perfil_editar" id="editarPerfil" style="display: none;">
+                <div class="form-container form-art fondo_perfil_editar" id="editarPerfil" style="display: none;">
             <h3>Editar Perfil</h3>
             <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
                 <div class="form-group">
@@ -138,7 +132,7 @@ require("RF_Artista_YM.php");
         </div>
 
         <!-- Formulario para Eliminar Perfil -->
-        <div class="form-container fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
+        <div class="form-container form-art-delete fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
             <h3>Eliminar Perfil</h3>
             <form action="RF_Usuario_YM.php" method="post" onsubmit="return confirmarContrasena('eliminar')">
                 <div class="form-group">
@@ -147,10 +141,51 @@ require("RF_Artista_YM.php");
                 <button type="submit" class="btn btn-danger" name="eliminarPerfil">Confirmar Eliminación</button>
             </form>
         </div>
+            </div>
+        </div>
+
+
+        <!-- Formulario para Editar Perfil -->
+       
     </div>
 </div>
 
 
 
-
+<footer class="footer-home footer-veralbum">
+            <div class="container-fluid">
+                <div class="row cont-fot">
+                    <div class="col-md-2 contenido-foot">
+                        <a href="Home_YM.php" class="nav-link">
+                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 <?php require("Footer_YM.php"); ?>

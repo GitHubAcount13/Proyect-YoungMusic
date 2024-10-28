@@ -19,7 +19,7 @@ $generos = json_decode($jsonData, true)['generos'];
 
 <div class="container">
         <div class="row">
-            <div class="col-md-6 parte_izquierda_registro mb-4">
+            <div class="col-md-6 parte_izquierda_registro parte_izquierda_registro-redis mb-4">
                 <h2>
                     <a class="registro">Registro de Discográfica</a>
                     <hr class="bg-custom-register my-4 barra_register">
