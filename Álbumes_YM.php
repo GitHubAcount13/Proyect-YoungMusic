@@ -56,39 +56,35 @@ $email = $_SESSION["email"];
         </div>
     </div>
 </div>
-<footer class="footer-album">
+<footer class="footer-home">
             <div class="container-fluid">
-                <div class="row cont-fot-album">
+                <div class="row cont-fot">
                     <div class="col-md-2 contenido-foot">
-                        <a href="Home_YM.php" class="nav-link">
-                            <span class="icon-foot-album icon-home"><i class="bi bi-house"></i></span>
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot">
                         <a href="" class="nav-link">
-                            <span class="icon-foot-album icon-clock"><i class="bi bi-clock"></i></span>
+                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot">
                         <a href="" class="nav-link">
-                            <span class="icon-foot-album icon-fire"><i class="bi bi-fire"></i></i></span>
+                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot">
                         <a href="" class="nav-link">
-                            <span class="icon-foot-album icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
+                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot">
                         <a href="" class="nav-link">
-                            <span class="icon-foot-album icon-person"><i class="bi bi-person-heart"></i></i></span>
+                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot-album icon-history"><i class="bi bi-clock-history"></i></i></i></span>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </footer>
