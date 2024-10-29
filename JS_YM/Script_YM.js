@@ -399,8 +399,115 @@ function loginUser() {
     });
   });
 }
+function consultar_en_tiempo_real_Musica(evento) {
+  const formularioBusqueda = document.getElementById("form-buscar-Musica");
+  const resultadoDiv = document.getElementById("resultado_Musica");
 
+  if (evento) {
+      evento.preventDefault();
+  }
 
+  // Obtener el ultimo valor del input
+  const nombre_musica = document.getElementById("Musica").value;
+
+  //se crea un objeto para tomar los valores del formulario
+  const formData = new FormData();
+  formData.append("Musica", nombre_musica);
+  formData.append("envio", true);
+
+  // se le pasa al fetch el endpoint que genera la consulta de busqueda
+  fetch("RF_Busqueda_musica.php", {
+      method: "POST",
+      body: formData,
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      resultadoDiv.innerHTML = ""; // Limpia el contenido previo
+
+      //si el endpoint devuelve 1...
+      if (data.status === 1) {
+          data.musicas.forEach((musica) => {
+              // se agrega html dentro del div que contiene el mensaje de respuesta
+              resultadoDiv.innerHTML += `
+              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+                  <a class="Link" href="VerAlbum.php?id=${musica.id}">
+                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${musica.imagen}" alt="">
+                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${musica.nombre}</h2>
+                  </a>
+              </div>`;
+          });
+      } else {
+          resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
+      }
+  })
+  .catch((error) => {
+      console.error("Error:", error);
+      resultadoDiv.innerHTML = `<h2 style="color: black;">Error al buscar músicas</h2>`;
+  });
+}
+
+// Agregar el event listener cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+  const formularioBusqueda = document.getElementById("form-buscar-Musica");
+  if (formularioBusqueda) {
+      formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real_Musica);
+  }
+});
+
+function consultar_en_tiempo_real_Album(evento) {
+  const formularioBusqueda = document.getElementById("form-buscar-Album");
+  const resultadoDiv = document.getElementById("resultado_album");
+
+  if (evento) {
+      evento.preventDefault();
+  }
+
+  // Obtener el ultimo valor del input
+  const nombre_album = document.getElementById("Album").value;
+
+  //se crea un objeto para tomar los valores del formulario
+  const formData = new FormData();
+  formData.append("Album", nombre_album);
+  formData.append("envio", true);
+
+  // se le pasa al fetch el endpoint que genera la consulta de busqueda
+  fetch("RF_Busqueda_Album.php", {
+      method: "POST",
+      body: formData,
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      resultadoDiv.innerHTML = ""; // Limpia el contenido previo
+
+      //si el endpoint devuelve 1...
+      if (data.status === 1) {
+          data.albums.forEach((album) => {
+              // se agrega html dentro del div que contiene el mensaje de respuesta
+              resultadoDiv.innerHTML += `
+              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+                    <a class="Link" href="VerAlbum.php?id=${album.id}">
+                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${album.imagen}" alt="">
+                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${album.nombre}</h2>
+                  </a>
+              </div>`;
+          });
+      } else {
+          resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
+      }
+  })
+  .catch((error) => {
+      console.error("Error:", error);
+      resultadoDiv.innerHTML = `<h2 style="color: black;">Error al buscar álbumes</h2>`;
+  });
+}
+
+// Agregar el event listener cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+  const formularioBusqueda = document.getElementById("form-buscar-Album");
+  if (formularioBusqueda) {
+      formularioBusqueda.addEventListener("submit", consultar_en_tiempo_real_Album);
+  }
+});
 
 
 function consultar_en_tiempo_real(evento) {

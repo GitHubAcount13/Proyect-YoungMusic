@@ -178,7 +178,11 @@ require("RF_Artista_YM.php");
                             <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
                         </a>
                     </div>
-                    
+                    <div class="col-md-2 contenido-foot">
+                        <a href="" class="nav-link">
+                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
