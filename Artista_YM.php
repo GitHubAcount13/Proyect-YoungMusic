@@ -76,6 +76,7 @@ require("RF_Artista_YM.php");
                         <?php endif; ?>
                     </div>
                 </div>
+                 <!-- Formulario para Editar Perfil -->
                 <div class="form-container form-art fondo_perfil_editar" id="editarPerfil" style="display: none;">
             <h3>Editar Perfil</h3>
             <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
@@ -143,9 +144,6 @@ require("RF_Artista_YM.php");
         </div>
             </div>
         </div>
-
-
-        <!-- Formulario para Editar Perfil -->
        
     </div>
 </div>

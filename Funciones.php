@@ -27,7 +27,6 @@ function logear($con, $email, $pass, $redirect = "Usuario_YM.php")
     } else {
         echo "Usuario no encontrado.";
     }
-    mysqli_close($con);
 }
 
 
@@ -459,34 +458,463 @@ function eliminarPerfil($email)
     $con = conectar_bd();
     $email = mysqli_real_escape_string($con, $email);
     
-    // Primero, obtener la foto actual del usuario
+    // Verificar si el usuario es un artista (tiene álbumes)
+    $consultaArtista = "SELECT COUNT(*) as count FROM albun WHERE NomCred = '$email'";
+    $resultadoArtista = mysqli_query($con, $consultaArtista);
+    $esArtista = mysqli_fetch_assoc($resultadoArtista)['count'] > 0;
+
+    if ($esArtista) {
+        // Obtener todos los álbumes del artista
+        $consultaAlbumes = "SELECT IdAlbum, ImgAlbu FROM albun WHERE NomCred = '$email'";
+        $resultadoAlbumes = mysqli_query($con, $consultaAlbumes);
+        
+        $admin = new AdminApi();
+
+        while ($album = mysqli_fetch_assoc($resultadoAlbumes)) {
+            // Eliminar imagen del álbum de Cloudinary
+            if (!empty($album['ImgAlbu'])) {
+                try {
+                    $urlPartes = explode('/', $album['ImgAlbu']);
+                    $nombreArchivo = end($urlPartes);
+                    $publicId = 'Albumes/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                    $admin->deleteAssets($publicId);
+                } catch (Exception $e) {
+                    error_log("Error al eliminar imagen del álbum: " . $e->getMessage());
+                }
+            }
+
+            // Obtener y eliminar todas las canciones del álbum
+            $consultaCanciones = "SELECT Archivo, ImgMusi FROM musica WHERE Album = " . $album['IdAlbum'];
+            $resultadoCanciones = mysqli_query($con, $consultaCanciones);
+
+            while ($cancion = mysqli_fetch_assoc($resultadoCanciones)) {
+                // Eliminar archivo MP3
+                if (!empty($cancion['Archivo'])) {
+                    try {
+                        $urlPartes = explode('/', $cancion['Archivo']);
+                        $nombreArchivo = end($urlPartes);
+                        $publicId = 'Musica/Canciones/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                        $admin->deleteAssets($publicId);
+                    } catch (Exception $e) {
+                        error_log("Error al eliminar archivo MP3: " . $e->getMessage());
+                    }
+                }
+
+                // Eliminar imagen de la canción
+                if (!empty($cancion['ImgMusi'])) {
+                    try {
+                        $urlPartes = explode('/', $cancion['ImgMusi']);
+                        $nombreArchivo = end($urlPartes);
+                        $publicId = 'Musica/portadas/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                        $admin->deleteAssets($publicId);
+                    } catch (Exception $e) {
+                        error_log("Error al eliminar imagen de la canción: " . $e->getMessage());
+                    }
+                }
+            }
+
+            // Eliminar todas las canciones del álbum de la base de datos
+            $eliminarCanciones = "DELETE FROM musica WHERE Album = " . $album['IdAlbum'];
+            mysqli_query($con, $eliminarCanciones);
+        }
+
+        // Eliminar todos los álbumes del artista de la base de datos
+        $eliminarAlbumes = "DELETE FROM albun WHERE NomCred = '$email'";
+        mysqli_query($con, $eliminarAlbumes);
+    }
+
+    // Eliminar foto de perfil del usuario
     $consultaFoto = "SELECT FotoPerf FROM usuarios WHERE Correo = '$email'";
     $resultadoFoto = mysqli_query($con, $consultaFoto);
     $fotoActual = mysqli_fetch_assoc($resultadoFoto);
 
-    // Si existe una foto, eliminarla de Cloudinary
     if (!empty($fotoActual['FotoPerf'])) {
         try {
-            // Extraer el public_id de la URL
             $urlPartes = explode('/', $fotoActual['FotoPerf']);
             $nombreArchivo = end($urlPartes);
             $publicId = 'Subida/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
-
-            // Eliminar la imagen de Cloudinary
             $admin = new AdminApi();
             $admin->deleteAssets($publicId);
-            
-            echo "Foto de perfil eliminada exitosamente de Cloudinary.";
         } catch (Exception $e) {
-            echo "Advertencia: No se pudo eliminar la imagen de Cloudinary: " . $e->getMessage();
-            // Continuamos con la ejecución aunque falle la eliminación de la imagen
+            error_log("Error al eliminar foto de perfil: " . $e->getMessage());
         }
     }
 
-    // Proceder a eliminar el perfil de la base de datos
+    // Finalmente, eliminar el usuario de la base de datos
     $consulta = "DELETE FROM usuarios WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
     
     mysqli_close($con);
     return $resultado;
+}
+function esAdmin($correo) {
+    global $con;
+    $query = "SELECT PermO FROM oyente WHERE CorrOyen = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if($row = $result->fetch_assoc()) {
+        return $row['PermO'] != NULL;
+    }
+    return false;
+}
+function EliminarAlbum($idAlbum, $con){
+
+
+    $consultaAlbumes = "SELECT ImgAlbu FROM albun WHERE IdAlbum = '$idAlbum'";
+    $resultadoAlbumes = mysqli_query($con, $consultaAlbumes);
+    $album = mysqli_fetch_assoc($resultadoAlbumes);
+    $admin = new AdminApi();
+
+    
+        // Eliminar imagen del álbum de Cloudinary
+        if (!empty($album['ImgAlbu'])) {
+            try {
+                $urlPartes = explode('/', $album['ImgAlbu']);
+                $nombreArchivo = end($urlPartes);
+                $publicId = 'Albumes/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                $admin->deleteAssets($publicId);
+            } catch (Exception $e) {
+                error_log("Error al eliminar imagen del álbum: " . $e->getMessage());
+            }
+        }
+
+        // Obtener y eliminar todas las canciones del álbum
+        $consultaCanciones = "SELECT Archivo, ImgMusi FROM musica WHERE Album = " . $album['IdAlbum'];
+        $resultadoCanciones = mysqli_query($con, $consultaCanciones);
+        $cancion = mysqli_fetch_assoc($resultadoCanciones);
+
+
+            // Eliminar archivo MP3
+            if (!empty($cancion['Archivo'])) {
+                try {
+                    $urlPartes = explode('/', $cancion['Archivo']);
+                    $nombreArchivo = end($urlPartes);
+                    $publicId = 'Musica/Canciones/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                    $admin->deleteAssets($publicId);
+                } catch (Exception $e) {
+                    error_log("Error al eliminar archivo MP3: " . $e->getMessage());
+                }
+            }
+
+            // Eliminar imagen de la canción
+            if (!empty($cancion['ImgMusi'])) {
+                try {
+                    $urlPartes = explode('/', $cancion['ImgMusi']);
+                    $nombreArchivo = end($urlPartes);
+                    $publicId = 'Musica/portadas/' . pathinfo($nombreArchivo, PATHINFO_FILENAME);
+                    $admin->deleteAssets($publicId);
+                } catch (Exception $e) {
+                    error_log("Error al eliminar imagen de la canción: " . $e->getMessage());
+                }
+            }
+        
+
+        // Eliminar todas las canciones del álbum de la base de datos
+        $eliminarCanciones = "DELETE FROM musica WHERE Album = " . $album['IdAlbum'];
+        mysqli_query($con, $eliminarCanciones);
+    
+
+    // Eliminar todos los álbumes del artista de la base de datos
+    $eliminarAlbumes = "DELETE FROM albun WHERE IdAlbum  = '$idAlbum'";
+    mysqli_query($con, $eliminarAlbumes);
+}
+function obtenerDetallesAlbum($idAlbum)
+{
+    $conexion = conectar_bd();
+
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    $consultaAlbum = "SELECT a.*, u.*, ar.*
+                      FROM albun a 
+                      JOIN usuarios u ON a.NomCred = u.Correo
+                      JOIN artistas ar ON ar.CorrArti = u.Correo 
+                      WHERE a.IdAlbum = ?";
+
+    $stmtAlbum = $conexion->prepare($consultaAlbum);
+
+    if (!$stmtAlbum) {
+        die("Error en la preparación de la consulta: " . $conexion->error);
+    }
+
+    $stmtAlbum->bind_param("i", $idAlbum);
+    $stmtAlbum->execute();
+    $resultado = $stmtAlbum->get_result();
+    $album = $resultado->fetch_assoc();
+
+    $stmtAlbum->close();
+    $conexion->close();
+
+    return $album;
+}
+
+function obtenerCancionesAlbum($albumId)
+{
+    $conexion = conectar_bd();
+
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    $queryCanciones = "SELECT m.*, GROUP_CONCAT(g.GeneMusi SEPARATOR ', ') AS Generos 
+                       FROM musica m 
+                       LEFT JOIN generos g ON m.IdMusi = g.IdMusi 
+                       WHERE m.Album = ? 
+                       GROUP BY m.IdMusi 
+                       ORDER BY m.IdMusi";
+    $stmtCanciones = $conexion->prepare($queryCanciones);
+
+    if (!$stmtCanciones) {
+        die("Error en la preparación de la consulta: " . $conexion->error);
+    }
+
+    $stmtCanciones->bind_param("i", $albumId);
+    $stmtCanciones->execute();
+    $resultado = $stmtCanciones->get_result();
+
+    $canciones = array();
+    while ($cancion = $resultado->fetch_assoc()) {
+        $canciones[] = $cancion;
+    }
+
+    $stmtCanciones->close();
+    $conexion->close();
+
+    return $canciones;
+}
+
+// Función auxiliar para verificar si un álbum existe
+function albumExiste($idAlbum)
+{
+    $conexion = conectar_bd();
+
+    if (!$conexion) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    $consulta = "SELECT IdAlbum FROM albun WHERE IdAlbum = ?";
+    $stmt = $conexion->prepare($consulta);
+
+    if (!$stmt) {
+        die("Error en la preparación de la consulta: " . $conexion->error);
+    }
+
+    $stmt->bind_param("i", $idAlbum);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $existe = $resultado->num_rows > 0;
+
+    $stmt->close();
+    $conexion->close();
+
+    return $existe;
+}
+function agregarComentario($idAlbum, $correoUsuario, $comentario) {
+    $conexion = conectar_bd();
+    
+    if (!$conexion) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+    
+    try {
+        // Preparar la consulta
+        $consulta = "INSERT INTO comentarios (IdAlbum, CorrUsu, Comentario) VALUES (?, ?, ?)";
+        $stmt = $conexion->prepare($consulta);
+        
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
+        }
+        
+        // Vincular parámetros
+        $stmt->bind_param("iss", $idAlbum, $correoUsuario, $comentario);
+        
+        // Ejecutar la consulta
+        $resultado = $stmt->execute();
+        
+        if (!$resultado) {
+            throw new Exception("Error al ejecutar la consulta: " . $stmt->error);
+        }
+        
+        $stmt->close();
+        $conexion->close();
+        
+        return true;
+        
+    } catch (Exception $e) {
+        error_log("Error en agregarComentario: " . $e->getMessage());
+        if (isset($stmt)) $stmt->close();
+        if (isset($conexion)) $conexion->close();
+        throw $e;
+    }
+}
+function puedeEliminarComentario($comentarioId, $correoUsuario) {
+    $conexion = conectar_bd();
+    
+    if (!$conexion) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+    
+    try {
+        // Verificar si el usuario es admin (oyente con PermO no nulo)
+        $consultaAdmin = "SELECT PermO FROM oyente WHERE CorrOyen = ?";
+        $stmtAdmin = $conexion->prepare($consultaAdmin);
+        $stmtAdmin->bind_param("s", $correoUsuario);
+        $stmtAdmin->execute();
+        $resultadoAdmin = $stmtAdmin->get_result();
+        $esAdmin = false;
+        
+        if ($row = $resultadoAdmin->fetch_assoc()) {
+            $esAdmin = $row['PermO'] !== null;
+        }
+        $stmtAdmin->close();
+
+        // Verificar si el usuario es el creador del álbum
+        $consultaCreador = "SELECT a.NomCred 
+                           FROM comentarios c 
+                           JOIN albun a ON c.IdAlbum = a.IdAlbum 
+                           WHERE c.IdComentario = ?";
+        $stmtCreador = $conexion->prepare($consultaCreador);
+        $stmtCreador->bind_param("i", $comentarioId);
+        $stmtCreador->execute();
+        $resultadoCreador = $stmtCreador->get_result();
+        $esCreador = false;
+        
+        if ($row = $resultadoCreador->fetch_assoc()) {
+            $esCreador = ($row['NomCred'] === $correoUsuario);
+        }
+        $stmtCreador->close();
+
+        // Verificar si el usuario es el autor del comentario
+        $consultaAutor = "SELECT CorrUsu FROM comentarios WHERE IdComentario = ?";
+        $stmtAutor = $conexion->prepare($consultaAutor);
+        $stmtAutor->bind_param("i", $comentarioId);
+        $stmtAutor->execute();
+        $resultadoAutor = $stmtAutor->get_result();
+        $esAutor = false;
+        
+        if ($row = $resultadoAutor->fetch_assoc()) {
+            $esAutor = ($row['CorrUsu'] === $correoUsuario);
+        }
+        $stmtAutor->close();
+
+        $conexion->close();
+        
+        return $esAdmin || $esCreador || $esAutor;
+        
+    } catch (Exception $e) {
+        if (isset($conexion)) $conexion->close();
+        throw $e;
+    }
+}
+
+function eliminarComentario($comentarioId, $correoUsuario) {
+    $conexion = conectar_bd();
+    
+    if (!$conexion) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+    
+    try {
+        // Primero verificar si el usuario tiene permiso para eliminar
+        if (!puedeEliminarComentario($comentarioId, $correoUsuario)) {
+            throw new Exception("No tienes permiso para eliminar este comentario");
+        }
+        
+        // Si tiene permiso, proceder con la eliminación
+        $consulta = "DELETE FROM comentarios WHERE IdComentario = ?";
+        $stmt = $conexion->prepare($consulta);
+        
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta");
+        }
+        
+        $stmt->bind_param("i", $comentarioId);
+        $resultado = $stmt->execute();
+        
+        if (!$resultado) {
+            throw new Exception("Error al eliminar el comentario");
+        }
+        
+        $stmt->close();
+        $conexion->close();
+        
+        return true;
+        
+    } catch (Exception $e) {
+        if (isset($stmt)) $stmt->close();
+        if (isset($conexion)) $conexion->close();
+        throw $e;
+    }
+}
+
+function obtenerComentarios($idAlbum, $correoUsuarioActual = null) {
+    $conexion = conectar_bd();
+    
+    if (!$conexion) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+    
+    try {
+        // Obtener información de los comentarios
+        $consulta = "SELECT c.*, u.NomrUsua, u.FotoPerf, a.NomCred as CreadorAlbum
+                     FROM comentarios c 
+                     JOIN usuarios u ON c.CorrUsu = u.Correo 
+                     JOIN albun a ON c.IdAlbum = a.IdAlbum
+                     WHERE c.IdAlbum = ? 
+                     ORDER BY c.FechaCom DESC";
+        
+        $stmt = $conexion->prepare($consulta);
+        
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . $conexion->error);
+        }
+        
+        $stmt->bind_param("i", $idAlbum);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        
+        $comentarios = array();
+        
+        // Si hay un usuario logueado, verificar sus permisos
+        $esAdmin = false;
+        if ($correoUsuarioActual) {
+            $consultaAdmin = "SELECT PermO FROM oyente WHERE CorrOyen = ?";
+            $stmtAdmin = $conexion->prepare($consultaAdmin);
+            $stmtAdmin->bind_param("s", $correoUsuarioActual);
+            $stmtAdmin->execute();
+            $resultadoAdmin = $stmtAdmin->get_result();
+            if ($row = $resultadoAdmin->fetch_assoc()) {
+                $esAdmin = ($row['PermO'] !== null);
+            }
+            $stmtAdmin->close();
+        }
+        
+        while ($comentario = $resultado->fetch_assoc()) {
+            // Determinar si el usuario actual puede eliminar este comentario
+            $puedeEliminar = false;
+            if ($correoUsuarioActual) {
+                $puedeEliminar = $esAdmin || 
+                                $correoUsuarioActual === $comentario['CorrUsu'] ||
+                                $correoUsuarioActual === $comentario['CreadorAlbum'];
+            }
+            
+            $comentario['puedeEliminar'] = $puedeEliminar;
+            $comentarios[] = $comentario;
+        }
+        
+        $stmt->close();
+        $conexion->close();
+        
+        return $comentarios;
+        
+    } catch (Exception $e) {
+        error_log("Error en obtenerComentarios: " . $e->getMessage());
+        if (isset($stmt)) $stmt->close();
+        if (isset($conexion)) $conexion->close();
+        return array();
+    }
 }

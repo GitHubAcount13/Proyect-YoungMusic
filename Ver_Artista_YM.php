@@ -3,6 +3,7 @@ require("Header_YM.php");
 require_once("RF_Datos_Busqueda_YM.php");
 $paginaPerfil = determinarTipoUsuario($email);
 require("RF_Ver_Artista_YM.php");
+require_once("Funciones.php");
 ?>
 
 <nav class="navbar navbar-expand-md nav_index_ym">
@@ -36,8 +37,17 @@ require("RF_Ver_Artista_YM.php");
                             </button>
                         <?php endif; ?>
                     </form>
+                    <?php endif; ?>
+                    <!-- Botón de Eliminar Perfil -->
+                    <?php if(isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?>
+                    <form method="POST" id="formEliminar" class="ml-2" onsubmit="return confirmarEliminacion()">
+                        <input type="hidden" name="eliminarPerfil" value="1">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar Perfil
+                        </button>
+                    </form>
                 </div>
-            <?php endif; ?>
+                <?php endif; ?>
         </div>
 
         <div class="cont-u">

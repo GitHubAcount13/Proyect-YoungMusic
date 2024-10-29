@@ -14,11 +14,11 @@ if (!isset($_GET['correo'])) {
 }
 
 $correoArtista = $_GET['correo'];
-$correoOyente = $_SESSION["email"];  // Correo del usuario logueado
+$correoOyente = $_SESSION["email"];
 
-// Obtener datos del artista y tipo de usuario
+// Obtener datos del artista
 $usuario = obtenerDatosArtista($correoArtista);
-$tipoPerfil = 'oyente';  // Valor predeterminado
+$tipoPerfil = 'oyente';
 
 if ($usuario) {
     $nombreA = $usuario["NombArtis"];
@@ -47,9 +47,11 @@ if ($usuario) {
         }
     }
 }
+
+// Obtener álbumes si es artista
 $albumes = ($tipoPerfil === 'artista') ? obtenerAlbumes($correoArtista) : [];
 
-// Verificar si ya sigue al artista (solo si es un artista)
+// Verificar si sigue al artista
 $sigueAlArtista = false;
 if ($tipoPerfil === 'artista') {
     $stmt = $con->prepare("SELECT * FROM sigue WHERE CorrArti = ? AND CorrOyen = ?");
@@ -60,4 +62,15 @@ if ($tipoPerfil === 'artista') {
     $stmt->close();
 }
 
-$con->close();
+// Procesar la eliminación del perfil si se solicita
+if (isset($_POST['eliminarPerfil'])) {
+    if (eliminarPerfil($correoArtista)) {
+        header("Location: Home_YM.php?mensaje=perfil_eliminado");
+        exit();
+    } else {
+        $errorEliminacion = "Error al eliminar el perfil.";
+    }
+}
+
+
+?>

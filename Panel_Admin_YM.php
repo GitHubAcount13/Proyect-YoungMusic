@@ -97,10 +97,51 @@ include("RF_Panel_Admin_YM.php");
             </div>
         </div>
     </div>
+
+    <!-- Oyentes -->
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h3 class="admin-card-title">
+                <i class="bi bi-people-fill admin-icon"></i>
+                Oyentes sin Permisos
+            </h3>
+            <span class="admin-badge">
+                <?php echo $oyentes->num_rows; ?> pendientes
+            </span>
+        </div>
+        <div class="admin-card-body">
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-envelope admin-icon"></i>Correo</th>
+                            <th><i class="bi bi-person admin-icon"></i>Nombre</th>
+                            <th><i class="bi bi-check-circle admin-icon"></i>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($oyente = $oyentes->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($oyente['CorrOyen']); ?></td>
+                            <td><?php echo htmlspecialchars($oyente['NomrUsua']); ?></td>
+                            <td>
+                                <form method="POST" class="d-inline">
+                                    <input type="hidden" name="tipo" value="oyente">
+                                    <input type="hidden" name="correo" value="<?php echo htmlspecialchars($oyente['CorrOyen']); ?>">
+                                    <button type="submit" name="confirmar" class="admin-btn-confirm">
+                                        <i class="bi bi-check-lg"></i>Otorgar Permisos
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-    
-   <?php
+<?php
 include("Footer_YM.php");
-   ?>
+?>

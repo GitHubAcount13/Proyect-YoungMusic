@@ -110,7 +110,9 @@ function dejarDeSeguirArtista() {
       alert('Ocurrió un error al intentar dejar de seguir al artista.');
   });
 }
-
+function confirmarEliminacion() {
+  return confirm("¿Estás seguro de que deseas eliminar este perfil? Esta acción eliminará todos los datos, álbumes y canciones asociados.");
+}
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener los valores de los campos de texto
   let redes = [

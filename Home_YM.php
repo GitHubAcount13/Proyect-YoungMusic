@@ -1,7 +1,7 @@
         <?php
         require("Header_YM.php");
         require("RF_Datos_Busqueda_YM.php");
-        require_once("RF_Panel_Admin_YM.php");
+        require_once("Funciones.php");
         $paginaPerfil = determinarTipoUsuario($email);
         require_once("RF_Home_YM.php");
 

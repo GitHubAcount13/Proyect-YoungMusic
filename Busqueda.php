@@ -2,7 +2,7 @@
 require("Header_YM.php");
 require("RF_Datos_Busqueda_YM.php");
 $paginaPerfil = determinarTipoUsuario($email);
-require_once("RF_Panel_Admin_YM.php")
+require_once("Funciones.php");
 ?>
 <nav class="navbar navbar-expand-md nav_index_ym">
 <a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("conexion.php");
-require("Funciones.php");
+require_once("Funciones.php");
 
 if (!isset($_SESSION["email"])) {
     header("Location: Login_YM.php");
