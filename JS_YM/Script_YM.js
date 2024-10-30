@@ -1,3 +1,45 @@
+const albumFunctions = {
+  deleteAlbum: function(albumId) {
+      if (confirm('¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.')) {
+          fetch('eliminar_album.php', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  albumId: albumId
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  alert('Álbum eliminado correctamente');
+                  window.location.href = 'Home_YM.php';
+              } else {
+                  alert('Error al eliminar el álbum: ' + data.message);
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('Error al procesar la solicitud');
+          });
+      }
+  },
+
+  init: function() {
+      document.addEventListener('DOMContentLoaded', function() {
+          const deleteButtons = document.querySelectorAll('.delete-album-btn');
+          deleteButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                  const albumId = this.dataset.albumId;
+                  albumFunctions.deleteAlbum(albumId);
+              });
+          });
+      });
+  }
+};
+
+albumFunctions.init();
 
 document.addEventListener('DOMContentLoaded', function() {
   const commentForm = document.getElementById('commentForm');
