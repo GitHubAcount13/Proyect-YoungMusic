@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conexion->prepare("SELECT Codigo, Tiempo FROM Codigos WHERE Correo = ? LIMIT 1");
     
     if ($stmt === false) {
-        echo "Error en la preparación de la consulta: " . $conexion->error;
+        header("Location: verificacion.php");
         exit;
     }
 
@@ -33,30 +33,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verificar si el código coincide y no ha expirado
             if ($enteredCode === $storedCode && strtotime($expiry) > time()) {
                 // Código válido, permite al usuario cambiar la contraseña
-                echo "Código verificado! Puedes cambiar tu contraseña.";
+            
                 ?>
-                <div class="caja_popup_veri" >
-                <form action="cambio_contra.php" method="POST">
-                    
+                <div class="container container-recu">
+                    <div class="row recu-rw">
+                    <div class="parte-izquierda-recuperacion">
+                        <h4>Código verificado! Puedes cambiar tu contraseña.</h4>
+                    </div>
+                
+                <div class="caja_popup" >
+                <form action="cambio_contra.php" method="POST" class="contenedor_popup">
+                
                     <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
 
                     <table>
-		<tr><th colspan="2">Cambiar Contraseña</th></tr>
-            <tr>
-                <td><b><i class="bi bi-code"></i> Nueva Contraseña</b>
-                    <input type="password" name="new_password" required>
-                    </td>
-                    
+                        <tr>
+                   
+                            <th colspan="2">Cambiar Contraseña</th>
+                        </tr>
+                        <tr>
+                            <td><b><i class="bi bi-code"></i> Nueva Contraseña</b></td>
+                            <td><input type="password" name="new_password" class="cajaentradatexto" required></td>
+                        </tr>
+                        <tr>
+                    <td for="code"> <b><i class="bi bi-code"></i> Confirmar Contraseña:</b></td>
+                    <td><input type="password" name="confirm_password" class="cajaentradatexto" required></td>
                     </tr>
-                    <tr>
-                    <td for="code"> <b><i class="bi bi-code"></i> Confirmar Contraseña:</b>
-                    <input type="password" name="confirm_password" required>
-                    </td>
-                    
-                    </tr>
-            <tr> 	
-               <td colspan="2">
-                    <input class="txtrecuperar" type="submit" value="Cambiar Contraseña">
+                        <tr>
+            
+                        <td colspan="2" class="text-center">
+                    <input class="btn btn-primary botones-recu" type="submit" value="Cambiar Contraseña">
 
                     </td>
 </tr>
@@ -65,13 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
                 <?php
             } else {
-                echo "Código inválido o ha expirado.";
+                header("Location: verificacion.php");
             }
         } else {
-            echo "No se encontró ninguna solicitud de restablecimiento para este correo.";
+            header("Location: Recuperacion_YM.php");
         }
     } else {
-        echo "Error en la ejecución de la consulta: " . $stmt->error;
+        header("Location: verificacion.php");
     }
 
     $stmt->close();

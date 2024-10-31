@@ -35,17 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Vincular parámetros
             $stmt->bind_param("s", $email);
             if ($stmt->execute()) {
-                echo "Contraseña cambiada exitosamente.";
+                 header("Location: Login_YM.php");
             } else {
-                echo "Error al eliminar el código de restablecimiento: " . $stmt->error;
+                header("Location: Recuperacion_YM.php");
             }
         } else {
-            echo "Error al cambiar la contraseña: " . $stmt->error;
+            header("Location: Recuperacion_YM.php");
         }
 
         $stmt->close();
     } else {
-        echo "Las contraseñas no coinciden.";
+        header("Location: Recuperacion_YM.php");
     }
 }
 ?>

@@ -40,9 +40,9 @@ function sendResetEmail($email, $code) {
         $mail->Body    = $message;
 
         $mail->send();
-        echo "Código de restablecimiento de contraseña enviado.";
     } catch (Exception $e) {
         echo "El mensaje no pudo ser enviado. Error: {$mail->ErrorInfo}";
+        header("Location: Recuperacion_YM.php");
     }
 }
 
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Enviar el código por correo
         sendResetEmail($email, $code);
     } else {
-        echo "Correo no encontrado.";
+        header("Location: Recuperacion_YM.php");
     }
 }
 ?>

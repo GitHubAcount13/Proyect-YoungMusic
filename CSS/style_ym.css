@@ -3967,3 +3967,120 @@ audio {
 .Like-boton.liked i {
   color: red;
 }
+
+/* Recuperacion */
+.container-recu {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.recu-rw {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.parte-izquierda-recuperacion {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 12px 14px 35px black;
+  text-align: center;
+}
+
+.parte-izquierda-recuperacion h4 {
+  color: rgb(198, 198, 198);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.caja_popup {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 12px 14px 35px black;
+}
+
+.contenedor_popup {
+  width: 100%;
+}
+
+.caja_popup table {
+  width: 100%;
+  border-collapse: collapse; color: rgb(198, 198, 198);
+}
+
+.contenedor_popup table tr th {
+  padding: 1rem;
+  font-size: 1.5rem;
+  
+  text-align: center;
+}
+
+.contenedor_popup table tr td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.cajaentradatexto {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.cajaentradatexto:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+
+
+.botones-recu {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin: 0 0.5rem;
+}
+.botones-recu:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mensaje {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .container-recu {
+      padding: 10px;
+  }
+
+  .contenedor_popup table tr td {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+  }
+
+  .botones-recu {
+      width: 100%;
+      margin: 0.5rem 0;
+  }
+}
