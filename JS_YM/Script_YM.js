@@ -1039,3 +1039,4 @@ document.addEventListener('DOMContentLoaded', () => {
       new MusicCarousel(container);
   });
 });
+

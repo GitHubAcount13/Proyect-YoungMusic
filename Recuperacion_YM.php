@@ -4,7 +4,7 @@
         <table>
 		<tr><th colspan="2">Recuperar contraseña</th></tr>
             <tr> 
-                <td><b>&#128231; Correo</b></td>
+                <td><b><i class="bi bi-envelope"></i> Correo</b></td>
                 <td><input type="email" name="txtcorreo" required class="cajaentradatexto"></td>
             </tr>
             <tr> 	
