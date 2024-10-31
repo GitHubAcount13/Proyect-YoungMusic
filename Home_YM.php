@@ -27,62 +27,56 @@
 
 
         <div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-custom-slidebar sidebar">
-            <div class="sidebar-header">
-                <button id="toggleSidebar" class="btn btn-custom-slidebar">
-                    <p class="arrow">
-                        <
-                            </button>
-            </div>
-            <div class="sidebar-content">
-                <div class="slidebar-arriba conjunto-contenido-slider">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Home_YM.php">
-                                <span class="icon"><i class="bi bi-house"></i></span>
-                                <span class="text">Inicio</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                           <a  class="nav-link" href="Recien_llegados.php">
-                                <span class="icon"><i class="bi bi-clock"></i></span>
-                                <span class="text">Recién llegados</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Populares.php">
-                                <span class="icon"><i class="bi bi-fire"></i></i></span>
-                                <span class="text">Populares</span>
-                            </a>
-                        </li>
+    <div class="sidebar-header">
+        <button id="toggleSidebar" class="btn btn-custom-slidebar">
+            <p class="arrow">
+                <
+                    </button>
+    </div>
+    <div class="sidebar-content">
+        <div class="slidebar-arriba conjunto-contenido-slider">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="icon"><i class="bi bi-house"></i></span>
+                        <span class="text">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link" href="Recien_llegados.php">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="text">Recién llegados</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="icon"><i class="bi bi-fire"></i></i></span>
+                        <span class="text">Populares</span>
+                    </a>
+                </li>
 
 
-                    </ul>
-                </div>
-                <br>
-                <div class="slidebar-abajo conjunto-contenido-slider">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="icon"><i class="bi bi-suit-heart-fill"></i></span>
-                                <span class="text">Tus me gusta</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="icon"><i class="bi bi-person-heart"></i></i></span>
-                                <span class="text">Artistas favoritos</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="icon"><i class="bi bi-clock-history"></i></i></i></span>
-                                <span class="text">Historial</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            </ul>
         </div>
+        <br>
+        <div class="slidebar-abajo conjunto-contenido-slider">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="MeGusta.php">
+                        <span class="icon"><i class="bi bi-suit-heart-fill"></i></span>
+                        <span class="text">Tus me gusta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Artistas_favoritos.php">
+                        <span class="icon"><i class="bi bi-person-heart"></i></i></span>
+                        <span class="text">Artistas favoritos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
         <div class="carousel-container">
             <h2 class="carousel-title">Descubre Nuevas Melodías</h2>

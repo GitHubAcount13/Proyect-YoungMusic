@@ -3,14 +3,13 @@ require("Header_YM.php");
 require("RF_Datos_Busqueda_YM.php");
 require_once("Funciones.php");
 $paginaPerfil = determinarTipoUsuario($email);
-require_once("RF_Populares.php");
+require_once("RF_Artistas_favoritos.php");
 
 $paginaPerfil = determinarTipoUsuario($email);
 
-// Obtener datos
-$temasPopulares = obtenerTemasPopulares();
-$artistasPopulares = obtenerArtistasPopulares();
-$albumesPopulares = obtenerAlbumesPopulares();
+if (isset($_SESSION["email"])) {
+    $contenidoArtistasSeguidosRandom = obtenerContenidoArtistasSeguidosPorUsuario($_SESSION["email"]);
+}
 ?>
 
 <nav class="navbar navbar-expand-md nav_index_ym">
@@ -73,79 +72,21 @@ $albumesPopulares = obtenerAlbumesPopulares();
                         <span class="text">Artistas favoritos</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="icon"><i class="bi bi-clock-history"></i></i></i></span>
-                        <span class="text">Historial</span>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
 </div>
-
-<!-- Temas Populares -->
+<!-- Artistas Seguidos -->
+<?php if (isset($contenidoArtistasSeguidosRandom) && !empty($contenidoArtistasSeguidosRandom['artistas'])): ?>
 <div class="carousel-container">
-    <h2 class="carousel-title">Temas populares</h2>
+    <h2 class="carousel-title">Tus artistas favoritos</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow prev">
             <i class="bi bi-chevron-left"></i>
         </button>
 
         <div class="carousel-track">
-            <?php foreach ($temasPopulares as $tema):
-                $hasLike = isset($_SESSION['email']) ? verificarLikeExistente($tema['IdMusi'], $_SESSION['email']) : false;
-            ?>
-                <div class="carousel-slide" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
-                    <div class="carousel-card">
-                        <div class="card-image">
-                            <img src="<?php echo htmlspecialchars($tema['ImgMusi']); ?>" alt="Portada del tema">
-                        </div>
-                        <div class="card-content">
-                            <h3><?php echo htmlspecialchars($tema['NomMusi']); ?></h3>
-                            <p class="fecha">Lanzado: <?php echo date('d/m/Y', strtotime($tema['FechaLan'])); ?></p>
-                            <div class="artist-info">
-                                <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($tema['CorrArti']); ?>" class="Link">
-                                    <img src="<?php echo htmlspecialchars($tema['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
-                                    <p class="artist"><?php echo htmlspecialchars($tema['NombArtis']); ?></p>
-                                </a>
-                            </div>
-                            <div class="card-actions">
-                                <audio id="audio-<?php echo htmlspecialchars($tema['IdMusi']); ?>" class="music-player">
-                                    <source src="<?php echo htmlspecialchars($tema['Archivo']); ?>" type="audio/mpeg">
-                                </audio>
-                                <button class="play-btn" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
-                                    <i class="bi bi-play-fill"></i>
-                                </button>
-                                <?php if (isset($_SESSION['email'])): ?>
-                                    <button class="like-btn <?php echo $hasLike ? 'active' : ''; ?>" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
-                                        <i class="bi <?php echo $hasLike ? 'bi-heart-fill' : 'bi-heart'; ?>"></i>
-                                    </button>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <button class="carousel-arrow next">
-            <i class="bi bi-chevron-right"></i>
-        </button>
-    </div>
-    <div class="carousel-dots"></div>
-</div>
-
-<!-- Artistas Populares -->
-<div class="carousel-container">
-    <h2 class="carousel-title">Artistas Populares</h2>
-    <div class="carousel-wrapper">
-        <button class="carousel-arrow prev">
-            <i class="bi bi-chevron-left"></i>
-        </button>
-
-        <div class="carousel-track">
-            <?php foreach ($artistasPopulares as $artista): ?>
+            <?php foreach ($contenidoArtistasSeguidosRandom['artistas'] as $artista): ?>
                 <div class="carousel-slide">
                     <div class="carousel-card">
                         <div class="card-image">
@@ -173,16 +114,17 @@ $albumesPopulares = obtenerAlbumesPopulares();
     <div class="carousel-dots"></div>
 </div>
 
-<!-- Álbumes Recientes -->
+<!-- Álbumes de Artistas Seguidos -->
+<?php if (!empty($contenidoArtistasSeguidosRandom['albumes'])): ?>
 <div class="carousel-container">
-    <h2 class="carousel-title">Álbumes Populares</h2>
+    <h2 class="carousel-title">Álbumes de tus artistas favoritos</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow prev">
             <i class="bi bi-chevron-left"></i>
         </button>
 
         <div class="carousel-track">
-            <?php foreach ($albumesPopulares as $album): ?>
+            <?php foreach ($contenidoArtistasSeguidosRandom['albumes'] as $album): ?>
                 <div class="carousel-slide">
                     <div class="carousel-card">
                         <div class="card-image">
@@ -211,6 +153,60 @@ $albumesPopulares = obtenerAlbumesPopulares();
     </div>
     <div class="carousel-dots"></div>
 </div>
+
+<!-- Canciones de Artistas Seguidos -->
+<?php if (!empty($contenidoArtistasSeguidosRandom['canciones'])): ?>
+<div class="carousel-container">
+    <h2 class="carousel-title">Canciones de tus artistas favoritos</h2>
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow prev">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="carousel-track">
+            <?php foreach ($contenidoArtistasSeguidosRandom['canciones'] as $tema): ?>
+                <div class="carousel-slide" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="<?php echo htmlspecialchars($tema['ImgMusi']); ?>" alt="Portada del tema">
+                        </div>
+                        <div class="card-content">
+                            <h3><?php echo htmlspecialchars($tema['NomMusi']); ?></h3>
+                            <p class="fecha">Lanzado: <?php echo date('d/m/Y', strtotime($tema['FechaLan'])); ?></p>
+                            <div class="artist-info">
+                                <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($tema['CorrArti']); ?>" class="Link">
+                                    <img src="<?php echo htmlspecialchars($tema['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
+                                    <p class="artist"><?php echo htmlspecialchars($tema['NombArtis']); ?></p>
+                                </a>
+                            </div>
+                            <div class="card-actions">
+                                <audio id="audio-<?php echo htmlspecialchars($tema['IdMusi']); ?>" class="music-player">
+                                    <source src="<?php echo htmlspecialchars($tema['Archivo']); ?>" type="audio/mpeg">
+                                </audio>
+                                <button class="play-btn" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
+                                    <i class="bi bi-play-fill"></i>
+                                </button>
+                                <?php if (isset($_SESSION['email'])): ?>
+                                    <button class="like-btn <?php echo $tema['hasLike'] ? 'active' : ''; ?>" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
+                                        <i class="bi <?php echo $tema['hasLike'] ? 'bi-heart-fill' : 'bi-heart'; ?>"></i>
+                                    </button>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <button class="carousel-arrow next">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+    <div class="carousel-dots"></div>
+</div>
+<?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>
 
 <footer class="footer-home">
             <div class="container-fluid">

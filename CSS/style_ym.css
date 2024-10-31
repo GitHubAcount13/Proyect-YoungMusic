@@ -733,6 +733,16 @@ textarea {
   left: 10%;
   text-align: center;
 }
+.container-recuperacion {
+  background: #333;
+  margin: 50px;
+  border-radius: 20px;
+  position: relative;
+  bottom: 0px;
+  height: 440px !important;
+  min-height: 200px;
+  width: 682px !important;
+}
 .titulo-recuperacion hr {
   width: 40%;
   position: relative;
@@ -743,7 +753,16 @@ textarea {
 .descripcion-recuperacion {
   color: rgb(236, 236, 236);
 }
-
+.contenedor-parte-derecha {
+  background: #14141441;
+  padding: 50px;
+  position: relative;
+  left: 10%;
+  border-radius: 15px;
+  width: 250px !important; /* O el tamaño que desees */
+  height: 250px;
+  box-shadow: 2px 15px 20px black;
+}
 .email-recuperacion {
   border-radius: 6px;
   color: black;
@@ -751,6 +770,11 @@ textarea {
   height: 20% !important;
   border: none;
   padding-left: 2rem;
+}
+.contenedor-parte-derecha .contenido-form {
+  all: unset;
+  position: relative;
+  left: 10%;
 }
 .volver-recuperacion {
   text-decoration: none !important;
@@ -834,6 +858,9 @@ textarea {
   .archivos_perfil {
     left: -51%;
   }
+  .contenedor-parte-derecha {
+    left: 28%;
+  }
   .movement {
     bottom: 14px;
     left: 1%;
@@ -909,7 +936,16 @@ textarea {
     top: 15%;
     max-width: 700px !important;
   }
- 
+  .container-recuperacion {
+    height: 600px !important;
+    min-height: 800px;
+  }
+  .contenedor-parte-derecha {
+    bottom: -6%;
+    width: 400px !important;
+    height: 320px;
+    left: -2%;
+  }
   .volver-recuperacion {
     left: 36%;
     font-size: 25px !important;
@@ -953,7 +989,16 @@ textarea {
     top: 15%;
     max-width: 700px !important;
   }
- 
+  .container-recuperacion {
+    height: 600px !important;
+    min-height: 800px;
+  }
+  .contenedor-parte-derecha {
+    bottom: -6%;
+    width: 400px !important;
+    height: 320px;
+    left: -2%;
+  }
   .volver-recuperacion {
     left: 36%;
     font-size: 25px !important;
@@ -1020,6 +1065,12 @@ textarea {
   }
   .info_datosreg {
     width: 100%;
+  }
+  .contenedor-parte-derecha {
+    bottom: -25%;
+    width: 396px !important;
+    height: 320px;
+    left: -8% !important;
   }
   .parte_izquierda_registro_pref {
     bottom: 70%;
@@ -1387,6 +1438,12 @@ textarea {
     left: 37%;
     top: 3%;
   }
+
+  .container-recuperacion {
+    width: 455px !important;
+  }
+
+
   .button-scroll {
     position: absolute;
     left: 90%;
@@ -1460,7 +1517,12 @@ textarea {
     position: relative;
     bottom: 0px;
   }
-  
+  .container-recuperacion {
+    width: 355px !important;
+  }
+  .contenedor-parte-derecha {
+    left: 17% !important;
+  }
   .boton-scroll {
     left: 84% !important;
     bottom: 80% !important;
@@ -2682,6 +2744,7 @@ audio {
 }
 .Link{
 
+  text-decoration: none;
   display: flex;
 }
 /* Agregar estos estilos a tu CSS */
@@ -3100,6 +3163,237 @@ audio {
 .admin-table-container {
   border-radius: 10px;
   overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.admin-table thead th {
+  background-color: #f8f9fa;
+  color: var(--admin-header);
+  font-weight: 600;
+  border-bottom: 2px solid var(--admin-primary);
+  padding: 1rem;
+}
+
+.admin-table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Botón de confirmar */
+.admin-btn-confirm {
+  background-color: var(--admin-secondary);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-btn-confirm:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
+  color: white;
+}
+
+/* Iconos */
+.admin-icon {
+  margin-right: 0.5rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .admin-panel {
+      padding: 1rem;
+  }
+
+  .admin-title {
+      font-size: 2rem;
+  }
+
+  .admin-card-title {
+      font-size: 1.25rem;
+  }
+
+  .admin-table {
+      font-size: 0.9rem;
+  }
+
+  .admin-table-container {
+      overflow-x: auto;
+  }
+}
+
+/* Scrollbar personalizado */
+.admin-table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admin-table-container::-webkit-scrollbar-thumb {
+  background: var(--admin-primary);
+  border-radius: 10px;
+}
+
+.admin-table-container::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
+}
+.admin-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--admin-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.admin-back-btn:hover {
+  transform: scale(1.1);
+  background-color: #2980b9;
+  color: white;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 1200px) {
+  .admin-card {
+      margin: 1rem;
+  }
+  
+  .admin-table th, 
+  .admin-table td {
+      padding: 0.75rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .admin-title {
+      font-size: 2rem;
+      margin-top: 3rem;
+  }
+  
+  .admin-card-title {
+      font-size: 1.2rem;
+  }
+  
+  .admin-badge {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-panel {
+      padding: 0.5rem;
+  }
+
+  .admin-card {
+      margin: 0.5rem;
+  }
+  
+  .admin-table {
+      min-width: 600px; /* Asegura scroll horizontal en móviles */
+  }
+  
+  .admin-table th, 
+  .admin-table td {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+  }
+  
+  .admin-btn-confirm {
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+  }
+  
+  .admin-back-btn {
+      width: 40px;
+      height: 40px;
+      top: 10px;
+      left: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-title {
+      font-size: 1.75rem;
+      margin-top: 3.5rem;
+  }
+  
+  .admin-card-header {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+  }
+  
+  .admin-badge {
+      width: fit-content;
+      margin: 0 auto;
+  }
+  
+  .admin-table {
+      min-width: 450px;
+  }
+}
+
+/* Mejora del scroll en dispositivos táctiles */
+@media (hover: none) {
+  .admin-table-container {
+      -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Indicador de scroll horizontal */
+.admin-table-container {
+  position: relative;
+}
+
+.admin-table-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.9));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .admin-table-container::after {
+      opacity: 1;
+  }
 }
 
 .admin-table {

@@ -1031,10 +1031,6 @@ class MusicCarousel {
 
 // Inicializar todos los carruseles cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  const carousel = new MusicCarousel();
-
-
-
   // Obtener todos los contenedores de carrusel
   const carouselContainers = document.querySelectorAll('.carousel-container');
   
