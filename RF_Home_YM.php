@@ -8,7 +8,7 @@ function obtenerMusicaPorPreferencias($correoUsuario) {
     try {
         // Consulta preparada para obtener las preferencias del usuario
         $query = "SELECT DISTINCT m.IdMusi, m.NomMusi, m.ImgMusi, m.Archivo, 
-                 a.NomAlbum, art.NombArtis, u.FotoPerf 
+                 a.NomAlbum, art.NombArtis, art.CorrArti, u.FotoPerf 
                  FROM musica m 
                  INNER JOIN albun a ON m.Album = a.IdAlbum 
                  INNER JOIN artistas art ON a.NomCred = art.CorrArti 
