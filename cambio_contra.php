@@ -1,14 +1,13 @@
 <?php
-include('conexion.php'); // Asegúrate de que esta función esté definida correctamente
+include('conexion.php');
 
-$conexion = conectar_bd(); // Cambia esto si es necesario
+$conexion = conectar_bd();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    // Verificar que las contraseñas coincidan
     if ($newPassword === $confirmPassword) {
         // Hash de la nueva contraseña
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Ejecutar la consulta
         if ($stmt->execute()) {
             // Eliminar el código de restablecimiento de la base de datos
-            $stmt = $conexion->prepare("DELETE FROM password_reset_tokens WHERE email = ?");
+            $stmt = $conexion->prepare("DELETE FROM codigos WHERE Correo = ?");
             if ($stmt === false) {
                 echo "Error en la preparación de la consulta: " . $conexion->error;
                 exit;

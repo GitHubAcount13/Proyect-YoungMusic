@@ -57,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user) {
         $code = generateNumericCode();
-        $expiry = date('Y-m-d H:i:s', time() + 300); // Código válido por 5 minutos
+        $tiempo = date('Y-m-d H:i:s', time() + 300); // Código válido por 5 minutos
 
         // Almacenar el código en la base de datos
-        $stmt = $pdo->prepare("INSERT INTO password_reset_tokens (email, token, token_expiry) VALUES (?, ?, ?)");
-        $stmt->execute([$email, $code, $expiry]);
+        $stmt = $pdo->prepare("INSERT INTO codigos (Correo, Codigo, Tiempo) VALUES (?, ?, ?)");
+        $stmt->execute([$email, $code, $tiempo]);
 
         // Enviar el código por correo
         sendResetEmail($email, $code);

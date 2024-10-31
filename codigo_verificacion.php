@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $enteredCode = $_POST['code'];
 
     // Obtener el código de la base de datos
-    $stmt = $conexion->prepare("SELECT token, token_expiry FROM password_reset_tokens WHERE email = ? LIMIT 1");
+    $stmt = $conexion->prepare("SELECT Codigo, Tiempo FROM Codigos WHERE Correo = ? LIMIT 1");
     
     if ($stmt === false) {
         echo "Error en la preparación de la consulta: " . $conexion->error;
@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
 
         if ($row) {
-            $storedCode = $row['token'];
-            $expiry = $row['token_expiry'];
+            $storedCode = $row['Codigo'];
+            $expiry = $row['Tiempo'];
 
             // Verificar si el código coincide y no ha expirado
             if ($enteredCode === $storedCode && strtotime($expiry) > time()) {

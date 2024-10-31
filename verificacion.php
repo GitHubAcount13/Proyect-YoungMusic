@@ -1,6 +1,6 @@
 <?php require("Header_YM.php"); ?>
 <div class="caja_popup_veri" >
-<form action="verify_code.php" method="POST">
+<form action="codigo_verificacion.php" method="POST">
 <table>
 		<tr><th colspan="2">Recuperar contraseña</th></tr>
             <tr>
