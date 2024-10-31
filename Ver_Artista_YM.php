@@ -21,7 +21,7 @@ require_once("Funciones.php");
 <div class="container mt-4 md container-perfil">
     <div class="row justify-content-left">
         <div class="botones text-center text-md-left">
-            <?php if ($tipoPerfil === 'artista'): ?>
+            <?php if ($tipoPerfil === 'artista' && $correoArtista!==$correoOyente): ?>
                 <div class="btn-group flex-md-row text-center mt-3">
                     <form method="POST" id="formSeguir">
                         <?php if ($sigueAlArtista): ?>
