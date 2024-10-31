@@ -62,28 +62,34 @@ $profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['emai
             <div class="col-12">
                 <h2 class="mb-4">Canciones</h2>
                 <div class="song-list" id="songList">
-                    <?php if (empty($canciones)): ?>
-                        <div class="alert alert-info">No hay canciones en este álbum.</div>
-                    <?php else: ?>
-                        <?php foreach ($canciones as $cancion): ?>
-                            <div class="song-item d-flex align-items-center p-3 mb-3 border rounded">
-                                <img src="<?php echo htmlspecialchars($cancion['ImgMusi']); ?>"
-                                    alt="<?php echo htmlspecialchars($cancion['NomMusi']); ?>"
-                                    class="song-thumbnail mr-3">
-                                <div class="song-info flex-grow-1">
-                                    <h4 class="mb-0"><?php echo htmlspecialchars($cancion['NomMusi']); ?></h4>
-                                    <p class="mb-0">Géneros: <?php echo htmlspecialchars($cancion['Generos']); ?></p>
-                                </div>
-                                <div class="audio-player-container">
-                                    <audio class="custom-audio-player" data-song-id="<?php echo $cancion['IdMusi']; ?>">
-                                        <source src="<?php echo htmlspecialchars($cancion['Archivo']); ?>" type="audio/mpeg">
-                                        Tu navegador no soporta el elemento de audio.
-                                    </audio>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+    <?php if (empty($canciones)): ?>
+        <div class="alert alert-info">No hay canciones en este álbum.</div>
+    <?php else: ?>
+        <?php foreach ($canciones as $cancion): 
+            $isLiked = verificarLike($cancion['IdMusi'], $_SESSION['email']); // Función para verificar si el usuario ya dio "like"
+        ?>
+            <div class="song-item d-flex align-items-center p-3 mb-3 border rounded">
+                <img src="<?php echo htmlspecialchars($cancion['ImgMusi']); ?>"
+                    alt="<?php echo htmlspecialchars($cancion['NomMusi']); ?>"
+                    class="song-thumbnail mr-3">
+                <div class="song-info flex-grow-1">
+                    <h4 class="mb-0"><?php echo htmlspecialchars($cancion['NomMusi']); ?></h4>
+                    <p class="mb-0">Géneros: <?php echo htmlspecialchars($cancion['Generos']); ?></p>
                 </div>
+                <button class="Like-boton <?php echo $isLiked ? 'liked' : ''; ?>"
+                        data-song-id="<?php echo $cancion['IdMusi']; ?>">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <div class="audio-player-container">
+                    <audio class="custom-audio-player" data-song-id="<?php echo $cancion['IdMusi']; ?>">
+                        <source src="<?php echo htmlspecialchars($cancion['Archivo']); ?>" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
             </div>
         </div>
 

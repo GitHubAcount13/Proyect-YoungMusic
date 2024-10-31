@@ -1,3 +1,30 @@
+document.addEventListener("DOMContentLoaded", function() { 
+  const BotonLike = document.querySelectorAll(".Like-boton");
+
+  BotonLike.forEach(button => {
+      button.addEventListener("click", function() {
+          const musicId = this.dataset.songId;
+          const isLiked = this.classList.contains("liked");
+          const action = isLiked ? "remove" : "add";
+
+          fetch("RF_Likes_YM.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: `musicId=${musicId}&action=${action}`
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  this.classList.toggle("liked");
+              } else {
+                  console.error(data.message);
+              }
+          })
+          .catch(error => console.error("Error:", error));
+      });
+  });
+});
+
 function seguirArtista() {
   const formSeguir = document.getElementById('formSeguir');
   const formData = new FormData(formSeguir);

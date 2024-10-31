@@ -3946,3 +3946,24 @@ audio {
   align-items: center;
   gap: 15px;
 }
+.Like-boton {
+  color: #666;
+}
+
+.Like-boton:hover {
+  color: #ff4444;
+}
+
+.Like-boton.active {
+  color: #ff4444;
+}
+.Like-boton i {
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.Like-boton.liked i {
+  color: red;
+}

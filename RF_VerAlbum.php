@@ -2,6 +2,19 @@
 require_once("conexion.php");
 require_once("Funciones.php");
 
+function verificarLike($musicId, $email) {
+    $conn = conectar_bd();
+    $query = "SELECT 1 FROM likeu WHERE IdMusi = ? AND CorrUsu = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "is", $musicId, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $liked = mysqli_num_rows($result) > 0;
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $liked;
+}
+
 
 // Actualizar procesar_comentario.php para manejar el borrado:
 if (isset($_POST['action']) && $_POST['action'] === 'delete') {
