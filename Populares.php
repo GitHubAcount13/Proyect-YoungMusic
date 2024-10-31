@@ -68,17 +68,12 @@ $albumesPopulares = obtenerAlbumesPopulares();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Artistas_favoritos.php">
                         <span class="icon"><i class="bi bi-person-heart"></i></i></span>
                         <span class="text">Artistas favoritos</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="icon"><i class="bi bi-clock-history"></i></i></i></span>
-                        <span class="text">Historial</span>
-                    </a>
-                </li>
+        
             </ul>
         </div>
     </div>
@@ -99,7 +94,9 @@ $albumesPopulares = obtenerAlbumesPopulares();
                 <div class="carousel-slide" data-music-id="<?php echo htmlspecialchars($tema['IdMusi']); ?>">
                     <div class="carousel-card">
                         <div class="card-image">
+                        <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="Link">
                             <img src="<?php echo htmlspecialchars($tema['ImgMusi']); ?>" alt="Portada del tema">
+                            </a>
                         </div>
                         <div class="card-content">
                             <h3><?php echo htmlspecialchars($tema['NomMusi']); ?></h3>
@@ -186,7 +183,9 @@ $albumesPopulares = obtenerAlbumesPopulares();
                 <div class="carousel-slide">
                     <div class="carousel-card">
                         <div class="card-image">
+                        <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="Link">
                             <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>" alt="Portada del álbum">
+                        </a>
                         </div>
                         <div class="card-content">
                             <h3><?php echo htmlspecialchars($album['NomAlbum']); ?></h3>

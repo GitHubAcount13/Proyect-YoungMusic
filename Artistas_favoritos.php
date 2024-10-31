@@ -128,7 +128,9 @@ if (isset($_SESSION["email"])) {
                 <div class="carousel-slide">
                     <div class="carousel-card">
                         <div class="card-image">
+                        <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="Link">
                             <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>" alt="Portada del álbum">
+                            </a>
                         </div>
                         <div class="card-content">
                             <h3><?php echo htmlspecialchars($album['NomAlbum']); ?></h3>

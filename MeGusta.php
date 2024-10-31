@@ -63,7 +63,7 @@ $paginaPerfil = determinarTipoUsuario($email);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Artistas_favoritos.php">
                         <span class="icon"><i class="bi bi-person-heart"></i></i></span>
                         <span class="text">Artistas favoritos</span>
                     </a>

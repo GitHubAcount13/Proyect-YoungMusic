@@ -3900,3 +3900,49 @@ audio {
   margin-top: 20px;
   color: red;
 }
+/* Estilos para el sistema de likes en album */
+/* likes_album.css */
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.like-button:hover {
+  transform: scale(1.1);
+}
+
+.like-button i {
+  font-size: 1.2rem;
+}
+
+.like-button.liked {
+  color: #e25555;
+}
+
+.like-counter {
+  font-size: 0.9rem;
+  min-width: 20px;
+}
+
+.song-item {
+  position: relative;
+}
+
+.song-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-controls-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

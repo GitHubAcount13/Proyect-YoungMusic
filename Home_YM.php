@@ -102,7 +102,9 @@
                                         <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>"
                                             alt="Foto del artista"
                                             class="artist-avatar">
+                                            <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
                                         <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
+                                            </a>
                                     </div>
                                     <div class="card-actions">
                                         <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
