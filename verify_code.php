@@ -35,14 +35,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Código válido, permite al usuario cambiar la contraseña
                 echo "Código verificado! Puedes cambiar tu contraseña.";
                 ?>
+                <div class="caja_popup_veri" >
                 <form action="cambio_contra.php" method="POST">
+                    
                     <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
-                    <label for="new_password">Nueva Contraseña:</label>
+
+                    <table>
+		<tr><th colspan="2">Cambiar Contraseña</th></tr>
+            <tr>
+                <td><b><i class="bi bi-code"></i> Nueva Contraseña</b>
                     <input type="password" name="new_password" required>
-                    <label for="confirm_password">Confirmar Contraseña:</label>
+                    </td>
+                    
+                    </tr>
+                    <tr>
+                    <td for="code"> <b><i class="bi bi-code"></i> Confirmar Contraseña:</b>
                     <input type="password" name="confirm_password" required>
-                    <input type="submit" value="Cambiar Contraseña">
+                    </td>
+                    
+                    </tr>
+            <tr> 	
+               <td colspan="2">
+                    <input class="txtrecuperar" type="submit" value="Cambiar Contraseña">
+
+                    </td>
+</tr>
+        </table>
                 </form>
+            </div>
                 <?php
             } else {
                 echo "Código inválido o ha expirado.";

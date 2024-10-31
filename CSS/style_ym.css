@@ -3571,38 +3571,58 @@ audio {
 }
 
 /* Recuperacion */
-.container-recu {
-  background: white;
+.caja_popup {
+  background: #0000001a;
   padding: 20px;
+  color: white;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 7px 20px #000000;
   width: 300px;
   text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(100%);
 }
-.container-recu h1 {
+.caja_popup_veri{
+  background: #0000001a;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 2px 7px 20px #000000;
+  width: 300px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+}
+.caja_popup th {
   margin-bottom: 20px;
 }
-.email-recu[type="email"] {
+.cajaentradatexto[type="email"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-.enviar-recu{
-  background-color: #28a745;
+.cajaentradaveri[type="email"], .cajaentradaveri[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.txtrecuperar {
+  background-color: #4f5966;
   color: white;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+  margin-top: 10px;
 }
 
-.enviar-recu:hover {
-  background-color: #218838;
-}
-.message-recu{
-  margin-top: 20px;
-  color: red;
+.txtrecuperar:hover {
+  background-color: #383f48;
 }
