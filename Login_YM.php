@@ -26,7 +26,7 @@
           <input class="form-control mb-2" type="text" name="email" id="email" placeholder="Ingrese su Correo"><br>
           <input class="form-control mb-2" type="password" name="pass" id="pass" placeholder="Ingrese su Contraseña">
           <div class="text-center mb-2">
-            <a class="pass_lost" href="#">Olvidé mi contraseña</a>
+            <a class="pass_lost" href="Recuperacion_YM.php">Olvidé mi contraseña</a>
           </div>
           <div id="error-message" style="color: red; display: none;"></div>
           <div class="form-group text-center mb-3">
