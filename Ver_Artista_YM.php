@@ -17,7 +17,6 @@ require_once("Funciones.php");
         </ul>
     </div>
 </nav>
-
 <!-- Contenido del Perfil -->
 <div class="container mt-4 md container-perfil">
     <div class="row justify-content-left">
@@ -49,7 +48,6 @@ require_once("Funciones.php");
                 </div>
                 <?php endif; ?>
         </div>
-
         <div class="cont-u">
             <div class="imagen_perfil-container">
                 <img class="imagen_perfil" src="<?php echo htmlspecialchars($fotoPerfilA); ?>" alt="Foto de Perfil">
@@ -62,10 +60,10 @@ require_once("Funciones.php");
 
                     <?php if ($tipoPerfil === 'artista' || $tipoPerfil === 'discografica'): ?>
                         <div class="social-icons d-flex justify-content-center">
-                        <button class="icons"><a id="tiktok" style="display:none;"><i class="bi bi-tiktok"></i></a></button>
-                        <button class="icons"><a id="instagram" style="display:none;"><i class="bi bi-instagram"></i></a></button>
-                        <button class="icons"><a id="youtube" style="display:none;"><i class="bi bi-youtube"></i></a></button>
-                        <button class="icons"><a id="spotify" style="display:none;"><i class="bi bi-spotify"></i></a></button>
+                        <button class="icons"><a id="tiktok" style="display:none;color: white;""><i class="bi bi-tiktok"></i></a><br></button>
+                        <button class="icons"><a id="instagram" style="display:none;color: white;""><i class="bi bi-instagram"></i><br></a></button>
+                        <button class="icons"><a id="youtube" style="display:none;color: white;""><i class="bi bi-youtube"></i></a><br></button>
+                        <button class="icons"><a id="spotify" style="display:none;color: white;"><i class="bi bi-spotify"></i></a><br></button>
                     </div>
                     <?php endif; ?>
 
@@ -78,17 +76,44 @@ require_once("Funciones.php");
                         <?php foreach ($usuario['instrumentos'] as $instrumento): ?>
                             <li><?php echo htmlspecialchars($instrumento); ?></li>
                         <?php endforeach; ?>
-                        <h2>LANZAMIENTOS</h2>
-                        <div class="album-container">
+                       
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div   style="display: none;">
+                    <input type="text" class="icons form-control" name="Red1"  id="Red1" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Instagram']); ?>">
+           
+                    <input type="text" class="iconsform-control" name="Red2"  id="Red2" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Youtube']); ?>">
+        
+                    <input type="text" class="icons form-control" name="Red3"   id="Red3" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Spotify']); ?>">
+                
+                    <input type="text" class="icons form-control" name="Red4"  id="Red4" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['TikTok']); ?>">
+             
+ </div>
+</div>
+
+
+ 
+<div class="container mt-4 md album-preview container-perfil">
+
+<div class="row perf-rw justify-content-left">
+<div class="container-fluid alb-ym">
+    <h1 class="lanza text-center my-4">LANZAMIENTOS</h1>
+    <hr class="bg-custom-loginu my-4 barra_loginu">
+    <div class="fond-albu p-3">
+
                             <?php if (!empty($albumes)): ?>
                                 <?php foreach ($albumes as $album): ?>
                                     <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link-ym">
-                                        <div class="album-card-ym">
+                                        <div class="album-card">
                                             <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>" alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>" class="album-image-ym">
-                                            <div class="album-info-ym">
-                                                <h4 class="album-title-ym"><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
-                                                <p class="album-category-ym"><?php echo htmlspecialchars($album['Categoria']); ?></p>
-                                                <p class="album-date-ym"><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                                            <div class="album-info">
+                                                <h4 class="album-title"><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
+                                                <p class="album-category"><?php echo htmlspecialchars($album['Categoria']); ?></p>
+                                                <p class="album-date"><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
                                             </div>
                                         </div>
                                     </a>
@@ -97,23 +122,7 @@ require_once("Funciones.php");
                                 <p>No hay lanzamientos disponibles.</p>
                             <?php endif; ?>
                         </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
+                        </div>
+                        </div>     
 </div>
-
-<div style="display: none;">
-                    <input type="text" class="form-control" name="Red1" id="Red1" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Instagram']); ?>">
-           
-                    <input type="text" class="form-control" name="Red2" id="Red2" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Youtube']); ?>">
-                
-        
-                    <input type="text" class="form-control" name="Red3" id="Red3" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['Spotify']); ?>">
-                
-                  
-                    <input type="text" class="form-control" name="Red4" id="Red4" placeholder="Agregar" value="<?php echo htmlspecialchars($usuario['TikTok']); ?>">
-             
- </div>
 <?php require("Footer_YM.php"); ?>
