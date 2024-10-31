@@ -51,16 +51,44 @@ if ($usuario) {
 // Obtener álbumes si es artista
 $albumes = ($tipoPerfil === 'artista') ? obtenerAlbumes($correoArtista) : [];
 
-// Verificar si sigue al artista
-$sigueAlArtista = false;
-if ($tipoPerfil === 'artista') {
-    $stmt = $con->prepare("SELECT * FROM sigue WHERE CorrArti = ? AND CorrOyen = ?");
-    $stmt->bind_param("ss", $correoArtista, $correoOyente);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $sigueAlArtista = ($result->num_rows > 0);
+// Verificar si ya sigue al artista
+$stmt = $con->prepare("SELECT * FROM sigue WHERE CorrArti = ? AND CorrOyen = ?");
+$stmt->bind_param("ss", $correoArtista, $correoOyente);
+$stmt->execute();
+$result = $stmt->get_result();
+$sigueAlArtista = ($result->num_rows > 0);
+
+// Si se presionó el botón de seguir o dejar de seguir
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['seguir'])) {
+        // Insertar la relación de seguimiento
+        $stmt = $con->prepare("INSERT INTO sigue (CorrArti, CorrOyen) VALUES (?, ?)");
+        $stmt->bind_param("ss", $correoArtista, $correoOyente);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Ahora sigues a este artista.');</script>";
+        } else {
+            echo "<script>alert('Hubo un error al intentar seguir al artista.');</script>";
+        }
+    } elseif (isset($_POST['dejarDeSeguir'])) {
+        // Eliminar la relación de seguimiento
+        $stmt = $con->prepare("DELETE FROM sigue WHERE CorrArti = ? AND CorrOyen = ?");
+        $stmt->bind_param("ss", $correoArtista, $correoOyente);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Has dejado de seguir a este artista.');</script>";
+        } else {
+            echo "<script>alert('Hubo un error al intentar dejar de seguir al artista.');</script>";
+        }
+    }
+
     $stmt->close();
-}
+    $con->close();
+
+    // Redirigir para evitar el reenvío del formulario
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
+}   
 
 // Procesar la eliminación del perfil si se solicita
 if (isset($_POST['eliminarPerfil'])) {
