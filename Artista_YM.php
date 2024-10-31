@@ -40,10 +40,10 @@ require("RF_Artista_YM.php");
                     <h2>| <?php echo htmlspecialchars($nombre); ?></h2>
                     <p>| <?php echo htmlspecialchars($correo); ?></p>
                     <div class="social-icons d-flex justify-content-center">
-                        <button class="icons"><a id="tiktok" style="display:none;"><i class="bi bi-tiktok"></i></a></button>
-                        <button class="icons"><a id="instagram" style="display:none;"><i class="bi bi-instagram"></i></a></button>
-                        <button class="icons"><a id="youtube" style="display:none;"><i class="bi bi-youtube"></i></a></button>
-                        <button class="icons"><a id="spotify" style="display:none;"><i class="bi bi-spotify"></i></a></button>
+                        <button class="icons"><a id="tiktok" style="display:none;color: white;"><i class="bi bi-tiktok"></i></a></button>
+                        <button class="icons"><a id="instagram" style="display:none;color: white;"><i class="bi bi-instagram"></i></a></button>
+                        <button class="icons"><a id="youtube" style="display:none; color: white;"><i class="bi bi-youtube"></i></a></button>
+                        <button class="icons"><a id="spotify" style="display:none;color: white;"><i class="bi bi-spotify"></i></a></button>
                     </div>
                     <hr class="bg-custom-loginu my-4 barra_loginu">
                     <h5>| Biografia</h5>
@@ -55,28 +55,8 @@ require("RF_Artista_YM.php");
                     <?php endforeach; ?>
                     </ul>
 
-                    <h2>LANZAMIENTOS</h2>
-                    <div class="album-container">
-                        <?php if (!empty($albumes)): ?>
-                            <?php foreach ($albumes as $album): ?>
-                                <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link-ym">
-                                    <div class="album-card-ym">
-                                        <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
-                                            alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>" class="album-image-ym">
-                                        <div class="album-info-ym">
-                                            <h4 class="album-title-ym"><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
-                                            <p class="album-category-ym"><?php echo htmlspecialchars($album['Categoria']); ?></p>
-                                            <p class="album-date-ym"><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <p>No hay lanzamientos disponibles.</p>
-                        <?php endif; ?>
-                    </div>
+                   
                 </div>
-                 <!-- Formulario para Editar Perfil -->
                 <div class="form-container form-art fondo_perfil_editar" id="editarPerfil" style="display: none;">
             <h3>Editar Perfil</h3>
             <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
@@ -144,11 +124,53 @@ require("RF_Artista_YM.php");
         </div>
             </div>
         </div>
+
+
+        <!-- Formulario para Editar Perfil -->
        
     </div>
 </div>
 
 
+<!-- Contenido del Perfil -->
+<div class="container mt-4 md album-preview container-perfil">
+
+<div class="row perf-rw justify-content-left">
+<div class="container-fluid alb-ym">
+    <h1 class="lanza text-center my-4">LANZAMIENTOS</h1>
+    <hr class="bg-custom-loginu my-4 barra_loginu">
+    <div class="fond-albu p-3">
+
+
+        <div class="album-container">
+
+            <?php
+            $albumes = obtenerAlbumes($email);
+            if (empty($albumes)) {
+                echo '<div class="text-center text-white">No hay álbumes para mostrar</div>';
+            } else {
+                foreach ($albumes as $album) {
+            ?>
+                    <a href="VerAlbum.php?id=<?php echo htmlspecialchars($album['IdAlbum']); ?>" class="album-link">
+                        <div class="album-card">
+                            <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
+                                alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>">
+                            <div class="album-info">
+                                <h4><?php echo htmlspecialchars($album['NomAlbum']); ?></h4>
+                                <p><?php echo htmlspecialchars($album['Categoria']); ?></p>
+                                <p><?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
+                            </div>
+                        </div>
+                    </a><br>
+            <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</div>
+    </div>  
+</div>
 
 <footer class="footer-home footer-veralbum">
             <div class="container-fluid">

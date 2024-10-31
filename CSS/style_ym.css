@@ -484,15 +484,17 @@ button:after {
   justify-content: center;
 }
 .container.mt-4.md {
-  background-color: #343a40;
+  background-color: #621acf48;
 }
+
+
 .container.mt-4 {
   border-radius: 1%;
   min-height: 80vh;
   padding-bottom: 10px;
   padding-top: 20px;
   padding-left: 0px;
-  padding-right: 50px;
+  padding-right:  0px;
 }
 .container.mt-4.md,
 .fondo_perfil_editar {
@@ -506,13 +508,14 @@ button:after {
   bottom: 100px;
   width: 50%;
 }
+
 .perfil-content {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   text-align: left;
-  position: relative;
+  
 }
 .perfil-details {
   max-width: 400px;
@@ -527,7 +530,9 @@ button:after {
   z-index: 1000;
   height: 200%;
 }
-
+.fond-albu {
+  background-color: #3d34405c !important;
+}
 #ventanaEmergente button {
   margin-right: 10px;
 }
@@ -1032,15 +1037,19 @@ textarea {
     height: 100%;
   }
 }
-
+.icons{
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+}
 @media (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
   
   .row {
     display: unset !important;
     position: relative;
-    left: 15%;
-    bottom: 100px;
-    width: 50% !important;
+    left: 0%;
+    bottom: 0px;
+    width: 100% !important;
   }
   .parte-reg-discografica {
     width: 50%;
@@ -1451,7 +1460,7 @@ textarea {
     left: 10%;
   }
   .imagen_perfil-container {
-    width: 100px;
+    width: none;
   }
   .registro {
     font-size: 40px;
@@ -2771,7 +2780,7 @@ audio {
 
 /* Tarjeta del álbum con diseño horizontal */
 .album-card-ym {
-  background-color: #f5f5f5;
+  background-color:  #343a40;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -2798,7 +2807,7 @@ audio {
 /* Contenedor de la información del álbum a la derecha */
 .album-info-ym {
   padding: 20px;
-  background-color: #fff;
+  background-color:  #343a40;
   flex-grow: 1;
 }
 
@@ -2807,7 +2816,7 @@ audio {
   font-size: 24px;
   font-weight: bold;
   margin: 0 0 10px 0;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Categoría del álbum */

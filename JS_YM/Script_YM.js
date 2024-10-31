@@ -1,3 +1,41 @@
+function seguirArtista() {
+  const formSeguir = document.getElementById('formSeguir');
+  const formData = new FormData(formSeguir);
+
+  fetch(window.location.href, {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+      alert('Ahora sigues a este artista.');
+      location.reload();  // Recargar la página para actualizar el estado
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Ocurrió un error al intentar seguir al artista.');
+  });
+}
+
+function dejarDeSeguirArtista() {
+  const formSeguir = document.getElementById('formSeguir');
+  const formData = new FormData(formSeguir);
+
+  fetch(window.location.href, {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+      alert('Has dejado de seguir a este artista.');
+      location.reload();  // Recargar la página para actualizar el estado
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Ocurrió un error al intentar dejar de seguir al artista.');
+  });
+}
+
 const albumFunctions = {
   deleteAlbum: function(albumId) {
       if (confirm('¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.')) {
@@ -115,46 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
-function seguirArtista() {
-  const formSeguir = document.getElementById('formSeguir');
-  const formData = new FormData(formSeguir);
 
-  fetch(window.location.href, {
-      method: 'POST',
-      body: formData
-  })
-  .then(response => response.text())
-  .then(result => {
-      alert('Ahora sigues a este artista.');
-      location.reload();  // Recargar la página para actualizar el estado
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Ocurrió un error al intentar seguir al artista.');
-  });
-}
-
-function dejarDeSeguirArtista() {
-  const formSeguir = document.getElementById('formSeguir');
-  const formData = new FormData(formSeguir);
-
-  fetch(window.location.href, {
-      method: 'POST',
-      body: formData
-  })
-  .then(response => response.text())
-  .then(result => {
-      alert('Has dejado de seguir a este artista.');
-      location.reload();  // Recargar la página para actualizar el estado
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Ocurrió un error al intentar dejar de seguir al artista.');
-  });
-}
-function confirmarEliminacion() {
-  return confirm("¿Estás seguro de que deseas eliminar este perfil? Esta acción eliminará todos los datos, álbumes y canciones asociados.");
-}
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener los valores de los campos de texto
   let redes = [
@@ -750,24 +749,30 @@ function enviarFormularioRed() {
 }
 
 class MusicCarousel {
-  constructor() {
-      this.container = document.querySelector('.carousel-container');
-      this.track = this.container.querySelector('.carousel-track');
-      this.slides = this.container.querySelectorAll('.carousel-slide');
-      this.prevBtn = this.container.querySelector('.carousel-arrow.prev');
-      this.nextBtn = this.container.querySelector('.carousel-arrow.next');
-      this.dotsContainer = this.container.querySelector('.carousel-dots');
+  constructor(container) {
+      this.container = container;
+      this.track = container.querySelector('.carousel-track');
+      this.slides = container.querySelectorAll('.carousel-slide');
+      this.prevBtn = container.querySelector('.carousel-arrow.prev');
+      this.nextBtn = container.querySelector('.carousel-arrow.next');
+      this.dotsContainer = container.querySelector('.carousel-dots');
       
+      // Configuración inicial
       this.slideWidth = 300;
       this.currentIndex = 0;
       this.slidesPerView = this.calculateSlidesPerView();
       this.maxIndex = Math.max(0, this.slides.length - this.slidesPerView);
       
+      // Estado del carrusel
       this.isMouseDown = false;
       this.startX = 0;
       this.scrollLeft = 0;
-      this.init();this.currentAudio = null;
+      
+      // Estado del audio
+      this.currentAudio = null;
       this.currentPlayButton = null;
+      
+      this.init();
     }
     
     init() {
@@ -775,9 +780,8 @@ class MusicCarousel {
       this.addEventListeners();
       this.updateButtons();
       this.initializeLikeButtons();
-      this.initializeAudioPlayers(); // método para inicializar el audio
+      this.initializeAudioPlayers();
     }
-  
   calculateSlidesPerView() {
       const containerWidth = this.container.offsetWidth;
       return Math.floor(containerWidth / this.slideWidth);
@@ -1025,7 +1029,13 @@ class MusicCarousel {
   }
 }
 
-// Inicializar el carrusel cuando el DOM esté listo
+// Inicializar todos los carruseles cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  const carousel = new MusicCarousel();
+  // Obtener todos los contenedores de carrusel
+  const carouselContainers = document.querySelectorAll('.carousel-container');
+  
+  // Crear una instancia de MusicCarousel para cada contenedor
+  carouselContainers.forEach(container => {
+      new MusicCarousel(container);
+  });
 });

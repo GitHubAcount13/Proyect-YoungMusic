@@ -19,14 +19,15 @@ $email = $_SESSION["email"];
         </ul>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid alb-ym">
     <h1 class="lanza text-center my-4">LANZAMIENTOS</h1>
     <hr class="bg-custom-loginu my-4 barra_loginu">
     <div class="fond-albu p-3">
         <form action="Subida_Album.php">
             <button type="submit" class="btn btn-secondary w-100 mb-4">
                 <h3 class="text-center m-0">Nuevo</h3>
-            </button>
+                
+            </button><hr class="bg-custom-loginu my-4 barra_loginu" style="color:antiquewhite;">
         </form>
 
         <div class="album-container">
