@@ -12,7 +12,7 @@ $generos = json_decode($jsonData, true)['generos'];
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <!-- Agrega elementos de navegación si es necesario -->
+           
         </ul>
     </div>
 </nav>
@@ -39,7 +39,7 @@ $generos = json_decode($jsonData, true)['generos'];
                         ?>
                             <div class="grid-item">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="generos[]" value="<?php echo htmlspecialchars($genero); ?>" id="genero-<?php echo htmlspecialchars($genero); ?>">
+                                    <input type="checkbox" class="form-check-input"  name="generos[]" value="<?php echo htmlspecialchars($genero); ?>" id="genero-<?php echo htmlspecialchars($genero); ?>">
                                     <label class="form-check-label" for="genero-<?php echo htmlspecialchars($genero); ?>">
                                         <?php echo htmlspecialchars($genero); ?>
                                     </label>

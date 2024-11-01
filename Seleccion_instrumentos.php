@@ -17,7 +17,7 @@ $generos = json_decode($jsonData, true)['generos']; -->
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <!-- Agrega elementos de navegación si es necesario -->
+            
         </ul>
     </div>
 

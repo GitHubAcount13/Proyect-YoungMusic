@@ -1,9 +1,9 @@
 <?php require("Header_YM.php"); ?>
-<div class="bg-mask">
+
   <img class="logo-reg bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100" height="50" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false" src="https://res.cloudinary.com/dlii53bu7/image/upload/v1729654882/Subida/rcoe0yvyz6hvjabfqkcy.webp" alt="">
 
   <div class="container log mt-4">
-    <div class="row">
+    <div class="row login-rw">
       <div class="col-md-7 parte_izquierda_login">
         <h4><button><a class="registrou" href="Registro_YM.php">REGISTRARSE</a></button>
           <br><br>
@@ -23,8 +23,20 @@
 
         <br>
         <form id="loginForm" method="post">
-          <input class="form-control mb-2" type="text" name="email" id="email" placeholder="Ingrese su Correo"><br>
-          <input class="form-control mb-2" type="password" name="pass" id="pass" placeholder="Ingrese su Contraseña">
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+              <input class="form-control " type="text" name="email" id="email" placeholder="Ingrese su Correo">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-key"></i></span>
+              <input class="form-control " type="password" name="pass" id="pass" placeholder="Ingrese su Contraseña">
+            </div>
+          </div>
+
           <div class="text-center mb-2">
             <a class="pass_lost" href="Recuperacion_YM.php">Olvidé mi contraseña</a>
           </div>
@@ -39,5 +51,4 @@
     </div>
   </div>
 
-</div>
 <?php require("Footer_YM.php"); ?>
