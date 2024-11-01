@@ -1,9 +1,11 @@
 <?php require("Header_YM.php"); ?>
 <?php
-include('conexion.php'); // Asegúrate de que esta función esté definida correctamente
+include('conexion.php'); 
 
-$conexion = conectar_bd(); // Cambia esto si es necesario
-
+$conexion = conectar_bd(); 
+if (isset($_GET['error'])) {
+    echo '<div class="alert alert-danger">' . htmlspecialchars($_GET['error']) . '</div>';
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $enteredCode = $_POST['code'];
@@ -40,35 +42,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="parte-izquierda-recuperacion">
                         <h4>Código verificado! Puedes cambiar tu contraseña.</h4>
                     </div>
-                
-                <div class="caja_popup" >
-                <form action="cambio_contra.php" method="POST" class="contenedor_popup">
-                
+                    
+                <div class="caja_popup">
+                <form action="cambio_contra.php" method="POST" class="contenedor_popup" id="passwordForm">
+                    
                     <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
-
                     <table>
                         <tr>
-                   
                             <th colspan="2">Cambiar Contraseña</th>
                         </tr>
                         <tr>
                             <td><b><i class="bi bi-code"></i> Nueva Contraseña</b></td>
-                            <td><input type="password" name="new_password" class="cajaentradatexto" required></td>
+                            <td>
+                                <input type="password" name="new_password" class="cajaentradatexto" required>
+                                <div id="passwordError" style="color: red; font-size: 12px;"></div>
+                            </td>
                         </tr>
                         <tr>
-                    <td for="code"> <b><i class="bi bi-code"></i> Confirmar Contraseña:</b></td>
-                    <td><input type="password" name="confirm_password" class="cajaentradatexto" required></td>
-                    </tr>
-                        <tr>
-            
-                        <td colspan="2" class="text-center">
-                    <input class="btn btn-primary botones-recu" type="submit" value="Cambiar Contraseña">
-
-                    </td>
-</tr>
-        </table>
+                            <td for="code"> <b><i class="bi bi-code"></i> Confirmar Contraseña:</b></td>
+                            <td>
+                                <input type="password" name="confirm_password" class="cajaentradatexto" required>
+                                <div id="confirmError" style="color: red; font-size: 12px;"></div>
+                            </td>
+                        </tr>
+                        <tr>                    
+                            <td colspan="2" class="text-center">
+                                <input class="btn btn-primary botones-recu" type="submit" value="Cambiar Contraseña" onclick="validarPassword()">
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
+            <script src="JS_YM/Script_YM.js"></script>
                 <?php
             } else {
                 header("Location: verificacion.php");
@@ -83,4 +88,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 ?>
+
 <?php require("Footer_YM.php"); ?>
