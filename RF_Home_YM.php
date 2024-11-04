@@ -163,6 +163,5 @@ function obtenerMusicaRandom($limit = 10) {
     
     return $musicas;
 }
-?>
 
 ?>

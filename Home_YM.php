@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Populares.php">
                         <span class="icon"><i class="bi bi-fire"></i></i></span>
                         <span class="text">Populares</span>
                     </a>
