@@ -4120,6 +4120,9 @@ button:focus {
   position: relative;
   left:-22%;
 }
+.form-check-label-subida{
+  left: -13% !important;
+}
 
 .form-check-label::before {
   content: '';
@@ -4203,4 +4206,18 @@ button:focus {
 
     transform: translateY(24%);
 }
+}
+@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
+  .caja_popup{
+    transform: translateY(90%);
+  }
+  .parte-izquierda-recuperacion{
+    left: 50%;
+    transform: translate(-50%, 30%);
+    width: 80% !important;
+    height: 100%;
+  }
+  .parte-izquierda-recuperacion h4{
+    font-size: 25px;
+  }
 }
