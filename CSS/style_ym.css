@@ -4026,8 +4026,26 @@ button:focus {
 }
 
 .parte_izquierda_registro_pref {
-  position: sticky;
-  top: 2rem;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: -60%;
+  transform: translate(30%, 170%);
+}
+.pref-ins{
+  position: relative;
+  top: 50%;
+  left: -60%;
+  transform: translate(140%, 0%);
+}
+.registro-pref{
+  color: #e066ff;
+    font-size: 3rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.form-label-in{
+  font-size: 21px;
 }
 .modal-content {
   background-color: #333 !important;
@@ -4220,4 +4238,18 @@ button:focus {
   .parte-izquierda-recuperacion h4{
     font-size: 25px;
   }
+}
+.input-seleccion[type="checkbox"]{
+  height: 25px;
+  width: 25px;
+}
+.form-check-label-sele{
+  display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 0.875rem;
+    position: relative;
+    left: -22%;
 }

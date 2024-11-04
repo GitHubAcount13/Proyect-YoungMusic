@@ -29,17 +29,17 @@ $generos = json_decode($jsonData, true)['generos']; -->
 
 <div class="container my-3 sele-inst">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="parte_izquierda_registro_pref">
                 <h2>
-                    <a class="registro" href="">Registo de Artista</a>
+                    <a class="registro-pref" href="">Registo de Artista</a>
                     <hr class="bg-custom-register my-2 barra_register">
                 </h2>
                 <h4 class="info_datosreg">Ingrese los instrumentos que tocas</h4>
             </div>
         </div>
 
-        <div class="col-md-8 pref">
+        <div class="col-md-10 pref pref-ins">
             <div class="preferences-container">
                 <form id="forminstrumentos" action="RF_Seleccion_instrumentos.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="destinoFinal" name="destinoFinal" value="">
@@ -50,8 +50,8 @@ $generos = json_decode($jsonData, true)['generos']; -->
 
                             <div class="grid-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
-                                    <label><?php echo htmlspecialchars($instrumento); ?></label>
+                                    <input class="form-check-label-sele" type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
+                                    <label class="form-label-in"><?php echo htmlspecialchars($instrumento); ?></label>
                                     </label>
                                 </div>
                             </div>
