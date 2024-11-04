@@ -41,7 +41,7 @@ $generos = json_decode($jsonData, true)['generos'];
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"  name="generos[]" value="<?php echo htmlspecialchars($genero); ?>" id="genero-<?php echo htmlspecialchars($genero); ?>">
                                     <label class="form-check-label" for="genero-<?php echo htmlspecialchars($genero); ?>">
-                                        <?php echo htmlspecialchars($genero); ?>
+                                        <p class="genero-pref"><?php echo htmlspecialchars($genero); ?></p>
                                     </label>
                                 </div>
                             </div>

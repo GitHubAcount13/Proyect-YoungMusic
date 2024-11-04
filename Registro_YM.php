@@ -1,7 +1,7 @@
 <?php require("Header_YM.php") ?>
 <div class="bg-mask min-vh-100">
     <!-- Logo -->
-    <div class="logo-container position-absolute top-0 start-0 m-4">
+    <div class="logo-container position-absolute top-0 start-1 m-4">
         <img class="logo-reg" 
              style="max-width: 120px;"
              src="https://res.cloudinary.com/dlii53bu7/image/upload/v1729654882/Subida/rcoe0yvyz6hvjabfqkcy.webp" 
@@ -9,7 +9,7 @@
     </div>
 
     <div class="container-fluid h-100 contenedor-registro-general">
-        <div class="row h-100">
+        <div class="row h-100 registro-ym-rw">
             <!-- Parte Izquierda -->
             <div class="col-lg-6 parte_izquierda_registro d-flex flex-column justify-content-center align-items-center text-center p-4">
                 <h2><a class="registro text-decoration-none" href="#">REGISTRARSE</a></h2>
