@@ -1,3 +1,47 @@
+function canciones() {
+  event.preventDefault();
+  
+  const form = document.getElementById('formMusica');
+  const formData = new FormData(form);
+  
+  // Mostrar mensaje de estado
+  const mensajeEstado = document.getElementById('mensaje-estado');
+  const iconoEstado = document.getElementById('icono-estado');
+  const textoEstado = document.getElementById('texto-estado');
+  
+  // Configurar estado inicial
+  mensajeEstado.style.display = 'flex';
+  mensajeEstado.className = 'mensaje-estado subiendo';
+  iconoEstado.textContent = '⟳';
+  textoEstado.textContent = 'Subiendo canción...';
+  
+  fetch('RF_Subida_Musica.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          // Cambiar a estado de éxito
+          mensajeEstado.className = 'mensaje-estado exito';
+          iconoEstado.textContent = '✓';
+          textoEstado.textContent = '¡Canción subida exitosamente!';
+          
+          // Limpiar formulario
+          form.reset();
+          
+      } else {
+          throw new Error(data.message);
+      }
+  })
+  .catch(error => {
+      // Cambiar a estado de error
+      mensajeEstado.className = 'mensaje-estado error';
+      iconoEstado.textContent = '✕';
+      textoEstado.textContent = 'Error al subir la canción: ' + error.message;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function() { 
   const BotonLike = document.querySelectorAll(".Like-boton");
 
