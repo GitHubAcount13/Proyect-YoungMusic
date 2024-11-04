@@ -17,7 +17,7 @@ function generateNumericCode() {
 }
 
 function sendResetEmail($email, $code) {
-    $subject = "Código de Restablecimiento de Contraseña";
+    $subject = "Restablecimiento de contraseña";
     $message = "Tu código de restablecimiento de contraseña es: " . $code;
     header("Location: verificacion.php");
 
@@ -31,6 +31,10 @@ function sendResetEmail($email, $code) {
         $mail->Password   = 'd n d x k e t o p j v k s v x u'; // Tu contraseña
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
+
+        // Configuración de caracteres
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
 
         $mail->setFrom('youngmusic063@gmail.com', 'YoungMusic Official'); // Cambia por tu correo y nombre
         $mail->addAddress($email);
