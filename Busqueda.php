@@ -25,11 +25,11 @@ require_once("Funciones.php");
 
 <div class="container contenido-bus">
     <div class="flex justify-center space-x-4 mb-6">
-        <a href="#"><button class="text-white py-2 px-4 rounded-full boton-bus">Artista
+        <a href="#" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">Artista
             </button>
-            <a href="Busqueda_musica.php"><button class="text-white py-2 px-4 rounded-full boton-bus">música
+            <a href="Busqueda_musica.php" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">música
                 </button></a>
-            <a href="Busqueda_Album.php"><button class="text-white py-2 px-4 rounded-full boton-bus">Álbum
+            <a href="Busqueda_Album.php" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">Álbum
                 </button></a>
     </div>
 </div>

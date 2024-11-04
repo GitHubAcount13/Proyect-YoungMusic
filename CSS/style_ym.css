@@ -2396,6 +2396,11 @@ audio {
   text-decoration: none;
   display: flex;
 }
+.LinkB{
+
+  text-decoration: none;
+
+}
 /* Agregar estos estilos a tu CSS */
 .overlay-carga {
   position: fixed;

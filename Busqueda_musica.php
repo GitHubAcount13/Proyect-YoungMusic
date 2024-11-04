@@ -25,11 +25,11 @@ require_once("Funciones.php");
 
 <div class="container contenido-bus">
     <div class="flex justify-center space-x-4 mb-6">
-        <a href="Busqueda.php"><button class="text-white py-2 px-4 rounded-full boton-bus">Artista
+        <a href="Busqueda.php" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">Artista
             </button>
-            <a href="#"><button class="text-white py-2 px-4 rounded-full boton-bus">música
+            <a href="#" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">música
                 </button></a>
-            <a href="Busqueda_Album.php"><button class="text-white py-2 px-4 rounded-full boton-bus">Álbum
+            <a href="Busqueda_Album.php" class="LinkB"><button class="text-white py-2 px-4 rounded-full boton-bus">Álbum
                 </button></a>
     </div>
 </div>
@@ -55,13 +55,13 @@ require_once("Funciones.php");
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Recien_llegados.php">
                         <span class="icon"><i class="bi bi-clock"></i></span>
                         <span class="text">Recién llegados</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Populares.php">
                         <span class="icon"><i class="bi bi-fire"></i></i></span>
                         <span class="text">Populares</span>
                     </a>
@@ -74,21 +74,15 @@ require_once("Funciones.php");
         <div class="slidebar-abajo conjunto-contenido-slider">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="MeGusta.php">
                         <span class="icon"><i class="bi bi-suit-heart-fill"></i></span>
                         <span class="text">Tus me gusta</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Artistas_favoritos.php">
                         <span class="icon"><i class="bi bi-person-heart"></i></i></span>
                         <span class="text">Artistas favoritos</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="icon"><i class="bi bi-clock-history"></i></i></i></span>
-                        <span class="text">Historial</span>
                     </a>
                 </li>
             </ul>
