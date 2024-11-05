@@ -2521,10 +2521,7 @@ audio {
     position: relative;
     top: 100px;
   }
-  .sele-inst{
-    position: relative;
-    top: 100px;
-  }
+  
 }
 
 @media (min-width:768px){
@@ -4024,7 +4021,12 @@ button:focus {
   flex-direction: column;
   justify-content: flex-start;
 }
-
+.content-izq-prefus{
+  padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
 .parte_izquierda_registro_pref {
   text-align: center;
   position: relative;
@@ -4194,15 +4196,29 @@ button:focus {
       padding: 1rem;
       transform: translateY(14%);
   }
-  
+  .content-izq-prefus {
+    text-align: center;
+        padding: 1rem;
+        transform: translate(29%, -136%);
+}
   .pref {
       margin-top: 1rem;
       max-height: 70vh;
   }
-  
+  .part-izq-reg-art{
+    top: 50%;
+    transform: translateY(-10%);
+  }
+  .part-izq-red-art{
+    top: 50%;
+    transform: translateY(-20%);
+  }
   .generos_container {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       max-height: calc(70vh - 100px);
+  }
+  .cont-prefus{
+    max-width: 220px !important;
   }
 }
 @media (min-width:768px) and (max-width:768px) {
@@ -4213,16 +4229,31 @@ button:focus {
     flex-direction: unset;
     width: 100.333333% !important;
 }
-.pref{
+.content-izq-prefus {
+  text-align: center;
+  padding: 1rem;
   position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+  left: 50%;
+  transform: translate(-20%, -136%);
+  flex-direction: unset;
+  width: 60.333333% !important;
+}
+.cont-prefus{
+  max-width: 573px !important;
+}
+.pref {
+  position: relative;
+  left: 50%;
+  transform: translateX(-48%);
 }
 }
 @media (min-width:769px){
   .content-izq-pref {
 
     transform: translateY(24%);
+}
+.content-izq-prefus {
+  transform: translate(22%, -76%);
 }
 }
 @media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
@@ -4239,3 +4270,4 @@ button:focus {
     font-size: 25px;
   }
 }
+

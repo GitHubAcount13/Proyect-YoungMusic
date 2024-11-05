@@ -32,26 +32,26 @@ $generos = json_decode($jsonData, true)['generos']; -->
         <div class="col-md-8">
             <div class="parte_izquierda_registro_pref">
                 <h2>
-                    <a class="registro-pref" href="">Registo de Artista</a>
+                    <a class="registro-pref-sel-ins" href="">Registo de Artista</a>
                     <hr class="bg-custom-register my-2 barra_register">
                 </h2>
-                <h4 class="info_datosreg">Ingrese los instrumentos que tocas</h4>
+                <h4 class="info_datosreg-ins">Ingrese los instrumentos que tocas</h4>
             </div>
         </div>
 
         <div class="col-md-10 pref pref-ins">
-            <div class="preferences-container">
+            <div class="preferences-container-ins">
                 <form id="forminstrumentos" action="RF_Seleccion_instrumentos.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="destinoFinal" name="destinoFinal" value="">
-                    <div class="grid-container seleccion-container">
+                    <div class="grid-container  seleccion-container-ins">
                         <?php
                         foreach ($instrumentos as $instrumento):
                         ?>
 
-                            <div class="grid-item">
-                                <div class="form-check">
-                                    <input class="form-check-label-sele" type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
-                                    <label class="form-label-in"><?php echo htmlspecialchars($instrumento); ?></label>
+                            <div class="grid-item-ins">
+                                <div class="form-check-ins">
+                                    <input class="form-check-label-sele-ins" type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
+                                    <label class="form-label-ins"><?php echo htmlspecialchars($instrumento); ?></label>
                                     </label>
                                 </div>
                             </div>

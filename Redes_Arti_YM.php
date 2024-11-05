@@ -12,14 +12,14 @@ $generos = json_decode($jsonData, true)['generos'];
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <!-- Agrega elementos de navegación si es necesario -->
+            
         </ul>
     </div>
 </nav>
 
 <div class="container">
         <div class="row">
-            <div class="col-md-6 parte_izquierda_registro mb-4">
+            <div class="col-md-6 parte_izquierda_registro part-izq-red-art mb-4">
                 <h2>
                     <a class="registro">Registro de Artista</a>
                     <hr class="bg-custom-register my-4 barra_register">

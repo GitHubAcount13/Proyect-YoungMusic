@@ -17,9 +17,9 @@ $generos = json_decode($jsonData, true)['generos'];
     </div>
 </nav>
 
-<div class="container my-3">
+<div class="container my-3 cont-prefus">
     <div class="row preferencias">
-        <div class="col-md-4 content-izq-pref">
+        <div class="col-md-4 content-izq-prefus">
             <div class="parte_izquierda_registro_pref">
                 <h2>
                     <a class="registro" href="Login_YM.php">REGISTRARSE</a>
