@@ -69,6 +69,10 @@ $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1
             <button type="submit" class="btn btn-primary">Salir</button>
         </form>
                 </div>
+                <div id="mensaje-estado" class="mensaje-estado" style="display: none;">
+    <span id="icono-estado" class="icono-estado">⟳</span>
+    <span id="texto-estado">Subiendo canción...</span>
+</div>
             </div>
             
             <div id="canciones-agregadas">
