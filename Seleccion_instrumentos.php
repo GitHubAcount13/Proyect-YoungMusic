@@ -27,20 +27,17 @@ $generos = json_decode($jsonData, true)['generos']; -->
 
 
 
-<div class="container my-3 sele-inst">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="parte_izquierda_registro_pref">
+<div class="container">
+        <div class="row">
+        <div class="col-md-6 parte_izquierda_registro p-izq-ins part-izq-red-art mb-4">
                 <h2>
-                    <a class="registro-pref-sel-ins" href="">Registo de Artista</a>
-                    <hr class="bg-custom-register my-2 barra_register">
+                <a class="registro">Registro de Artista</a>
+                    <hr class="bg-custom-register my-4 barra_register">
                 </h2>
-                <h4 class="info_datosreg-ins">Ingrese los instrumentos que tocas</h4>
+                <h4 class="info_datosreg">Ingrese los instrumentos que tocas</h4>
             </div>
-        </div>
-
-        <div class="col-md-10 pref pref-ins">
-            <div class="preferences-container-ins">
+            <div class="col-md-8 pref">
+            <div class="preferences-container">
                 <form id="forminstrumentos" action="RF_Seleccion_instrumentos.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="destinoFinal" name="destinoFinal" value="">
                     <div class="grid-container  seleccion-container-ins">
@@ -48,10 +45,11 @@ $generos = json_decode($jsonData, true)['generos']; -->
                         foreach ($instrumentos as $instrumento):
                         ?>
 
-                            <div class="grid-item-ins">
-                                <div class="form-check-ins">
-                                    <input class="form-check-label-sele-ins" type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
-                                    <label class="form-label-ins"><?php echo htmlspecialchars($instrumento); ?></label>
+                            <div class="grid-item">
+                                <div class="form-check form-check-ins">
+                                    <input class="form-check-input-ins" type="checkbox" name="instrumentos[]" value="<?php echo htmlspecialchars($instrumento); ?>">
+                                    <label class="form-check-label-ins">
+                                        <p class="genero-pref"><?php echo htmlspecialchars($instrumento); ?></p>
                                     </label>
                                 </div>
                             </div>
