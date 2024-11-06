@@ -4342,3 +4342,17 @@ button:focus {
     transform: translate(150%, 60%);
   }
 }
+@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
+  .parte_izquierda_registro_discog{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@media (min-width:540px) and (max-width:540px) and (min-height:720px) and (max-height:720px){
+  .form-control-input-dis{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

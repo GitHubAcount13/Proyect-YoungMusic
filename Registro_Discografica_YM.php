@@ -21,7 +21,7 @@ $generos = json_decode($jsonData, true)['generos'];
     <div class="row reg-disc-rw">
 
 
-        <div class="col-md-6 parte_izquierda_registro_discog mb-4">
+        <div class="col-md-6 parte_izquierda_registro_discog text-center mb-4">
             <h2>
                 <a class="registro">Registro de Discográfica</a>
                 <hr class="bg-custom-register my-4 barra_register">
@@ -35,7 +35,7 @@ $generos = json_decode($jsonData, true)['generos'];
             <form action="RF_Registro_Discografica_YM.php" method="post">
                 <div class="form-group"><br>
 
-                    <input class="form-control" type="text" name="nombre_d" id="nombre_d" placeholder="Ingrese su Nombre de la Discográfica">
+                    <input class="form-control form-control-input-dis" type="text" name="nombre_d" id="nombre_d" placeholder="Ingrese su Nombre de la Discográfica">
                 </div><br>
                 <div class="form-group botones_registro text-center">
                     <button class="btn btn-secondary mr-2 bot" type="reset">Cancelar</button>
