@@ -93,36 +93,32 @@ require_once("Funciones.php");
         <footer class="footer-home">
             <div class="container-fluid">
                 <div class="row cont-fot">
-                    <div class="col-md-2 contenido-foot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
                         <a href="Home_YM.php" class="nav-link">
                             <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
                         <a href="" class="nav-link">
                             <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
                         <a href="" class="nav-link">
                             <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
                         <a href="" class="nav-link">
                             <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
                         <a href="" class="nav-link">
                             <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </footer>

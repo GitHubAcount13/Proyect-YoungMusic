@@ -4645,3 +4645,11 @@ button:focus {
     transform: translate(-291%, -60%) !important;
   }
 }
+@media (max-width: 768px) {
+  .contenido-foot-bus {
+      position: relative;
+      left: 0%;
+      top: 10%;
+      transform: translate(-50%, -60%);
+  }
+}
