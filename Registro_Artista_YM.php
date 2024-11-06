@@ -29,10 +29,10 @@ $generos = json_decode($jsonData, true)['generos'];
 
             <div class="col-md-6 parte_derecha_login">
                 <form action="RF_Registro_Artista_YM.php" method="post">
-                    <div class="form-group"><br>
+                    <div class="form-group form-group-regart"><br>
                         <input class="form-control" type="text" name="nombre_a" id="nombre_a" placeholder="Ingrese su Nombre artístico o el de la banda">
                     </div><br>
-                    <div class="form-group">
+                    <div class="form-group form-group-regart">
                         <label for="fecha">Ingrese su fecha de nacimiento</label>
                         <input class="form-control" type="date" name="fecha" id="fecha">
                     </div><br>

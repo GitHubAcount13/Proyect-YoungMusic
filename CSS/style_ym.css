@@ -4356,3 +4356,50 @@ button:focus {
     transform: translateX(-50%);
   }
 }
+@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
+  .parte_izquierda_registro_pref {
+    transform: translate(30%, 170%);
+}
+}
+@media (min-width:540px) and (max-width:540px) and (min-height:720px) and (max-height:720px){
+  .form-group-regart{
+    position: relative;
+    left: 50%;
+    transform: translateX(-30%);
+  }
+}
+.modal-content{
+  transform: translateY(50%);
+}
+.container-redes-art{
+  position: relative;
+  top: 50%;
+  transform: translateY(16%);
+}
+@media (max-width:768px){
+  .container-redes-art {
+    position: relative;
+    top: 50%;
+    transform: translateY(-2%);
+  }
+}
+@media (min-width:360px) and (max-width:360px) and (min-height:740px) and (max-height:740px){
+  .container-redes-art{
+    transform: translateY(5%);
+  }
+}
+@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
+  .part-izq-red-art{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,20%);
+  }
+}
+@media (min-width:540px) and (max-width:540px) and (min-height:720px) and (max-height:720px){
+  .form-group-redesartista{
+    position: relative;
+    left: 50%;
+    transform: translateX(-30%);
+  }
+}
