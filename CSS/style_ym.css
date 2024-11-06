@@ -4622,6 +4622,12 @@ button:focus {
   top: 10%;
   transform: translate(-10%, -60%);
 }
+.contenido-foot-perf {
+  position: relative;
+  left: 10%;
+  top: 10%;
+  transform: translate(-86%, -60%);
+}
 }
 @media (min-width:768px){
   .footer-album {
