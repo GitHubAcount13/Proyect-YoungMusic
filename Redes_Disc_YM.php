@@ -17,7 +17,7 @@ $generos = json_decode($jsonData, true)['generos'];
     </div>
 </nav>
 
-<div class="container">
+<div class="container container-redes-disc">
         <div class="row">
             <div class="col-md-6 parte_izquierda_registro parte_izquierda_registro-redis mb-4">
                 <h2>
@@ -30,26 +30,26 @@ $generos = json_decode($jsonData, true)['generos'];
             </div>
             <div class="col-md-6 parte_derecha_login">
             <form id="forminstrumentos" method="post" enctype="multipart/form-data">
-                    <h2>Redes Sociales</h2>
-                    <div class="form-group">
+                    <h2 class="text-center">Redes Sociales</h2>
+                    <div class="form-group form-group-redesdisc">
                         <label for="Red1">
                             <i class="bi bi-instagram icono-redes"></i> Instagram
                         </label>
                         <input type="text" class="form-control" name="Red1" id="Red1"  placeholder="Agregar">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group-redesdisc">
                         <label for="Red2">
                             <i class="bi bi-youtube icono-redes"></i> YouTube
                         </label>
                         <input type="text" class="form-control" name="Red2" id="Red2"  placeholder="Agregar">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group-redesdisc">
                         <label for="Red3">
                             <i class="bi bi-spotify icono-redes"></i> Spotify
                         </label>
                         <input type="text" class="form-control" name="Red3" id="Red3"  placeholder="Agregar">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group-redesdisc">
                         <label for="Red4">
                             <i class="bi bi-tiktok icono-redes"></i> TikTok
                         </label>
@@ -60,9 +60,10 @@ $generos = json_decode($jsonData, true)['generos'];
                         <button class="btn btn-primary bot" type="button" onclick="mostrarVentanaEmergente()">Siguiente</button>
                     </div>
                 </form>
-                <div id="ventanaEmergente" class="modal" tabindex="-1" role="dialog" style="display: none;">
+            </div>
+            <div id="ventanaEmergente" class="modal" tabindex="-1" role="dialog" style="display: none;">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content modal-content-redesdisc">
                            
                             <div class="modal-body">
                             
