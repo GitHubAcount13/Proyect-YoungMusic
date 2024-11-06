@@ -99,22 +99,22 @@ require_once("Funciones.php");
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot contenido-foot-bus">
-                        <a href="" class="nav-link">
+                        <a href="Recien_llegados.php" class="nav-link">
                             <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot contenido-foot-bus">
-                        <a href="" class="nav-link">
+                        <a href="Populares.php" class="nav-link">
                             <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot contenido-foot-bus">
-                        <a href="" class="nav-link">
+                        <a href="MeGusta.php" class="nav-link">
                             <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
                         </a>
                     </div>
                     <div class="col-md-2 contenido-foot contenido-foot-bus">
-                        <a href="" class="nav-link">
+                        <a href="Artistas_favoritos.php" class="nav-link">
                             <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
                         </a>
                     </div>

@@ -133,6 +133,37 @@ $paginaPerfil = determinarTipoUsuario($email);
     <div class="carousel-dots"></div>
 </div>
 
-
+<footer class="footer-home">
+            <div class="container-fluid">
+                <div class="row cont-fot">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Home_YM.php" class="nav-link">
+                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Recien_llegados.php" class="nav-link">
+                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Populares.php" class="nav-link">
+                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="MeGusta.php" class="nav-link">
+                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Artistas_favoritos.php" class="nav-link">
+                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </footer>
 
 <?php require("Footer_YM.php"); ?>
