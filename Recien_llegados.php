@@ -17,11 +17,11 @@ $albumesRecientes = obtenerAlbumesRecientes();
     <a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">
         <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
         <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
-    </a><h4 style="color: white;" >| </h4>
-    <?php if (isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?><button><a href="Panel_Admin_YM.php"><i  style="color: white; " class="bi bi-incognito"></i></a></button><?php endif; ?>
+    </a>
+    <?php if (isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?><a href="Panel_Admin_YM.php"><i class="bi bi-incognito"></i></a><?php endif; ?>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <a href="Busqueda.php"><i class="bi bi-search"style="color: white; padding-left:15px;"></i></a>
+            <a href="Busqueda.php"><i class="bi bi-search"></i></a>
         </ul>
     </div>
 </nav>
@@ -101,7 +101,7 @@ $albumesRecientes = obtenerAlbumesRecientes();
                             <div class="artist-info">
                                 <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($tema['CorrArti']); ?>" class="Link">
                                     <img src="<?php echo htmlspecialchars($tema['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
-                                    <button><p class="artist"> </button>
+                                    <p class="artist"><?php echo htmlspecialchars($tema['NombArtis']); ?></p>
                                 </a>
                             </div>
                             <div class="card-actions">
@@ -208,41 +208,5 @@ $albumesRecientes = obtenerAlbumesRecientes();
     <div class="carousel-dots"></div>
 </div>
 
-<footer class="footer-home">
-            <div class="container-fluid">
-                <div class="row cont-fot">
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-home"><a href="Home_YM.php"></a><i class="bi bi-house"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-clock"><a href="Recien_llegados.php"></a><i class="bi bi-clock"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
-                        </a>
-                    </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
 <?php require("Footer_YM.php"); ?>

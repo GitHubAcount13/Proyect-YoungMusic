@@ -11,5 +11,38 @@
     const redes = <?php echo json_encode(($redes = [$usuario['Instagram'], $usuario['Youtube'], $usuario['TikTok'], $usuario['Spotify']])); ?>;
 </script>
 </body>
-
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <a href="Home_YM.php" class="footer-icon icon-home">
+        <i class="fas fa-home"></i>
+      </a>
+      <p class="footer-label">Inicio</p>
+    </div>
+    <div class="footer-section">
+      <a href="Recien_llegados.php" class="footer-icon icon-clock">
+        <i class="fas fa-clock"></i>
+      </a>
+      <p class="footer-label">Recién llegados</p>
+    </div>
+    <div class="footer-section">
+      <a href="Populares.php" class="footer-icon icon-fire">
+        <i class="fas fa-fire"></i>
+      </a>
+      <p class="footer-label">Populares</p>
+    </div>
+    <div class="footer-section">
+      <a href="MeGusta.php" class="footer-icon icon-heart">
+        <i class="fas fa-heart"></i>
+      </a>
+      <p class="footer-label">Tus me gustas</p>
+    </div>
+    <div class="footer-section">
+      <a href="Artistas_favoritos.php" class="footer-icon icon-person">
+        <i class="bi bi-person-heart"></i>
+      </a>
+      <p class="footer-label">Artistas Favoritos</p>
+    </div>
+  </div>
+</footer>
 </html>

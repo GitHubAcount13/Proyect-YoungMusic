@@ -7,7 +7,7 @@ require("RF_Discografica_YM.php");
     <a class="navbar-brand d-flex align-items-center" href="#">
         <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
         <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
-    </a><h4 style="color: white;" >| </h4>
+    </a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <a href="Busqueda.php"><i class="bi bi-search"></i></a>
