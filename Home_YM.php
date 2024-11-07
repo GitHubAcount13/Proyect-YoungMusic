@@ -16,11 +16,11 @@
             <a class="navbar-brand d-flex align-items-center" href="<?php echo htmlspecialchars($paginaPerfil); ?>">
                 <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
                 <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
-            </a><h4 style="color: white;" >| </h4>
-            <?php if (isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?><button><a href="Panel_Admin_YM.php"><i  style="color: white; " class="bi bi-incognito"></i></a></button><?php endif; ?>
+            </a>
+            <?php if (isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?><a href="Panel_Admin_YM.php"><i class="bi bi-incognito"></i></a><?php endif; ?>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <a href="Busqueda.php"><i class="bi bi-search" style="color: white; padding-left:15px;"></i></a>
+                    <a href="Busqueda.php"><i class="bi bi-search"></i></a>
                 </ul>
             </div>
         </nav>
@@ -103,7 +103,7 @@
                                             alt="Foto del artista"
                                             class="artist-avatar">
                                             <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
-                                            <button><p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p> </button>
+                                        <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
                                             </a>
                                     </div>
                                     <div class="card-actions">
@@ -152,9 +152,7 @@
                                     </div>
                                    
                                     <div class="card-content">
-                                        <button>
-                                        <a class="Link" style="color: #e1e1e1; text-decoration: none;" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($artista['CorrArti']); ?>"><?php echo htmlspecialchars($artista['NombArtis']); ?></a>
-                                        </button> 
+                                    <a class="Link" style="color: #000; text-decoration: none;" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($artista['CorrArti']); ?>"><?php echo htmlspecialchars($artista['NombArtis']); ?></a>
                                     </div>
                               
                             </div>
@@ -192,12 +190,10 @@
                                     <h3><?php echo htmlspecialchars($musica['NomMusi']); ?></h3>
                                     <p class="album"><?php echo htmlspecialchars($musica['NomAlbum']); ?></p>
                                     <div class="artist-info">
-                                      
                                         <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
                                             <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
-                                              <button><p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p> </button>
+                                            <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
                                         </a>
-                                   
                                     </div>
                                     <div class="card-actions">
                                         <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
@@ -226,36 +222,32 @@
         <footer class="footer-home">
             <div class="container-fluid">
                 <div class="row cont-fot">
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-home"><a href="Home_YM.php"></a><i class="bi bi-house"></i></span>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Home_YM.php" class="nav-link">
+                            <span class="icon-foot icon-home"><i class="bi bi-house"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-clock"><a href="Recien_llegados.php"></a><i class="bi bi-clock"></i></span>
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Recien_llegados.php" class="nav-link">
+                            <span class="icon-foot icon-clock"><i class="bi bi-clock"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Populares.php" class="nav-link">
                             <span class="icon-foot icon-fire"><i class="bi bi-fire"></i></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="MeGusta.php" class="nav-link">
                             <span class="icon-foot icon-heart"><i class="bi bi-suit-heart-fill"></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
+                    <div class="col-md-2 contenido-foot contenido-foot-bus">
+                        <a href="Artistas_favoritos.php" class="nav-link">
                             <span class="icon-foot icon-person"><i class="bi bi-person-heart"></i></i></span>
                         </a>
                     </div>
-                    <div class="col-md-2 contenido-foot">
-                        <a href="" class="nav-link">
-                            <span class="icon-foot icon-history"><i class="bi bi-clock-history"></i></i></i></span>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </footer>
