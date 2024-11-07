@@ -90,5 +90,4 @@ require_once("Funciones.php");
     </div>
 </div>
 
-
 <?php require("Footer_YM.php"); ?>

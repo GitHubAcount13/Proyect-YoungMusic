@@ -211,5 +211,4 @@ $albumesPopulares = obtenerAlbumesPopulares();
     <div class="carousel-dots"></div>
 </div>
 
-
 <?php require("Footer_YM.php"); ?>

@@ -172,5 +172,4 @@ require("RF_Artista_YM.php");
     </div>  
 </div>
 
-
 <?php require("Footer_YM.php"); ?>

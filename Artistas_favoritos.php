@@ -210,5 +210,4 @@ if (isset($_SESSION["email"])) {
 <?php endif; ?>
 <?php endif; ?>
 
-
 <?php require("Footer_YM.php"); ?>
