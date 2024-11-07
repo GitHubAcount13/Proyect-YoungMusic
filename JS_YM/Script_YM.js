@@ -371,7 +371,25 @@ async function actualizarListaCanciones() {
 // Cargar canciones existentes al cargar la página
 document.addEventListener('DOMContentLoaded', actualizarListaCanciones);
 
-function VerificarDatos(){
+
+async function ExisteCorreo(email) {
+  try {
+    const response = await fetch('Validar_Correo.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `email=${encodeURIComponent(email)}`
+    });
+    const data = await response.json();
+    return data.exists;
+  } catch (error) {
+    console.error('Error checking email:', error);
+    return false;
+  }
+}
+
+function VerificarDatos() {
   const form = document.querySelector('form');
   const nombreInput = document.getElementById('nombre');
   const emailInput = document.getElementById('email');
@@ -393,7 +411,8 @@ function VerificarDatos(){
   form.onsubmit = null;
 
   // Agregar el nuevo evento submit
-  form.addEventListener('submit', function (event) {
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent form submission initially
     errorContainer.innerHTML = ''; // Limpiar errores previos
     let hasError = false;
 
@@ -403,43 +422,46 @@ function VerificarDatos(){
       hasError = true;
     }
 
-    // Validar Email
+    // Validar Email formato
     if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
       showError('Ingrese un correo válido y que no supere los 50 caracteres.');
       hasError = true;
     }
 
-    // Validar Contraseña
+    // Verificar si el email ya existe
+    if (!hasError && await ExisteCorreo(emailInput.value)) {
+      showError('El correo ya está registrado.');
+      hasError = true;
+    }
+
+    // Rest of the validations remain the same
     if (!validatePassword(passInput.value) || passInput.value.length > 30) {
       showError('La contraseña debe tener al menos 7 caracteres y máximo 30, incluyendo una mayúscula, una letra y un número, no debe contener caracteres especiales.');
       hasError = true;
     }
 
-    // Validar Ubicación
     if (ubicacionInput.value === '') {
       showError('Seleccione una ubicación válida.');
       hasError = true;
     }
 
-    // Validar Biografía
     if (biografiaInput.value.length > 100) {
       showError('La biografía no puede tener más de 100 caracteres.');
       hasError = true;
     }
 
-    // Validar archivo de imagen
     if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
       showError('La imagen no puede superar los 2MB.');
       hasError = true;
     }
 
-    // Evitar el envío si hay errores
-    if (hasError) {
-      event.preventDefault();
+    // Submit the form if there are no errors
+    if (!hasError) {
+      form.submit();
     }
   });
 
-  // Función para mostrar errores
+  // Helper functions remain the same
   function showError(message) {
     const errorMessage = document.createElement('p');
     errorMessage.classList.add('text-danger');
@@ -447,18 +469,17 @@ function VerificarDatos(){
     errorContainer.appendChild(errorMessage);
   }
 
-  // Validar formato de email
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   }
 
-  // Validar contraseña (mínimo 7 caracteres, una mayúscula, una letra y un número)
   function validatePassword(password) {
     const re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$/;
     return re.test(password);
   }
 }
+
 // Llamar a la función una sola vez al cargar la página
 document.addEventListener('DOMContentLoaded', VerificarDatos);
 

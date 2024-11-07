@@ -6,7 +6,6 @@ $con = conectar_bd();
 require("Conexion_Cloud.php");
 use Cloudinary\Api\Upload\UploadApi;
 
-if (isset($_POST["envio"])) {
     $nombre = $_POST["nombre"];
     $email = $_POST["email"];
     $contrasenia = $_POST["pass"];
@@ -52,4 +51,3 @@ if (isset($_POST["envio"])) {
 
     // Insertar los datos en la base de datos, incluyendo la URL de la imagen subida a Cloudinary
     insertar_datos($con, $nombre, $email, $contrasenia, $ubicacion, $biografia, $fotoPerfil, $existe_usr);
-}
