@@ -17,7 +17,7 @@ $generos = json_decode($jsonData, true)['generos'];
     </div>
 </nav>
 
-<div class="container container-redes-art">
+<div class="container">
         <div class="row">
             <div class="col-md-6 parte_izquierda_registro part-izq-red-art mb-4">
                 <h2>
@@ -30,26 +30,26 @@ $generos = json_decode($jsonData, true)['generos'];
             </div>
             <div class="col-md-6 parte_derecha_login">
                 <form action="RF_Redes_Arti_YM.php" method="post">
-                    <h2 class="text-center">Redes Sociales</h2>
-                    <div class="form-group form-group-redesartista">
+                    <h2>Redes Sociales</h2>
+                    <div class="form-group">
                         <label for="Red1">
                             <i class="bi bi-instagram icono-redes"></i> Instagram
                         </label>
                         <input type="text" class="form-control" name="Red1" id="Red1" placeholder="Agregar">
                     </div>
-                    <div class="form-group form-group-redesartista">
+                    <div class="form-group">
                         <label for="Red2">
                             <i class="bi bi-youtube icono-redes"></i> YouTube
                         </label>
                         <input type="text" class="form-control" name="Red2" id="Red2" placeholder="Agregar">
                     </div>
-                    <div class="form-group form-group-redesartista">
+                    <div class="form-group">
                         <label for="Red3">
                             <i class="bi bi-spotify icono-redes"></i> Spotify
                         </label>
                         <input type="text" class="form-control" name="Red3" id="Red3" placeholder="Agregar">
                     </div>
-                    <div class="form-group form-group-redesartista">
+                    <div class="form-group">
                         <label for="Red4">
                             <i class="bi bi-tiktok icono-redes"></i> TikTok
                         </label>

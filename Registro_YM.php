@@ -12,8 +12,10 @@
         <div class="row h-100 registro-ym-rw">
             <!-- Parte Izquierda -->
             <div class="col-lg-6 parte_izquierda_registro d-flex flex-column justify-content-center align-items-center text-center p-4">
-                <h2><a class="registro text-decoration-none" href="#">REGISTRARSE</a></h2>
-                <h4><a class="login text-decoration-none" href="Login_YM.php">LOGIN</a></h4>
+            <h2><button><a class="loginu" href="Registro_YM.php">REGISTRARSE</a></button>
+          <br><br>
+        </h2>
+        <h4><button><a class="registrou" href="Login_YM.php">LOGIN</a></button></h4>
                 <h4 class="info_datosreg text-light mt-4 w-75">
                     Ingrese los datos requeridos para crearte un usuario y tener una mejor experiencia en nuestro sitio web.
                 </h4>

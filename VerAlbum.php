@@ -28,14 +28,17 @@ if (!$album) {
 $profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['email']) : "Login_YM.php";
 ?>
 
-<div class="container-fluid bg-dark text-white py-4">
+
+<div class="container-fluid  text-white py-4" >
     <div class="row">
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center  "><br>
+          
             <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"
                 alt="<?php echo htmlspecialchars($album['NomAlbum']); ?>"
                 class="img-fluid portada-album mb-3">
+           
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 contenido-album">
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <h1><?php echo htmlspecialchars($album['NomAlbum']); ?></h1>
@@ -44,9 +47,9 @@ $profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['emai
                         ? 'artista_YM.php'
                         : 'Ver_artista_YM.php?correo=' . urlencode($album['CorrArti']);
                     ?>
-                    <h3>Artista: <a href="<?php echo $artistProfileLink; ?>" class="Link">
+                    <h3>Artista: <button ><a href="<?php echo $artistProfileLink; ?>" class="Link">
                             <?php echo htmlspecialchars($album['NombArtis']); ?>
-                        </a></h3>
+                        </a></button></h3>
                     <p>Categoría: <?php echo htmlspecialchars($album['Categoria']); ?></p>
                     <p>Fecha de lanzamiento: <?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
                 </div>

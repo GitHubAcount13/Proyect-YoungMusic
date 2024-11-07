@@ -749,44 +749,6 @@ document.getElementById("toggleSidebar").addEventListener("click", function () {
   const arrow = document.querySelector("#toggleSidebar .arrow");
   arrow.innerHTML = sidebar.classList.contains("collapsed") ? ">" : "<";
 });
-function verificarSeleccion() {
-  // Selecciona todos los checkboxes de géneros
-  const checkboxes = document.querySelectorAll('input[name="generos[]"]');
-  let seleccionado = false;
-
-  // Verifica si al menos uno está seleccionado
-  checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-          seleccionado = true;
-      }
-  });
-
-  // Selecciona el elemento <p> para mostrar el mensaje de error
-  const mensajeError = document.getElementById("mensajeError");
-
-  // Si hay al menos un género seleccionado, muestra la ventana emergente y oculta el mensaje de error
-  if (seleccionado) {
-      mensajeError.style.display = "none";
-      mostrarVentanaEmergente();
-  } else {
-      // Muestra el mensaje de error si no se selecciona ningún género
-      mensajeError.style.display = "block";
-  }
-}
-
-function mostrarVentanaEmergente() {
-  document.getElementById("ventanaEmergente").style.display = "block";
-}
-
-function cerrarVentanaEmergente() {
-  document.getElementById("ventanaEmergente").style.display = "none";
-}
-
-function enviarFormulario(destino) {
-  document.getElementById("destinoFinal").value = destino;
-  document.getElementById("formGeneros").submit();
-}
-
 
 function mostrarVentanaEmergente() {
 

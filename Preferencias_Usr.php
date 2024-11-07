@@ -49,8 +49,7 @@ $generos = json_decode($jsonData, true)['generos'];
                         endforeach;
                         ?>
                     </div>
-                    <button class="btn btn-primary bot mt-3" type="button" onclick="verificarSeleccion()">Siguiente</button>
-                    <p id="mensajeError" class="text-danger mt-2" style="display: none;">Por favor, selecciona al menos un género para continuar.</p>
+                    <button class="btn btn-primary bot mt-3" type="button" onclick="mostrarVentanaEmergente()">Siguiente</button>
                 </form>
 
                 <div id="ventanaEmergente" class="modal" tabindex="-1" role="dialog" style="display: none;">
@@ -58,7 +57,7 @@ $generos = json_decode($jsonData, true)['generos'];
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Información Adicional</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarVentanaEmergente()"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick=(cerrarVentanaEmergente())></button>
                             </div>
                             <div class="modal-body">
                                 <p>Con estos datos puedes ingresar a la página. Si eres un artista o discográfica, ingresa otros datos necesarios para continuar. Si no, toca finalizar.</p>
@@ -75,6 +74,7 @@ $generos = json_decode($jsonData, true)['generos'];
         </div>
     </div>
 </div>
+
 
 
 <?php require("Footer_YM.php"); ?>
