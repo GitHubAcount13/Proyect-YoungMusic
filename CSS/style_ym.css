@@ -4489,3 +4489,50 @@ button:focus {
       transform: translate(-50%, -60%);
   }
 }
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-icon {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-label {
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.footer-icon:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .footer-icon {
+    font-size: 1.2rem;
+    padding: 0.3rem;
+  }
+
+  .footer-label {
+    font-size: 0.7rem;
+  }
+}
