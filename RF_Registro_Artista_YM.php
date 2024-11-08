@@ -6,7 +6,7 @@ require("Funciones.php");
 
 $con = conectar_bd();
 
-if (isset($_POST["envio"])) {
+
     $nombre = $_POST["nombre_a"];
     $fecha = $_POST["fecha"];
     $email = $_SESSION["email"];
@@ -21,4 +21,4 @@ if (isset($_POST["envio"])) {
         echo "Error al obtener los datos del usuario.";
         exit();
     }
-}
+

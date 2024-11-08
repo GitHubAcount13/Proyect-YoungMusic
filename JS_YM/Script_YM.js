@@ -1,3 +1,41 @@
+function validarEdad() {
+  const fechaNacimiento = document.getElementById("fecha").value;
+  const mensajeError = document.getElementById("mensajeError");
+  const form = document.getElementById("registroArtistaForm");
+
+  if (fechaNacimiento) {
+      const hoy = new Date();
+      const fechaNac = new Date(fechaNacimiento);
+      const edad = hoy.getFullYear() - fechaNac.getFullYear();
+      const mes = hoy.getMonth() - fechaNac.getMonth();
+
+      // Ajuste de edad si el cumpleaños aún no ha pasado este año
+      if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+          edad--;
+      }
+
+      if (edad >= 13 && edad <= 110) {
+          mensajeError.style.display = "none";
+          form.submit(); // Envía el formulario si la edad es válida
+      } else {
+          mensajeError.style.display = "block"; // Muestra el mensaje de error si la edad no es válida
+      }
+  } else {
+      mensajeError.style.display = "block"; // Muestra el mensaje de error si la fecha de nacimiento no está ingresada
+  }
+}
+function validarInstrumentos() {
+  const checkboxes = document.querySelectorAll("input[name='instrumentos[]']:checked");
+  const mensajeError = document.getElementById("mensajeErrorInstrumentos");
+
+  if (checkboxes.length === 0) {
+      mensajeError.style.display = "block";
+  } else {
+      mensajeError.style.display = "none";
+      mostrarVentanaEmergente();
+  }
+}
+
 function canciones() {
   event.preventDefault();
   

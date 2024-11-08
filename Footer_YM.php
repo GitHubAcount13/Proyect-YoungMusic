@@ -11,6 +11,7 @@
     const redes = <?php echo json_encode(($redes = [$usuario['Instagram'], $usuario['Youtube'], $usuario['TikTok'], $usuario['Spotify']])); ?>;
 </script>
 </body>
+
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-section">
