@@ -7,8 +7,6 @@ if (!isset($_SESSION["email"])) {
 }
 ?>
 
-
-
 <nav class="navbar navbar-expand-md nav_index_ym">
     <a class="navbar-brand d-flex align-items-center" href="#">
         <img class="imagen_perfil_view rounded-circle" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px; object-fit: cover;">
@@ -37,6 +35,7 @@ if (!isset($_SESSION["email"])) {
                 </label>
                 <input type="text" class="form-control" id="NomAlbum" name="NomAlbum" required
                     placeholder="Ingresa el nombre del álbum">
+                <p id="errorNombre" class="text-danger" style="display: none;">El nombre del álbum es obligatorio.</p>
             </div>
 
             <div class="form-group mb-4">
@@ -50,6 +49,7 @@ if (!isset($_SESSION["email"])) {
                     <option value="EP">EP</option>
                     <option value="Sencillo">Sencillo</option>
                 </select>
+                <p id="errorCategoria" class="text-danger" style="display: none;">La categoría es obligatoria.</p>
             </div>
 
             <div class="form-group mb-4">
@@ -58,6 +58,7 @@ if (!isset($_SESSION["email"])) {
                     Fecha de Lanzamiento
                 </label>
                 <input type="date" class="form-control" id="FechaLan" name="FechaLan" required>
+                <p id="errorFecha" class="text-danger" style="display: none;">La fecha de lanzamiento debe ser válida y anterior o igual a hoy.</p>
             </div>
 
             <div class="form-group mb-4">
@@ -80,12 +81,12 @@ if (!isset($_SESSION["email"])) {
                     <div class="mt-3 text-center">
                         <img id="imagePreview" class="preview-image" src="#" alt="Vista previa de la portada">
                     </div>
+                    <p id="errorPortada" class="text-danger" style="display: none;">La portada del álbum es obligatoria.</p>
                 </div>
             </div>
 
-
             <div class="text-center">
-                <button type="submit" class="btn btn-primary submit-btn">
+                <button type="button" class="btn btn-primary submit-btn" onclick="validarFormulario()">
                     <i class="bi bi-cloud-upload me-2"></i>
                     Subir Álbum
                 </button>

@@ -29,6 +29,12 @@ $profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['emai
 ?>
 
 <div class="container-fluid bg-dark text-white py-4">
+
+    <div id="confirmationContainer" class="mb-4"></div>
+    
+    <div id="messageContainer" class="mb-4"></div>
+
+    <div id="messageContainer" class="mb-4"></div>
     <div class="row">
         <div class="col-md-4 text-center">
             <img src="<?php echo htmlspecialchars($album['ImgAlbu']); ?>"

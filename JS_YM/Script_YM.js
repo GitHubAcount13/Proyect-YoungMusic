@@ -1,3 +1,96 @@
+function validarFormularioMusica() {
+  const nombreCancion = document.getElementById("NomMusi").value.trim();
+  const archivoAudio = document.getElementById("Archivo").files.length;
+  const imagenCancion = document.getElementById("ImgMusi").files.length;
+  const generosSeleccionados = document.querySelectorAll('input[name="Generos[]"]:checked');
+  
+  // Resetea los mensajes de error
+  document.getElementById("errorNomMusi").textContent = "";
+  document.getElementById("errorArchivo").textContent = "";
+  document.getElementById("errorImgMusi").textContent = "";
+  document.getElementById("errorGeneros").textContent = "";
+
+  let esValido = true;
+
+  // Validar nombre de la canción
+  if (!nombreCancion) {
+      document.getElementById("errorNomMusi").textContent = "Por favor, ingresa el nombre de la canción.";
+      esValido = false;
+  }
+
+  // Validar archivo de audio
+  if (archivoAudio === 0) {
+      document.getElementById("errorArchivo").textContent = "Por favor, selecciona un archivo de audio.";
+      esValido = false;
+  }
+
+  // Validar imagen de la canción
+  if (imagenCancion === 0) {
+      document.getElementById("errorImgMusi").textContent = "Por favor, selecciona una imagen para la canción.";
+      esValido = false;
+  }
+
+  // Validar que se haya seleccionado al menos un género
+  if (generosSeleccionados.length === 0) {
+      document.getElementById("errorGeneros").textContent = "Por favor, selecciona al menos un género musical.";
+      esValido = false;
+  }
+
+  // Si todo es válido, continuar con el envío
+  if (esValido) {
+      canciones(); // Llama a la función de envío de la canción
+  }
+}
+
+
+function validarFormulario() {
+  const nombre = document.getElementById("NomAlbum").value.trim();
+  const categoria = document.getElementById("Categoria").value;
+  const fecha = document.getElementById("FechaLan").value;
+  const portada = document.getElementById("ImgAlbu").files.length;
+  const hoy = new Date().toISOString().split("T")[0];
+  
+  // Definir año mínimo
+  const fechaMinima = "1500-01-01";
+  let esValido = true;
+
+  // Validar nombre del álbum
+  if (!nombre) {
+      document.getElementById("errorNombre").style.display = "block";
+      esValido = false;
+  } else {
+      document.getElementById("errorNombre").style.display = "none";
+  }
+
+  // Validar categoría
+  if (!categoria) {
+      document.getElementById("errorCategoria").style.display = "block";
+      esValido = false;
+  } else {
+      document.getElementById("errorCategoria").style.display = "none";
+  }
+
+  // Validar fecha de lanzamiento (entre 1500 y hoy)
+  if (!fecha || fecha > hoy || fecha < fechaMinima) {
+      document.getElementById("errorFecha").style.display = "block";
+      esValido = false;
+  } else {
+      document.getElementById("errorFecha").style.display = "none";
+  }
+
+  // Validar portada del álbum
+  if (portada === 0) {
+      document.getElementById("errorPortada").style.display = "block";
+      esValido = false;
+  } else {
+      document.getElementById("errorPortada").style.display = "none";
+  }
+
+  // Si todo es válido, enviar el formulario
+  if (esValido) {
+      document.getElementById("albumForm").submit();
+  }
+}
 
 
 function validarEdad() {
@@ -149,35 +242,47 @@ function dejarDeSeguirArtista() {
 }
 
 const albumFunctions = {
-  deleteAlbum: function (albumId) {
-    if (
-      confirm(
-        "¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer."
-      )
-    ) {
-      fetch("eliminar_album.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          albumId: albumId,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Álbum eliminado correctamente");
+  showDeleteConfirmation: function (albumId) {
+    const confirmationContainer = document.getElementById("confirmationContainer");
+    confirmationContainer.innerHTML = `
+      <div class="alert alert-warning">
+        <p>¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.</p>
+        <button class="btn btn-danger" onclick="albumFunctions.confirmDelete(${albumId})">Eliminar</button>
+        <button class="btn btn-secondary" onclick="albumFunctions.cancelDelete()">Cancelar</button>
+      </div>
+    `;
+  },
+
+  confirmDelete: function (albumId) {
+    const messageContainer = document.getElementById("messageContainer");
+    fetch("eliminar_album.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ albumId: albumId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          messageContainer.innerHTML = "<div class='alert alert-success'>Álbum eliminado correctamente.</div>";
+          setTimeout(() => {
             window.location.href = "Home_YM.php";
-          } else {
-            alert("Error al eliminar el álbum: " + data.message);
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Error al procesar la solicitud");
-        });
-    }
+          }, 2000);
+        } else {
+          messageContainer.innerHTML = "<div class='alert alert-danger'>Error al eliminar el álbum: " + data.message + "</div>";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        messageContainer.innerHTML = "<div class='alert alert-danger'>Error al procesar la solicitud.</div>";
+      });
+    // Limpia el mensaje de confirmación
+    albumFunctions.cancelDelete();
+  },
+
+  cancelDelete: function () {
+    document.getElementById("confirmationContainer").innerHTML = "";
   },
 
   init: function () {
@@ -186,7 +291,7 @@ const albumFunctions = {
       deleteButtons.forEach((button) => {
         button.addEventListener("click", function () {
           const albumId = this.dataset.albumId;
-          albumFunctions.deleteAlbum(albumId);
+          albumFunctions.showDeleteConfirmation(albumId);
         });
       });
     });
@@ -194,6 +299,7 @@ const albumFunctions = {
 };
 
 albumFunctions.init();
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const commentForm = document.getElementById("commentForm");

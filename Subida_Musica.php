@@ -27,16 +27,19 @@ $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1
             <div class="form-group">
                 <label for="NomMusi">Nombre de la Canción:</label>
                 <input type="text" class="form-control" id="NomMusi" name="NomMusi" required>
+                <div id="errorNomMusi" class="error-message"></div>
             </div>
 
             <div class="form-group">
                 <label for="Archivo">Archivo de Audio:</label>
                 <input type="file" class="form-control" id="Archivo" name="Archivo" accept="audio/*" required>
+                <div id="errorArchivo" class="error-message"></div>
             </div>
 
             <div class="form-group">
                 <label for="ImgMusi">Imagen de la Canción:</label>
                 <input type="file" class="form-control" id="ImgMusi" name="ImgMusi" accept="image/*" required>
+                <div id="errorImgMusi" class="error-message"></div>
             </div>
 
             <div class="form-group">
@@ -48,37 +51,39 @@ $limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1
                     ?>
                         <div class="grid-item">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="Generos[]" value="<?php echo htmlspecialchars($genero); ?>" id="genero-<?php echo htmlspecialchars($genero); ?>">
+                                <input class="form-check-input" type="checkbox" name="Generos[]" value="<?php echo htmlspecialchars($genero); ?>" id="genero-<?php echo htmlspecialchars($genero); ?>">
                                 <label class="form-check-label form-check-label-subida" for="genero-<?php echo htmlspecialchars($genero); ?>">
-                                <p class="genero-pref"><?php echo htmlspecialchars($genero); ?> </p>
+                                    <p class="genero-pref"><?php echo htmlspecialchars($genero); ?> </p>
                                 </label>
                             </div>
                         </div>
                     <?php
                     endforeach;
                     ?>
+                    <div id="errorGeneros" class="error-message"></div>
                 </div>
             </div>
 
             <div class="botones text-center text-md-left">
                 <div class="btn-group flex-md-row text-center mt-3">
-                    <button type="submit" class="btn btn-primary" onclick="canciones()">Agregar Canción</button>
+                <button type="button" class="btn btn-primary" onclick="validarFormularioMusica()">Agregar Canción</button>
+
         </form>
 
         <form action="Artista_YM.php">
             <button type="submit" class="btn btn-primary">Salir</button>
         </form>
-                </div>
-                <div id="mensaje-estado" class="mensaje-estado" style="display: none;">
-    <span id="icono-estado" class="icono-estado">⟳</span>
-    <span id="texto-estado">Subiendo canción...</span>
-</div>
-            </div>
-            
-            <div id="canciones-agregadas">
-                <!-- Aquí se mostrarán las canciones agregadas -->
-            </div>
     </div>
+    <div id="mensaje-estado" class="mensaje-estado" style="display: none;">
+        <span id="icono-estado" class="icono-estado">⟳</span>
+        <span id="texto-estado">Subiendo canción...</span>
+    </div>
+</div>
+
+<div id="canciones-agregadas">
+    <!-- Aquí se mostrarán las canciones agregadas -->
+</div>
+</div>
 </div>
 
 <?php require("Footer_YM.php"); ?>

@@ -4563,7 +4563,47 @@ button:focus {
     font-size: 0.7rem;
   }
 }
+.mensaje-estado {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
 
+.mensaje-estado.subiendo {
+  background-color: #cce5ff;
+  color: #004085;
+}
 
+.mensaje-estado.exito {
+  background-color: #d4edda;
+  color: #155724;
+}
 
+.mensaje-estado.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
 
+.icono-estado {
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.subiendo .icono-estado {
+  animation: girar 1s linear infinite;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
