@@ -861,6 +861,8 @@ textarea {
   color: white;
   font-size: 30px;
   text-decoration: none;
+  position: relative;
+    padding: 10px;
 }
 @media (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
   
