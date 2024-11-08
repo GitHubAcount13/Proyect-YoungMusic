@@ -12,6 +12,9 @@
 </script>
 </body>
 
+<?php require_once("Funciones.php");
+$showFooter = shouldShowFooter();?>
+<?php if ($showFooter): ?>
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-section">
@@ -46,4 +49,5 @@
     </div>
   </div>
 </footer>
+<?php endif; ?>
 </html>

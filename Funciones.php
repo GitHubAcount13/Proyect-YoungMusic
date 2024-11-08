@@ -918,3 +918,48 @@ function obtenerComentarios($idAlbum, $correoUsuarioActual = null) {
         return array();
     }
 }
+
+function shouldShowFooter() {
+    // Verificar si el usuario tiene sesión iniciada
+    if (!isset( $_SESSION["email"])) {
+        return false;
+    }
+    
+    $correo =  $_SESSION["email"];
+    $conn = conectar_bd();
+    
+    // Verificar si es artista verificado
+    $queryArtista = "SELECT Verificacion FROM artistas WHERE CorrArti = ? AND Verificacion IS NOT NULL";
+    $stmtArtista = $conn->prepare($queryArtista);
+    $stmtArtista->bind_param("s", $correo);
+    $stmtArtista->execute();
+    $resultArtista = $stmtArtista->get_result();
+    
+    if ($resultArtista->num_rows > 0) {
+        return true;
+    }
+    
+    // Verificar si es discográfica verificada
+    $queryDisc = "SELECT Verificacion FROM discografica WHERE CorrDisc = ? AND Verificacion IS NOT NULL";
+    $stmtDisc = $conn->prepare($queryDisc);
+    $stmtDisc->bind_param("s", $correo);
+    $stmtDisc->execute();
+    $resultDisc = $stmtDisc->get_result();
+    
+    if ($resultDisc->num_rows > 0) {
+        return true;
+    }
+    
+    // Verificar si es oyente
+    $queryOyente = "SELECT CorrOyen FROM oyente WHERE CorrOyen = ?";
+    $stmtOyente = $conn->prepare($queryOyente);
+    $stmtOyente->bind_param("s", $correo);
+    $stmtOyente->execute();
+    $resultOyente = $stmtOyente->get_result();
+    
+    if ($resultOyente->num_rows > 0) {
+        return true;
+    }
+    
+    return false;
+}

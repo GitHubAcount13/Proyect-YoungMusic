@@ -22,7 +22,7 @@
             <!-- Parte Derecha -->
             <div class="col-lg-6 parte_derecha_registro d-flex align-items-center justify-content-center">
                 <div class="registration-card">
-                    <form action="RF_Registro_YM.php" method="post" enctype="multipart/form-data" class="p-4">
+                    <form action="RF_Registro_YM.php" method="post" enctype="multipart/form-data" class="p-4" id="form-Registro">
                         <!-- Avatar circular -->
                         <div class="text-center mb-4">
                             <div class="avatar-container">
@@ -81,7 +81,7 @@
                         <div class="form-group botones_registro d-flex gap-2">
                             <button class="btn btn-secondary mr-2 col-6 bot" type="reset">Cancelar</button>
                             <button class="btn btn-primary flex-grow-1 bot" type="submit" 
-                                    onclick="VerficarDatos()" name="envio">Siguiente</button>
+                                    onclick="Verificar()" name="envio">Siguiente</button>
                         </div>
                     </form>
                 </div>
