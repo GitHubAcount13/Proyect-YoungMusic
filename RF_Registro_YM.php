@@ -45,6 +45,11 @@ use Cloudinary\Api\Upload\UploadApi;
         echo "No se subió ninguna foto de perfil.";
         $fotoPerfil = "https://res.cloudinary.com/dlii53bu7/image/upload/v1729653392/Subida/Predefinido/ttzuye5mxckrwvd25kng.webp";
     }
+    if ($biografia=="") {
+         $biografia="Sin biografía";
+    }else{
+       $biografia=$_POST["biografia"];
+    }
 
     // Verificar si el usuario ya existe
     $existe_usr = consultar_existe_usr($con, $tabla = 'usuarios', $columna = 'Correo', $email);

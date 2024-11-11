@@ -75,7 +75,7 @@
                                       name="biografia" 
                                       id="biografia" 
                                       rows="4"
-                                      placeholder="Biografía">Sin biografía</textarea>
+                                      placeholder="Sin biografía"></textarea>
                         </div>
 
                         <div class="form-group botones_registro d-flex gap-2">

@@ -4624,3 +4624,14 @@ button:focus {
       font-size: 1.1rem;
   }
 }
+
+
+/* modificacion cambio registro */
+
+@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
+  .contenedor-registro-general {
+    position: relative;
+    left: 50%;
+    transform: translateX(-65%);
+  }
+}
