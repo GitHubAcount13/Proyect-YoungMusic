@@ -5,8 +5,8 @@ require("Funciones.php");
 $con = conectar_bd();
 
 if (isset($_POST["envio"])) {
-    $email = $_POST["email"];
-    $contrasenia = $_POST["pass"];
+    $email = trim($_POST["email"]);
+    $contrasenia = trim($_POST["pass"]);
 
     // Consulta a la base de datos para verificar si el usuario existe
     $consulta_login = "SELECT * FROM usuarios WHERE Correo = ?";

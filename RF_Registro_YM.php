@@ -6,9 +6,9 @@ $con = conectar_bd();
 require("Conexion_Cloud.php");
 use Cloudinary\Api\Upload\UploadApi;
 
-    $nombre = $_POST["nombre"];
-    $email = $_POST["email"];
-    $contrasenia = $_POST["pass"];
+    $nombre = trim($_POST["nombre"]);
+    $email = trim($_POST["email"]);
+    $contrasenia = trim($_POST["pass"]);
     $ubicacion = $_POST["Ubicación"];
     $biografia = $_POST["biografia"];
 
