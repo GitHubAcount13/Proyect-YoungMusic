@@ -11,7 +11,7 @@
                             <th colspan="2">Recuperar contraseña</th>
                         </tr>
                         <tr>
-                            <td><b><i class="bi bi-envelope"></i> Correo</b></td>
+                            <td><b><i class="bi bi-envelope correo-recu"></i> Correo</b></td>
                             <td><input type="email" name="txtcorreo" required class="cajaentradatexto"></td>
                             </tr>
                             <tr>

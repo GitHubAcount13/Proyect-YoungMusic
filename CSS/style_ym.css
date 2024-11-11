@@ -570,16 +570,7 @@ textarea {
   left: 10%;
   text-align: center;
 }
-.container-recuperacion {
-  background: #333;
-  margin: 50px;
-  border-radius: 20px;
-  position: relative;
-  bottom: 0px;
-  height: 440px !important;
-  min-height: 200px;
-  width: 682px !important;
-}
+
 .titulo-recuperacion hr {
   width: 40%;
   position: relative;
@@ -751,10 +742,7 @@ textarea {
     top: 15%;
     max-width: 700px !important;
   }
-  .container-recuperacion {
-    height: 600px !important;
-    min-height: 800px;
-  }
+  
   .contenedor-parte-derecha {
     bottom: -6%;
     width: 400px !important;
@@ -769,11 +757,7 @@ textarea {
     font-size: 25px !important;
   }
 
-  .parte-izquierda-recuperacion {
-    position: relative;
-    left: 2%;
-    top: 37px;
-  }
+   
   .email-recuperacion {
     font-size: 25px;
     width: 81%;
@@ -804,10 +788,7 @@ textarea {
     top: 15%;
     max-width: 700px !important;
   }
-  .container-recuperacion {
-    height: 600px !important;
-    min-height: 800px;
-  }
+  
   .contenedor-parte-derecha {
     bottom: -6%;
     width: 400px !important;
@@ -822,11 +803,7 @@ textarea {
     font-size: 25px !important;
   }
 
-  .parte-izquierda-recuperacion {
-    position: relative;
-    left: 2%;
-    top: 37px;
-  }
+   
   .email-recuperacion {
     font-size: 25px;
     width: 81%;
@@ -892,12 +869,7 @@ textarea {
     bottom: 74%;
   }
   
-  .parte-izquierda-recuperacion {
-    position: relative;
-    left: -10%;
-    width: 47% !important;
-    top: 200px;
-  }
+   
 }
 @media (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
   
@@ -1159,9 +1131,7 @@ textarea {
 @media (max-width: 577px) {
   
 
-  .container-recuperacion {
-    width: 455px !important;
-  }
+  
 
 
   .button-scroll {
@@ -1224,9 +1194,7 @@ textarea {
     position: relative;
     bottom: 0px;
   }
-  .container-recuperacion {
-    width: 355px !important;
-  }
+  
   .contenedor-parte-derecha {
     left: 17% !important;
   }
@@ -3326,43 +3294,7 @@ audio {
 .album-form-container{
   padding-bottom: 150px;
 }
-
-/* Recuperacion */
-.container-recu {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-}
-.container-recu h1 {
-  margin-bottom: 20px;
-}
-.email-recu[type="email"] {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.enviar-recu{
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.enviar-recu:hover {
-  background-color: #218838;
-}
-.message-recu{
-  margin-top: 20px;
-  color: red;
-}
+ 
 /* Estilos para el sistema de likes en album */
 /* likes_album.css */
 .like-button {
@@ -3431,64 +3363,16 @@ audio {
   color: red;
 }
 
-/* Recuperacion */
-.container-recu {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  background: none !important;
-  box-shadow: none !important;
-}
+ 
+ 
+ 
+ 
 
-.recu-rw {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+ 
+ 
 
-.parte-izquierda-recuperacion {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 12px 14px 35px black;
-  text-align: center;
-}
-
-.parte-izquierda-recuperacion h4 {
-  color: rgb(198, 198, 198);
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.caja_popup {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 12px 14px 35px black;
-}
-
-.contenedor_popup {
-  width: 100%;
-}
-
-.caja_popup table {
-  width: 100%;
-  border-collapse: collapse; color: rgb(198, 198, 198);
-}
-
-.contenedor_popup table tr th {
-  padding: 1rem;
-  font-size: 1.5rem;
-  
-  text-align: center;
-}
-
-.contenedor_popup table tr td {
-  padding: 1rem;
-  vertical-align: middle;
-}
+ 
+ 
 
 .cajaentradatexto {
   width: 100%;
@@ -3506,21 +3390,7 @@ audio {
 }
 
 
-
-.botones-recu {
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin: 0 0.5rem;
-}
-.botones-recu:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
+ 
 .mensaje {
   background: rgba(255, 255, 255, 0.9);
   padding: 1rem;
@@ -3530,23 +3400,7 @@ audio {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-@media (max-width: 768px) {
-  .container-recu {
-      padding: 10px;
-  }
-
-  .contenedor_popup table tr td {
-      display: block;
-      width: 100%;
-      padding: 0.5rem;
-  }
-
-  .botones-recu {
-      width: 100%;
-      margin: 0.5rem 0;
-  }
-}
+ 
 
 .container.log {
   flex: 1;
@@ -4116,20 +3970,7 @@ button:focus {
   transform: translate(22%, -76%);
 }
 }
-@media (min-width:768px) and (max-width:768px) and (min-height:1024px) and (max-height:1024px){
-  .caja_popup{
-    transform: translateY(90%);
-  }
-  .parte-izquierda-recuperacion{
-    left: 50%;
-    transform: translate(-50%, 30%);
-    width: 80% !important;
-    height: 100%;
-  }
-  .parte-izquierda-recuperacion h4{
-    font-size: 25px;
-  }
-}
+ 
 
 .form-check-label-ins{
   color: white;
@@ -4606,4 +4447,180 @@ button:focus {
   color: red;
   font-size: 0.9em;
   margin-top: 5px;
+}
+
+
+
+
+.container-recu {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.recu-rw {
+  width: 100%;
+  max-width: 1200px; 
+  background-color: #2a2a2a;
+  border-radius: 15px; 
+  padding: 60px; 
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); 
+  display: flex;
+  gap: 60px; 
+}
+
+
+.parte-izquierda-recuperacion {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 60px; 
+  border-right: 2px solid rgba(255, 255, 255, 0.1); 
+}
+
+.parte-izquierda-recuperacion h4 {
+  color: #ffffff;
+  font-size: 1.6rem; 
+  font-weight: normal;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+.caja_popup {
+  flex: 1;
+  width: 100%;
+}
+
+.contenedor_popup {
+  width: 100%;
+}
+
+
+.contenedor_popup table {
+  width: 100%;
+}
+
+.contenedor_popup table th {
+  color: #ffffff;
+  font-size: 2rem; 
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.contenedor_popup table td {
+  padding: 15px 0; 
+  color: #ffffff;
+  font-size: 1.2rem; 
+}
+
+
+.cajaentradatexto {
+  width: 100%;
+  padding: 16px 20px; 
+  border: none;
+  border-radius: 8px; 
+  background-color: #3a3a3a;
+  color: #ffffff;
+  font-size: 1.2rem; 
+}
+
+.cajaentradatexto:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2); /* Aumentado de 2px */
+}
+
+.botones-recu {
+  padding: 16px 35px; 
+  border: none;
+  border-radius: 8px; 
+  font-size: 1.2rem; 
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 8px; 
+}
+
+
+.mensaje {
+  margin-top: 30px; 
+  padding: 20px; 
+  border-radius: 8px; 
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem; 
+}
+
+
+.correo-recu {
+  margin-right: 12px; 
+  font-size: 1.4rem; 
+}
+
+@media (max-width: 992px) {
+  .recu-rw {
+      max-width: 800px;
+      padding: 40px;
+      gap: 40px;
+  }
+
+  .parte-izquierda-recuperacion h4 {
+      font-size: 1.4rem;
+  }
+
+  .contenedor_popup table th {
+      font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .recu-rw {
+      flex-direction: column;
+      padding: 30px;
+      gap: 30px;
+      max-width: 600px;
+  }
+
+  .parte-izquierda-recuperacion {
+      padding-right: 0;
+      padding-bottom: 30px;
+      border-right: none;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .parte-izquierda-recuperacion h4 {
+      text-align: center;
+      font-size: 1.3rem;
+  }
+
+  .contenedor_popup table th {
+      font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .recu-rw {
+      padding: 20px;
+  }
+
+  .botones-recu {
+      width: 100%;
+      margin: 5px 0;
+      font-size: 1.1rem;
+  }
+
+  .parte-izquierda-recuperacion h4 {
+      font-size: 1.1rem;
+  }
+
+  .contenedor_popup table td {
+      font-size: 1.1rem;
+  }
+
+  .cajaentradatexto {
+      font-size: 1.1rem;
+  }
 }

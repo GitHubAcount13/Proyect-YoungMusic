@@ -2,8 +2,8 @@
 <div class="container container-recu">
         <div class="row recu-rw">
             <div class="parte-izquierda-recuperacion">
-                <h4>Se ha enviado el codigo a su correo corectamente</h4>
-                <h4> escriba el codigo y su correo para verificar que es usted</h4>
+                
+                <h4>Se ha enviado el codigo a su correo corectamente, escriba el codigo y su correo para verificar que es usted</h4>
             </div>
             <div class="caja_popup" id="formrecuperar">
 <form action="codigo_verificacion.php" method="POST" class="contenedor_popup">
@@ -12,7 +12,7 @@
                             <th colspan="2">Recuperar contraseña</th>
                             </tr>
                             <tr>
-                <td><b><i class="bi bi-envelope"></i> Correo Electronico</b></td>
+                <td><b><i class="bi bi-envelope correo-recu"></i> Correo Electronico</b></td>
                 <td><input class="cajaentradatexto" type="email" name="email" required></td>
                     
                     </tr>
