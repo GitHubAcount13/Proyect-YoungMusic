@@ -2,8 +2,10 @@ function validarFormularioMusica() {
   const nombreCancion = document.getElementById("NomMusi").value.trim();
   const archivoAudio = document.getElementById("Archivo").files.length;
   const imagenCancion = document.getElementById("ImgMusi").files.length;
-  const generosSeleccionados = document.querySelectorAll('input[name="Generos[]"]:checked');
-  
+  const generosSeleccionados = document.querySelectorAll(
+    'input[name="Generos[]"]:checked'
+  );
+
   // Resetea los mensajes de error
   document.getElementById("errorNomMusi").textContent = "";
   document.getElementById("errorArchivo").textContent = "";
@@ -14,34 +16,37 @@ function validarFormularioMusica() {
 
   // Validar nombre de la canción
   if (!nombreCancion) {
-      document.getElementById("errorNomMusi").textContent = "Por favor, ingresa el nombre de la canción.";
-      esValido = false;
+    document.getElementById("errorNomMusi").textContent =
+      "Por favor, ingresa el nombre de la canción.";
+    esValido = false;
   }
 
   // Validar archivo de audio
   if (archivoAudio === 0) {
-      document.getElementById("errorArchivo").textContent = "Por favor, selecciona un archivo de audio.";
-      esValido = false;
+    document.getElementById("errorArchivo").textContent =
+      "Por favor, selecciona un archivo de audio.";
+    esValido = false;
   }
 
   // Validar imagen de la canción
   if (imagenCancion === 0) {
-      document.getElementById("errorImgMusi").textContent = "Por favor, selecciona una imagen para la canción.";
-      esValido = false;
+    document.getElementById("errorImgMusi").textContent =
+      "Por favor, selecciona una imagen para la canción.";
+    esValido = false;
   }
 
   // Validar que se haya seleccionado al menos un género
   if (generosSeleccionados.length === 0) {
-      document.getElementById("errorGeneros").textContent = "Por favor, selecciona al menos un género musical.";
-      esValido = false;
+    document.getElementById("errorGeneros").textContent =
+      "Por favor, selecciona al menos un género musical.";
+    esValido = false;
   }
 
   // Si todo es válido, continuar con el envío
   if (esValido) {
-      canciones(); // Llama a la función de envío de la canción
+    canciones(); // Llama a la función de envío de la canción
   }
 }
-
 
 function validarFormulario() {
   const nombre = document.getElementById("NomAlbum").value.trim();
@@ -49,49 +54,48 @@ function validarFormulario() {
   const fecha = document.getElementById("FechaLan").value;
   const portada = document.getElementById("ImgAlbu").files.length;
   const hoy = new Date().toISOString().split("T")[0];
-  
+
   // Definir año mínimo
   const fechaMinima = "1500-01-01";
   let esValido = true;
 
   // Validar nombre del álbum
   if (!nombre) {
-      document.getElementById("errorNombre").style.display = "block";
-      esValido = false;
+    document.getElementById("errorNombre").style.display = "block";
+    esValido = false;
   } else {
-      document.getElementById("errorNombre").style.display = "none";
+    document.getElementById("errorNombre").style.display = "none";
   }
 
   // Validar categoría
   if (!categoria) {
-      document.getElementById("errorCategoria").style.display = "block";
-      esValido = false;
+    document.getElementById("errorCategoria").style.display = "block";
+    esValido = false;
   } else {
-      document.getElementById("errorCategoria").style.display = "none";
+    document.getElementById("errorCategoria").style.display = "none";
   }
 
   // Validar fecha de lanzamiento (entre 1500 y hoy)
   if (!fecha || fecha > hoy || fecha < fechaMinima) {
-      document.getElementById("errorFecha").style.display = "block";
-      esValido = false;
+    document.getElementById("errorFecha").style.display = "block";
+    esValido = false;
   } else {
-      document.getElementById("errorFecha").style.display = "none";
+    document.getElementById("errorFecha").style.display = "none";
   }
 
   // Validar portada del álbum
   if (portada === 0) {
-      document.getElementById("errorPortada").style.display = "block";
-      esValido = false;
+    document.getElementById("errorPortada").style.display = "block";
+    esValido = false;
   } else {
-      document.getElementById("errorPortada").style.display = "none";
+    document.getElementById("errorPortada").style.display = "none";
   }
 
   // Si todo es válido, enviar el formulario
   if (esValido) {
-      document.getElementById("albumForm").submit();
+    document.getElementById("albumForm").submit();
   }
 }
-
 
 function validarEdad() {
   const fechaNacimiento = document.getElementById("fecha").value;
@@ -243,7 +247,9 @@ function dejarDeSeguirArtista() {
 
 const albumFunctions = {
   showDeleteConfirmation: function (albumId) {
-    const confirmationContainer = document.getElementById("confirmationContainer");
+    const confirmationContainer = document.getElementById(
+      "confirmationContainer"
+    );
     confirmationContainer.innerHTML = `
       <div class="alert alert-warning">
         <p>¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.</p>
@@ -265,17 +271,22 @@ const albumFunctions = {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          messageContainer.innerHTML = "<div class='alert alert-success'>Álbum eliminado correctamente.</div>";
+          messageContainer.innerHTML =
+            "<div class='alert alert-success'>Álbum eliminado correctamente.</div>";
           setTimeout(() => {
             window.location.href = "Home_YM.php";
           }, 2000);
         } else {
-          messageContainer.innerHTML = "<div class='alert alert-danger'>Error al eliminar el álbum: " + data.message + "</div>";
+          messageContainer.innerHTML =
+            "<div class='alert alert-danger'>Error al eliminar el álbum: " +
+            data.message +
+            "</div>";
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        messageContainer.innerHTML = "<div class='alert alert-danger'>Error al procesar la solicitud.</div>";
+        messageContainer.innerHTML =
+          "<div class='alert alert-danger'>Error al procesar la solicitud.</div>";
       });
     // Limpia el mensaje de confirmación
     albumFunctions.cancelDelete();
@@ -299,7 +310,6 @@ const albumFunctions = {
 };
 
 albumFunctions.init();
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const commentForm = document.getElementById("commentForm");
@@ -544,12 +554,13 @@ async function ExisteCorreo(email) {
   }
 }
 
-function Verificar(){
+function Verificar() {
   // Prevenimos el envío inicial
   event.preventDefault();
-  
+
   const form = document.getElementById("form-Registro");
-  const errorContainer = document.querySelector(".error-container") || createErrorContainer(form);
+  const errorContainer =
+    document.querySelector(".error-container") || createErrorContainer(form);
   errorContainer.innerHTML = ""; // Limpiar mensajes de error previos
 
   const nombreInput = document.getElementById("nombre");
@@ -563,71 +574,101 @@ function Verificar(){
 
   // Validar Nombre
   if (nombreInput.value.trim() === "" || nombreInput.value.length > 35) {
-      showError(errorContainer, "nombre-error", "El nombre es obligatorio y no puede tener más de 35 caracteres.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "nombre-error",
+      "El nombre es obligatorio y no puede tener más de 35 caracteres."
+    );
+    hasError = true;
   }
 
   // Validar formato del correo electrónico
   if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
-      showError(errorContainer, "email-error", "Ingrese un correo válido y que no supere los 50 caracteres.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "email-error",
+      "Ingrese un correo válido y que no supere los 50 caracteres."
+    );
+    hasError = true;
   }
 
   // Verificar si el correo ya existe
-  existeCorreo(emailInput.value).then(exists => {
+  existeCorreo(emailInput.value)
+    .then((exists) => {
       if (exists) {
-          showError(errorContainer, "email-exists-error", "El correo ya está registrado.");
-          hasError = true;
+        showError(
+          errorContainer,
+          "email-exists-error",
+          "El correo ya está registrado."
+        );
+        hasError = true;
       }
-  }).catch(error => {
+    })
+    .catch((error) => {
       console.error("Error al verificar el correo:", error);
-  });
+    });
 
   // Validar contraseña
   if (!validatePassword(passInput.value) || passInput.value.length > 30) {
-      showError(errorContainer, "password-error", "La contraseña debe tener entre 7 y 30 caracteres, incluir una mayúscula, una letra y un número, y no debe contener caracteres especiales.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "password-error",
+      "La contraseña debe tener entre 7 y 30 caracteres, incluir una mayúscula, una letra y un número, y no debe contener caracteres especiales."
+    );
+    hasError = true;
   }
 
   // Validar ubicación
   if (ubicacionInput.value === "") {
-      showError(errorContainer, "ubicacion-error", "Seleccione una ubicación válida.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "ubicacion-error",
+      "Seleccione una ubicación válida."
+    );
+    hasError = true;
   }
 
   // Validar longitud de biografía
   if (biografiaInput.value.length > 100) {
-      showError(errorContainer, "biografia-error", "La biografía no puede tener más de 100 caracteres.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "biografia-error",
+      "La biografía no puede tener más de 100 caracteres."
+    );
+    hasError = true;
   }
 
   // Validar tamaño de archivo de imagen
   if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
-      showError(errorContainer, "file-error", "La imagen no puede superar los 2MB.");
-      hasError = true;
+    showError(
+      errorContainer,
+      "file-error",
+      "La imagen no puede superar los 2MB."
+    );
+    hasError = true;
   }
 
   // Enviar formulario si no hay errores
   if (!hasError) {
-      form.submit();
+    form.submit();
   }
 }
 
 // Función para verificar si el correo ya existe
 async function existeCorreo(email) {
   try {
-      const response = await fetch("Validar_Correo.php", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `email=${encodeURIComponent(email)}`,
-      });
-      const data = await response.json();
-      return data.exists;
+    const response = await fetch("Validar_Correo.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `email=${encodeURIComponent(email)}`,
+    });
+    const data = await response.json();
+    return data.exists;
   } catch (error) {
-      console.error("Error al verificar el correo:", error);
-      return false;
+    console.error("Error al verificar el correo:", error);
+    return false;
   }
 }
 
@@ -635,10 +676,10 @@ async function existeCorreo(email) {
 function showError(container, errorId, message) {
   let errorMessage = document.getElementById(errorId);
   if (!errorMessage) {
-      errorMessage = document.createElement("p");
-      errorMessage.id = errorId;
-      errorMessage.classList.add("text-danger");
-      container.appendChild(errorMessage);
+    errorMessage = document.createElement("p");
+    errorMessage.id = errorId;
+    errorMessage.classList.add("text-danger");
+    container.appendChild(errorMessage);
   }
   errorMessage.textContent = message;
 }
@@ -741,12 +782,17 @@ function consultar_en_tiempo_real_Musica(evento) {
         data.musicas.forEach((musica) => {
           // se agrega html dentro del div que contiene el mensaje de respuesta
           resultadoDiv.innerHTML += `
-              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
-                  <a class="Link" href="VerAlbum.php?id=${musica.id}">
-                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${musica.imagen}" alt="">
-                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${musica.nombre}</h2>
-                  </a>
-              </div>`;
+          <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+            <a class="Link" href="VerAlbum.php?id=${musica.id}">
+              <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${
+                musica.imagen
+              }" alt="">
+              <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${musica.nombre.substring(
+                0,
+                13
+              )}</h2>
+            </a>
+          </div>`;
         });
       } else {
         resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
@@ -799,12 +845,17 @@ function consultar_en_tiempo_real_Album(evento) {
         data.albums.forEach((album) => {
           // se agrega html dentro del div que contiene el mensaje de respuesta
           resultadoDiv.innerHTML += `
-              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
-                    <a class="Link" href="VerAlbum.php?id=${album.id}">
-                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${album.imagen}" alt="">
-                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${album.nombre}</h2>
-                  </a>
-              </div>`;
+          <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+            <a class="Link" href="VerAlbum.php?id=${album.id}">
+              <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${
+                album.imagen
+              }" alt="">
+              <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${album.nombre.substring(
+                0,
+                13
+              )}</h2>
+            </a>
+          </div>`;
         });
       } else {
         resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
@@ -857,14 +908,18 @@ function consultar_en_tiempo_real(evento) {
       //si el enpoint devuelve 1...
       if (data.status === 1) {
         data.usuarios.forEach((user) => {
-          // se agrega html dentro del div que contiene el mensaje de respuesta
           resultadoDiv.innerHTML += `
-              <div id="resultado1" class="col-12 col-sm-6 col-md-4">
-                  <a class="Link" href="Ver_artista_YM.php?correo=${user.correo}">
-                      <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${user.perfil}" alt="">
-                      <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre}</h2>
-                  </a>
-              </div>`;
+            <div id="resultado1" class="col-12 col-sm-6 col-md-4">
+              <a class="Link" href="Ver_artista_YM.php?correo=${user.correo}">
+                <img class="img-fluid img-busqueda" style="width: 70px; height: 70px;" id="item" src="${
+                  user.perfil
+                }" alt="">
+                <h2 class='nombre-busqueda' style="color: Black; font-size: medium;" id="item"> ${user.nombre.substring(
+                  0,
+                  13
+                )}</h2>
+              </a>
+            </div>`;
         });
       } else {
         resultadoDiv.innerHTML = `<h2 style="color: black;">${data.mensaje}</h2>`;
