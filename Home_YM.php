@@ -58,9 +58,11 @@
                                         <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>"
                                             alt="Foto del artista"
                                             class="artist-avatar">
+                                            <button>
                                             <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
                                         <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
                                             </a>
+                                        </button>
                                     </div>
                                     <div class="card-actions">
                                         <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
@@ -108,7 +110,9 @@
                                     </div>
                                    
                                     <div class="card-content">
-                                    <a class="Link" style="color: #000; text-decoration: none;" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($artista['CorrArti']); ?>"><?php echo htmlspecialchars($artista['NombArtis']); ?></a>
+                                        <button> 
+                                            <a class="Link" style="color: #000; text-decoration: none;" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($artista['CorrArti']); ?>"><?php echo htmlspecialchars($artista['NombArtis']); ?></a>
+                                        </button> 
                                     </div>
                               
                             </div>
@@ -146,10 +150,11 @@
                                     <h3><?php echo htmlspecialchars($musica['NomMusi']); ?></h3>
                                     <p class="album"><?php echo htmlspecialchars($musica['NomAlbum']); ?></p>
                                     <div class="artist-info">
-                                        <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
-                                            <img src="<?php echo htmlspecialchars($musica['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
-                                            <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
-                                        </a>
+                                        <button>
+                                            <a class="Link" href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($musica['CorrArti']); ?>">
+                                        <p class="artist"><?php echo htmlspecialchars($musica['NombArtis']); ?></p>
+                                            </a>
+                                        </button>
                                     </div>
                                     <div class="card-actions">
                                         <audio id="audio-<?php echo htmlspecialchars($musica['IdMusi']); ?>" class="music-player">
