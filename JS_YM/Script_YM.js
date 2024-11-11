@@ -545,124 +545,122 @@ async function ExisteCorreo(email) {
 }
 
 function Verificar(){
-  async function VerificarDatos(event) {
-    event.preventDefault(); // Evitar envío del formulario inicialmente
-    const form = event.target;
-    const errorContainer = document.querySelector(".error-container") || createErrorContainer(form);
-    errorContainer.innerHTML = ""; // Limpiar mensajes de error previos
+  // Prevenimos el envío inicial
+  event.preventDefault();
   
-    const nombreInput = document.getElementById("nombre");
-    const emailInput = document.getElementById("email");
-    const passInput = document.getElementById("pass");
-    const ubicacionInput = document.getElementById("Ubicación");
-    const biografiaInput = document.getElementById("biografia");
-    const fileInput = document.getElementById("file");
-  
-    let hasError = false;
-  
-    // Validar Nombre
-    if (nombreInput.value.trim() === "" || nombreInput.value.length > 35) {
+  const form = document.getElementById("form-Registro");
+  const errorContainer = document.querySelector(".error-container") || createErrorContainer(form);
+  errorContainer.innerHTML = ""; // Limpiar mensajes de error previos
+
+  const nombreInput = document.getElementById("nombre");
+  const emailInput = document.getElementById("email");
+  const passInput = document.getElementById("pass");
+  const ubicacionInput = document.getElementById("Ubicación");
+  const biografiaInput = document.getElementById("biografia");
+  const fileInput = document.getElementById("file");
+
+  let hasError = false;
+
+  // Validar Nombre
+  if (nombreInput.value.trim() === "" || nombreInput.value.length > 35) {
       showError(errorContainer, "nombre-error", "El nombre es obligatorio y no puede tener más de 35 caracteres.");
       hasError = true;
-    }
-  
-    // Validar formato del correo electrónico
-    if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
+  }
+
+  // Validar formato del correo electrónico
+  if (!validateEmail(emailInput.value) || emailInput.value.length > 50) {
       showError(errorContainer, "email-error", "Ingrese un correo válido y que no supere los 50 caracteres.");
       hasError = true;
-    }
-  
-    // Verificar si el correo ya existe
-    const emailExists = await existeCorreo(emailInput.value);
-    if (emailExists) {
-      showError(errorContainer, "email-exists-error", "El correo ya está registrado.");
-      hasError = true;
-    }
-  
-    // Validar contraseña
-    if (!validatePassword(passInput.value) || passInput.value.length > 30) {
+  }
+
+  // Verificar si el correo ya existe
+  existeCorreo(emailInput.value).then(exists => {
+      if (exists) {
+          showError(errorContainer, "email-exists-error", "El correo ya está registrado.");
+          hasError = true;
+      }
+  }).catch(error => {
+      console.error("Error al verificar el correo:", error);
+  });
+
+  // Validar contraseña
+  if (!validatePassword(passInput.value) || passInput.value.length > 30) {
       showError(errorContainer, "password-error", "La contraseña debe tener entre 7 y 30 caracteres, incluir una mayúscula, una letra y un número, y no debe contener caracteres especiales.");
       hasError = true;
-    }
-  
-    // Validar ubicación
-    if (ubicacionInput.value === "") {
+  }
+
+  // Validar ubicación
+  if (ubicacionInput.value === "") {
       showError(errorContainer, "ubicacion-error", "Seleccione una ubicación válida.");
       hasError = true;
-    }
-  
-    // Validar longitud de biografía
-    if (biografiaInput.value.length > 100) {
+  }
+
+  // Validar longitud de biografía
+  if (biografiaInput.value.length > 100) {
       showError(errorContainer, "biografia-error", "La biografía no puede tener más de 100 caracteres.");
       hasError = true;
-    }
-  
-    // Validar tamaño de archivo de imagen
-    if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
+  }
+
+  // Validar tamaño de archivo de imagen
+  if (fileInput.files[0] && fileInput.files[0].size > 2000000) {
       showError(errorContainer, "file-error", "La imagen no puede superar los 2MB.");
       hasError = true;
-    }
-  
-    // Enviar formulario si no hay errores
-    if (!hasError) {
-      form.submit();
-    }
   }
-  
-  // Función para verificar si el correo ya existe
-  async function existeCorreo(email) {
-    try {
+
+  // Enviar formulario si no hay errores
+  if (!hasError) {
+      form.submit();
+  }
+}
+
+// Función para verificar si el correo ya existe
+async function existeCorreo(email) {
+  try {
       const response = await fetch("Validar_Correo.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `email=${encodeURIComponent(email)}`,
+          method: "POST",
+          headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `email=${encodeURIComponent(email)}`,
       });
       const data = await response.json();
       return data.exists;
-    } catch (error) {
+  } catch (error) {
       console.error("Error al verificar el correo:", error);
       return false;
-    }
   }
-  
-  // Función para mostrar mensajes de error sin duplicarlos
-  function showError(container, errorId, message) {
-    let errorMessage = document.getElementById(errorId);
-    if (!errorMessage) {
+}
+
+// Función para mostrar mensajes de error sin duplicarlos
+function showError(container, errorId, message) {
+  let errorMessage = document.getElementById(errorId);
+  if (!errorMessage) {
       errorMessage = document.createElement("p");
       errorMessage.id = errorId;
       errorMessage.classList.add("text-danger");
       container.appendChild(errorMessage);
-    }
-    errorMessage.textContent = message;
   }
-  
-  // Función para crear el contenedor de errores
-  function createErrorContainer(form) {
-    const errorContainer = document.createElement("div");
-    errorContainer.classList.add("error-container");
-    form.insertAdjacentElement("beforeend", errorContainer);
-    return errorContainer;
-  }
-  
-  // Validación de formato de correo electrónico
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  }
-  
-  // Validación de formato de contraseña
-  function validatePassword(password) {
-    const re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$/;
-    return re.test(password);
-  }
-  
-  // Evento de envío del formulario
-  const formularioRegistro = document.getElementById("form-Registro");
-  formularioRegistro.addEventListener("submit", VerificarDatos);
-  
+  errorMessage.textContent = message;
+}
+
+// Función para crear el contenedor de errores
+function createErrorContainer(form) {
+  const errorContainer = document.createElement("div");
+  errorContainer.classList.add("error-container");
+  form.insertAdjacentElement("beforeend", errorContainer);
+  return errorContainer;
+}
+
+// Validación de formato de correo electrónico
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Validación de formato de contraseña
+function validatePassword(password) {
+  const re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$/;
+  return re.test(password);
 }
 function loginUser() {
   document
