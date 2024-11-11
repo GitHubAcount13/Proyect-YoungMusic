@@ -22,7 +22,7 @@ $generos = json_decode($jsonData, true)['generos'];
             <div class="col-md-6 parte_izquierda_registro part-izq-red-art mb-4">
                 <h2>
                     <a class="registro">Registro de Artista</a>
-                    <hr class="bg-custom-register my-4 barra_register">
+                  
                 </h2>
                 <h4 class="info_datosreg">
                     Ingresa sus redes sociales para que la gente y disqueras te logren conocer de otra forma (Pon el link de la dirección hacia tu cuenta en tus redes)
