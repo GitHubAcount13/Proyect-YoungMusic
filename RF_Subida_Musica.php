@@ -32,7 +32,7 @@ try {
     $result = $stmt->get_result();
     $album_info = $result->fetch_assoc();
 
-    $limite = ($album_info['Categoria'] === 'EP') ? 6 : (($album_info['Categoria'] === 'Sencillo') ? 1 : PHP_INT_MAX);
+    $limite = ($album_info['Categoria'] === 'EP') ? 6 : (($album_info['Categoria'] === 'Sencillo') ? 3 : PHP_INT_MAX);
 
     if ($album_info['total_canciones'] >= $limite) {
         throw new Exception('Has alcanzado el límite de canciones para este álbum');

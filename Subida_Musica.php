@@ -14,7 +14,7 @@ if (!$album_id || !$categoria) {
     exit();
 }
 
-$limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 1 : 999);
+$limite_canciones = ($categoria === 'EP') ? 6 : (($categoria === 'Sencillo') ? 3 : 999);
 ?>
 <h2 class="lanza text-center my-4">Agregar Música al Álbum</h2>
 <hr class="bg-custom-loginu my-4 barra_loginu">
