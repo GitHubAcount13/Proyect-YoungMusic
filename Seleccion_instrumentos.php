@@ -22,7 +22,7 @@ $instrumentos = json_decode($jsonData, true)['instrumentos'];
         <div class="col-md-6 parte_izquierda_registro p-izq-ins part-izq-red-art mb-4">
             <h2>
                 <a class="registro">Registro de Artista</a>
-                <hr class="bg-custom-register my-4 barra_register">
+           
             </h2>
             <h4 class="info_datosreg">Ingrese los instrumentos que tocas</h4>
         </div>

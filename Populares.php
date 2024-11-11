@@ -57,10 +57,12 @@ $albumesPopulares = obtenerAlbumesPopulares();
                             <h3><?php echo htmlspecialchars($tema['NomMusi']); ?></h3>
                             <p class="fecha">Lanzado: <?php echo date('d/m/Y', strtotime($tema['FechaLan'])); ?></p>
                             <div class="artist-info">
+                                <button>
                                 <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($tema['CorrArti']); ?>" class="Link">
                                     <img src="<?php echo htmlspecialchars($tema['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
                                     <p class="artist"><?php echo htmlspecialchars($tema['NombArtis']); ?></p>
                                 </a>
+                                </button>
                             </div>
                             <div class="card-actions">
                                 <audio id="audio-<?php echo htmlspecialchars($tema['IdMusi']); ?>" class="music-player">
@@ -104,9 +106,11 @@ $albumesPopulares = obtenerAlbumesPopulares();
                             <img src="<?php echo htmlspecialchars($artista['FotoPerf']); ?>" alt="Foto del artista">
                         </div>
                         <div class="card-content">
+                            <button>
                             <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($artista['CorrArti']); ?>" class="Link">
                                 <h3><?php echo htmlspecialchars($artista['NombArtis']); ?></h3>
                             </a>
+                            </button>
                             <p class="stats"><?php echo htmlspecialchars($artista['NumCanciones']); ?> canciones</p>
                             <p class="fecha">Se unió: <?php echo date('d/m/Y', strtotime($artista['FechaReg'])); ?></p>
                             <?php if ($artista['Verificacion']): ?>
@@ -147,10 +151,12 @@ $albumesPopulares = obtenerAlbumesPopulares();
                             <p class="album-type"><?php echo htmlspecialchars($album['Categoria']); ?></p>
                             <p class="fecha">Lanzado: <?php echo date('d/m/Y', strtotime($album['FechaLan'])); ?></p>
                             <div class="artist-info">
+                                <button>
                                 <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($album['CorrArti']); ?>" class="Link">
                                     <img src="<?php echo htmlspecialchars($album['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
                                     <p class="artist"><?php echo htmlspecialchars($album['NombArtis']); ?></p>
                                 </a>
+                                </button>
                             </div>
                             <p class="stats"><?php echo htmlspecialchars($album['NumCanciones']); ?> canciones</p>
                         </div>

@@ -57,10 +57,12 @@ $paginaPerfil = determinarTipoUsuario($email);
                             <h3><?php echo htmlspecialchars($tema['NomMusi']); ?></h3>
                             <p class="fecha">Lanzado: <?php echo date('d/m/Y', strtotime($tema['FechaLan'])); ?></p>
                             <div class="artist-info">
+                            <button>
                                 <a href="Ver_artista_YM.php?correo=<?php echo htmlspecialchars($tema['CorrArti']); ?>" class="Link">
                                     <img src="<?php echo htmlspecialchars($tema['FotoPerf']); ?>" alt="Foto del artista" class="artist-avatar">
                                     <p class="artist"><?php echo htmlspecialchars($tema['NombArtis']); ?></p>
                                 </a>
+                            </button>
                             </div>
                             <div class="card-actions">
                                 <audio id="audio-<?php echo htmlspecialchars($tema['IdMusi']); ?>" class="music-player">

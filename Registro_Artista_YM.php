@@ -22,7 +22,7 @@ $generos = json_decode($jsonData, true)['generos'];
         <div class="col-md-6 parte_izquierda_registro part-izq-reg-art">
             <h2>
                 <a class="registro">Registro de Artista</a>
-                <hr class="bg-custom-register my-4 barra_register">
+              
             </h2>
             <h4 class="info_datosreg">Coloque el Nombre por el cual quiere ser Identificado</h4>
         </div>
