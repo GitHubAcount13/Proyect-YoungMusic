@@ -48,6 +48,33 @@ function validarFormularioMusica() {
   }
 }
 
+function confirmarYEliminarPerfil(correoArtista) {
+    if (confirm('¿Estás seguro de que deseas eliminar este perfil?')) {
+        fetch('eliminar_perfil.php', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                correoArtista: correoArtista
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = 'Home_YM.php?mensaje=perfil_eliminado';
+            } else {
+                alert('Error al eliminar el perfil: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al procesar la solicitud');
+        });
+    }
+}
+
+
 function validarFormulario() {
   const nombre = document.getElementById("NomAlbum").value.trim();
   const categoria = document.getElementById("Categoria").value;
@@ -275,7 +302,7 @@ const albumFunctions = {
       "confirmationContainer"
     );
     confirmationContainer.innerHTML = `
-      <div class="alert alert-warning">
+      <div class="alert alert-warning alertapp">
         <p>¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.</p>
         <button class="btn btn-danger" onclick="albumFunctions.confirmDelete(${albumId})">Eliminar</button>
         <button class="btn btn-secondary" onclick="albumFunctions.cancelDelete()">Cancelar</button>

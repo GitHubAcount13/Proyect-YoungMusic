@@ -44,14 +44,10 @@ require_once("Funciones.php");
                     <?php endif; ?>
                     <!-- Botón de Eliminar Perfil -->
                     <?php if(isset($_SESSION["email"]) && esAdmin($_SESSION["email"])): ?>
-                    <form method="POST" id="formEliminar" class="ml-2" onsubmit="return confirmarEliminacion()">
-                        <input type="hidden" name="eliminarPerfil" value="1">
-                        <button type="submit" class="btn btn-danger">
-                            <i class="bi bi-trash"></i> Eliminar Perfil
-                        </button>
-                    </form>
-                </div>
-                <?php endif; ?>
+    <button type="button" class="btn btn-danger" onclick="confirmarYEliminarPerfil('<?php echo $correoArtista; ?>')">
+        <i class="bi bi-trash"></i> Eliminar Perfil
+    </button>
+<?php endif; ?>
         </div>
         <div class="cont-u">
             <div class="imagen_perfil-container">

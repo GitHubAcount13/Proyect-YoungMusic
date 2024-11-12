@@ -12,7 +12,7 @@ $email = $_SESSION["email"];
         <img class="imagen_perfil_view" src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" style="width: 50px; height: 50px;">
         <span class="ml-2" style="color: white; padding-left:5px;"><?php echo htmlspecialchars($nombre); ?></span>
     </a>
-    <i class="bi bi-music-note"></i>
+    
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <a href="Busqueda.php"><i class="bi bi-search"></i></a>
@@ -35,7 +35,7 @@ $email = $_SESSION["email"];
             <?php
             $albumes = obtenerAlbumes($email);
             if (empty($albumes)) {
-                echo '<div class="text-center text-white">No hay álbumes para mostrar</div>';
+                echo '<div class="text-center text-white ">No hay álbumes para mostrar</div>';
             } else {
                 foreach ($albumes as $album) {
             ?>
