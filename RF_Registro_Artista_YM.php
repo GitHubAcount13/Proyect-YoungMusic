@@ -7,9 +7,9 @@ require("Funciones.php");
 $con = conectar_bd();
 
 
-    $nombre = $_POST["nombre_a"];
+    $nombre = trim($_POST["nombre_a"]);
     $fecha = $_POST["fecha"];
-    $email = $_SESSION["email"];
+    $email = trim($_SESSION["email"]);
     $usuario = obtenerDatosUsuario($email);
 
     if ($usuario) {

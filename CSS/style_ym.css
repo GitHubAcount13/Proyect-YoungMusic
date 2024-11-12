@@ -4650,3 +4650,31 @@ h1,h2,h3,h4,h5,h6,a,p{
   box-shadow: 0 8px 32px 0 rgba(31, 135, 86, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.notification-content {
+  background-color: #333;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.notification.success .notification-content {
+  background-color: #4CAF50;
+}
+
+.notification.error .notification-content {
+  background-color: #f44336;
+}

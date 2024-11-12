@@ -6,8 +6,8 @@ require_once("Funciones.php");
 $con = conectar_bd();
 
 if (isset($_POST["envio"])) {
-    $nombre = $_POST["nombre_d"];
-    $email = $_SESSION["email"];
+    $nombre = trim($_POST["nombre_d"]);
+    $email = trim($_SESSION["email"]);
     $usuario = obtenerDatosUsuario($email);
 
     if ($usuario) {

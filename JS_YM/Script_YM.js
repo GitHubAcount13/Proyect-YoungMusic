@@ -207,23 +207,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function showNotification(message, type = 'success') {
+  const notification = document.getElementById('notification');
+  const notificationMessage = document.getElementById('notification-message');
+  
+  notification.className = 'notification ' + type;
+  notificationMessage.textContent = message;
+  
+  notification.style.display = 'block';
+  setTimeout(() => {
+      notification.classList.add('show');
+  }, 10);
+
+  setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+          notification.style.display = 'none';
+      }, 300);
+  }, 3000);
+}
+
 function seguirArtista() {
   const formSeguir = document.getElementById("formSeguir");
   const formData = new FormData(formSeguir);
 
   fetch(window.location.href, {
-    method: "POST",
-    body: formData,
+      method: "POST",
+      body: formData,
   })
-    .then((response) => response.text())
-    .then((result) => {
-      alert("Ahora sigues a este artista.");
-      location.reload(); // Recargar la página para actualizar el estado
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Ocurrió un error al intentar seguir al artista.");
-    });
+      .then((response) => response.text())
+      .then((result) => {
+          showNotification("Ahora sigues a este artista.");
+          setTimeout(() => {
+              location.reload();
+          }, 1000);
+      })
+      .catch((error) => {
+          console.error("Error:", error);
+          showNotification("Ocurrió un error al intentar seguir al artista.", "error");
+      });
 }
 
 function dejarDeSeguirArtista() {
@@ -231,18 +253,20 @@ function dejarDeSeguirArtista() {
   const formData = new FormData(formSeguir);
 
   fetch(window.location.href, {
-    method: "POST",
-    body: formData,
+      method: "POST",
+      body: formData,
   })
-    .then((response) => response.text())
-    .then((result) => {
-      alert("Has dejado de seguir a este artista.");
-      location.reload(); // Recargar la página para actualizar el estado
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Ocurrió un error al intentar dejar de seguir al artista.");
-    });
+      .then((response) => response.text())
+      .then((result) => {
+          showNotification("Has dejado de seguir a este artista.");
+          setTimeout(() => {
+              location.reload();
+          }, 1000);
+      })
+      .catch((error) => {
+          console.error("Error:", error);
+          showNotification("Ocurrió un error al intentar dejar de seguir al artista.", "error");
+      });
 }
 
 const albumFunctions = {

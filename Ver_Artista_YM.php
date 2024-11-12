@@ -18,6 +18,11 @@ require_once("Funciones.php");
     </div>
 </nav>
 <!-- Contenido del Perfil -->
+<div id="notification" class="notification" style="display: none;">
+    <div class="notification-content">
+        <p id="notification-message"></p>
+    </div>
+</div>
 <div class="container mt-4 md container-perfil">
     <div class="row justify-content-left">
         <div class="botones text-center text-md-left">
