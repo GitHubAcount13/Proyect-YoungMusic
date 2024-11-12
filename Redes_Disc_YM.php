@@ -67,7 +67,7 @@ $generos = json_decode($jsonData, true)['generos'];
                            
                             <div class="modal-body">
                             
-                         <p>Su cuenta como Discográfica ya está creada pero aún no está verificada. Se le mandará un correo con ciertos parámetros. Luego de verificarse, podrá ser calificado como una Discográfica verificado.</p>
+                         <p>Su cuenta como Discográfica ya está creada pero aún no está verificada. Un administrador vera su solicitud. Luego de verificarse, podrá ser calificado como una Discográfica verificado.</p>
                             </div>
                             <div class="modal-footer">
                             <button class="btn btn-primary" onclick="enviarFormularioRed()">Finalizar</button>

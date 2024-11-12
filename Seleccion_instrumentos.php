@@ -50,7 +50,7 @@ $instrumentos = json_decode($jsonData, true)['instrumentos'];
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <p> Su cuenta como artista ya está creada, pero aún no está verificada. Para ser reconocido como artista verificado, se le enviará un correo con ciertos parámetros.</p>
+                                <p> Su cuenta como artista ya está creada, pero aún no está verificada. Para ser reconocido como artista verificado, Un administrador vera su solicitud.</p>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" onclick="enviarFormularioIns()">Finalizar</button>

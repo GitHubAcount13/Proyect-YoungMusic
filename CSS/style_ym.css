@@ -4377,23 +4377,23 @@ button:focus {
   transform: scale(1.2);
 }
 .icon-home:hover{
-  color: #006ee4;
+  color: #006ee4 !important;
   transition: all .2s ease-in-out;
 }
 .icon-clock:hover{
-  color: rgb(148, 69, 252);
+  color: rgb(148, 69, 252) !important;
   transition: all .2s ease-in-out;
 }
 .icon-fire:hover{
-  color: rgb(255, 81, 0);
+  color: rgb(255, 81, 0) !important;
   transition: all .2s ease-in-out;
 }
 .icon-heart:hover{
-  color: rgb(255, 0, 43);
+  color: rgb(255, 0, 43) !important;
   transition: all .2s ease-in-out;
 }
 .icon-person:hover{
-  color: #1ed760;
+  color: #1ed760 !important;
   transition: all .2s ease-in-out;
 }
 
