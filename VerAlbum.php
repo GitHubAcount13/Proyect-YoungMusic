@@ -104,6 +104,8 @@ $profileLink = isset($_SESSION['email']) ? determinarTipoUsuario($_SESSION['emai
             <div class="col-12">
                 <h2 class="mb-4">Comentarios</h2>
 
+                <div id="messageContainerC" class="mb-3"></div>
+                
                 <?php if (isset($_SESSION["email"])): ?>
                     <!-- Formulario para agregar comentarios -->
                     <form id="commentForm" class="mb-4" data-album-id="<?php echo $albumId; ?>">

@@ -17,6 +17,16 @@ require_once("Funciones.php");
         </ul>
     </div>
 </nav>
+<div id="borrar_Usr" class="contenedor-notificacion">
+    <div class="contenido-notificacion">
+        <span id="mensaje-notificacion"></span>
+        <button type="button" class="boton-cerrar" onclick="cerrarNotificacion()">&times;</button>
+    </div>
+</div>
+<div id="notificacion" class="alert d-none">
+    <span id="mensajeNotificacion"></span>
+    <button type="button" class="btn-close float-end" onclick="cerrarNotificacion()"></button>
+</div>
 <!-- Contenido del Perfil -->
 <div id="notification" class="notification" style="display: none;">
     <div class="notification-content">

@@ -1,3 +1,50 @@
+// Función para manejar la edición del perfil
+function editarPerfil(event) {
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
+  
+  // Construir la URL con los parámetros
+  const params = new URLSearchParams();
+  params.append('accion', 'editar');
+  for (let [key, value] of formData.entries()) {
+      params.append(key, value);
+  }
+  
+  // Redirigir a la página con los parámetros
+  window.location.href = `RF_Artista_YM.php?${params.toString()}`;
+}
+
+// Función para manejar la eliminación del perfil
+function eliminarPerfil(event) {
+  event.preventDefault();
+  if (!confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.')) {
+      return;
+  }
+  
+  const form = event.target;
+  const formData = new FormData(form);
+  const params = new URLSearchParams();
+  params.append('accion', 'eliminar');
+  params.append('password', formData.get('password'));
+  
+  window.location.href = `RF_Artista_YM.php?${params.toString()}`;
+}
+
+// Agregar los event listeners cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  const editForm = document.getElementById('editarPerfilForm');
+  const deleteForm = document.getElementById('eliminarPerfilForm');
+  
+  if (editForm) {
+      editForm.addEventListener('submit', editarPerfil);
+  }
+  
+  if (deleteForm) {
+      deleteForm.addEventListener('submit', eliminarPerfil);
+  }
+});
+
 function validarFormularioMusica() {
   const nombreCancion = document.getElementById("NomMusi").value.trim();
   const archivoAudio = document.getElementById("Archivo").files.length;
@@ -47,33 +94,101 @@ function validarFormularioMusica() {
     canciones(); // Llama a la función de envío de la canción
   }
 }
-
-function confirmarYEliminarPerfil(correoArtista) {
-    if (confirm('¿Estás seguro de que deseas eliminar este perfil?')) {
-        fetch('eliminar_perfil.php', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                correoArtista: correoArtista
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = 'Home_YM.php?mensaje=perfil_eliminado';
-            } else {
-                alert('Error al eliminar el perfil: ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al procesar la solicitud');
-        });
+function mostrarNotificacion(mensaje, tipo) {
+    const notificacion = document.getElementById('notificacion');
+    const mensajeNotificacion = document.getElementById('mensajeNotificacion');
+    
+    // Remover clases previas de tipo de alerta
+    notificacion.classList.remove('alert-success', 'alert-danger', 'alert-warning', 'd-none');
+    
+    // Agregar la clase según el tipo
+    notificacion.classList.add(`alert-${tipo}`);
+    
+    // Establecer el mensaje
+    mensajeNotificacion.textContent = mensaje;
+    
+    // Mostrar la notificación
+    notificacion.classList.remove('d-none');
+    
+    // Si no es un error, ocultarla después de 5 segundos
+    if (tipo !== 'danger') {
+        setTimeout(cerrarNotificacion, 5000);
     }
 }
 
+function cerrarNotificacion() {
+    const notificacion = document.getElementById('notificacion');
+    notificacion.classList.add('d-none');
+}
+
+function mostrarNotificacion(mensaje, tipo) {
+  const contenedor = document.getElementById('borrar_Usr');
+  const elementoMensaje = document.getElementById('mensaje-notificacion');
+  
+  // Remover clases de tipo existentes
+  contenedor.classList.remove('notificacion-exito', 'notificacion-advertencia', 'notificacion-error');
+  
+  // Agregar la clase de tipo apropiada
+  contenedor.classList.add(`notificacion-${tipo}`);
+  
+  // Establecer el mensaje
+  elementoMensaje.innerHTML = mensaje;
+  
+  // Mostrar el contenedor
+  contenedor.style.display = 'block';
+  
+  // Auto-ocultar después de 5 segundos a menos que sea una advertencia
+  if (tipo !== 'advertencia') {
+      setTimeout(() => {
+          cerrarNotificacion();
+      }, 5000);
+  }
+}
+
+function cerrarNotificacion() {
+  const contenedor = document.getElementById('borrar_Usr');
+  contenedor.style.display = 'none';
+}
+
+function confirmarYEliminarPerfil(correoArtista) {
+  // Mostrar confirmación en el DOM
+  mostrarNotificacion(
+      '¿Estás seguro de que deseas eliminar este perfil? ' +
+      '<button onclick="procederConEliminacion(\'' + correoArtista + '\')" class="btn btn-danger btn-sm mx-2">Sí</button>' +
+      '<button onclick="cerrarNotificacion()" class="btn btn-secondary btn-sm">No</button>', 
+      'advertencia'
+  );
+}
+
+function procederConEliminacion(correoArtista) {
+  // Mostrar notificación de procesamiento
+  mostrarNotificacion('Procesando la eliminación...', 'advertencia');
+  
+  fetch('eliminar_perfil.php', {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          correoArtista: correoArtista
+      })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          mostrarNotificacion('Perfil eliminado exitosamente. Redirigiendo...', 'exito');
+          setTimeout(() => {
+              window.location.href = 'Home_YM.php?mensaje=perfil_eliminado';
+          }, 2000);
+      } else {
+          mostrarNotificacion('Error al eliminar el perfil: ' + data.error, 'error');
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      mostrarNotificacion('Error al procesar la solicitud', 'error');
+  });
+}
 
 function validarFormulario() {
   const nombre = document.getElementById("NomAlbum").value.trim();
@@ -364,6 +479,39 @@ albumFunctions.init();
 
 document.addEventListener("DOMContentLoaded", function () {
   const commentForm = document.getElementById("commentForm");
+  const messageContainerC = document.getElementById("messageContainerC");
+
+  function showMessage(message, buttons = false) {
+    messageContainerC.innerHTML = ''; // Limpiar mensajes anteriores
+    
+    const messageText = document.createElement("div");
+    messageText.textContent = message;
+    messageText.style.marginBottom = "10px";
+    messageContainerC.appendChild(messageText);
+
+    if (buttons) {
+      const buttonContainer = document.createElement("div");
+      buttonContainer.style.marginBottom = "15px";
+      
+      const confirmButton = document.createElement("button");
+      confirmButton.textContent = "Confirmar";
+      confirmButton.className = "btn btn-danger me-2";
+      
+      const cancelButton = document.createElement("button");
+      cancelButton.textContent = "Cancelar";
+      cancelButton.className = "btn btn-secondary";
+      
+      buttonContainer.appendChild(confirmButton);
+      buttonContainer.appendChild(cancelButton);
+      messageContainerC.appendChild(buttonContainer);
+
+      return { confirmButton, cancelButton };
+    }
+  }
+
+  function clearMessage() {
+    messageContainerC.innerHTML = '';
+  }
 
   // Manejar envío de comentarios
   if (commentForm) {
@@ -373,9 +521,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const comentario = document.getElementById("comentario").value;
       const albumId = this.dataset.albumId;
 
+      if (!comentario.trim()) {
+        showMessage("Por favor, escribe un comentario");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("albumId", albumId);
       formData.append("comentario", comentario);
+
+      showMessage("Enviando comentario...");
 
       fetch("procesar_comentario.php", {
         method: "POST",
@@ -389,14 +544,17 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
           if (data.success) {
-            location.reload();
+            showMessage("Comentario publicado exitosamente");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
           } else {
-            alert(data.message || "Error al publicar el comentario");
+            showMessage(data.message || "Error al publicar el comentario");
           }
         })
         .catch((error) => {
           console.error("Error:", error);
-          alert("Error al procesar la solicitud: " + error.message);
+          showMessage("Error al procesar la solicitud: " + error.message);
         });
 
       document.getElementById("comentario").value = "";
@@ -406,11 +564,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Manejar borrado de comentarios
   document.querySelectorAll(".delete-comment-btn").forEach((button) => {
     button.addEventListener("click", function (e) {
-      if (confirm("¿Estás seguro de que deseas eliminar este comentario?")) {
+      const { confirmButton, cancelButton } = showMessage("¿Estás seguro de que deseas eliminar este comentario?", true);
+
+      confirmButton.addEventListener("click", () => {
         const commentId = this.dataset.commentId;
         const formData = new FormData();
         formData.append("commentId", commentId);
         formData.append("action", "delete");
+
+        showMessage("Eliminando comentario...");
 
         fetch("procesar_comentario.php", {
           method: "POST",
@@ -419,22 +581,25 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((response) => response.json())
           .then((data) => {
             if (data.success) {
-              // Eliminar el comentario del DOM
               const commentItem = document.querySelector(
                 `.comment-item[data-comment-id="${commentId}"]`
               );
               if (commentItem) {
                 commentItem.remove();
+                showMessage("Comentario eliminado exitosamente");
+                setTimeout(clearMessage, 2000);
               }
             } else {
-              alert(data.message || "Error al eliminar el comentario");
+              showMessage(data.message || "Error al eliminar el comentario");
             }
           })
           .catch((error) => {
             console.error("Error:", error);
-            alert("Error al eliminar el comentario");
+            showMessage("Error al eliminar el comentario");
           });
-      }
+      });
+
+      cancelButton.addEventListener("click", clearMessage);
     });
   });
 });
