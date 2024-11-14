@@ -59,7 +59,7 @@ require("RF_Artista_YM.php");
                 </div>
                 <div class="form-container form-art fondo_perfil_editar" id="editarPerfil" style="display: none;">
             <h3>Editar Perfil</h3>
-            <form id="editarPerfilForm" enctype="multipart/form-data">
+            <form action="RF_Artista_YM.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarContrasena('editar')">
                 <div class="form-group">
                     <input type="file" name="nuevaFoto" id="file" class="custom-file-input" accept="image/*" onchange="previewImage(event)">
                     <label for="file" class="custo-label">
@@ -109,19 +109,17 @@ require("RF_Artista_YM.php");
                 </div><br>
                 <button type="submit" class="btn btn-primary" name="editarPerfil"><i class="bi bi-check"> | </i>Guardar Cambios</button>
                 <button class="btn btn-danger mt-2 mt-md-0" onclick="mostrarEliminarPerfil()" aria-label="Eliminar Perfil"><i class="bi bi-x-lg"> | </i>Eliminar Perfil</button>
-                <input type="hidden" name="accion" value="editar">
-                </form>
+            </form>
         </div>
 
         <!-- Formulario para Eliminar Perfil -->
         <div class="form-container form-art-delete fondo_perfil_editar" id="eliminarPerfil" style="display: none;">
             <h3>Eliminar Perfil</h3>
-            <form id="eliminarPerfilForm">
+            <form action="RF_Usuario_YM.php" method="post" onsubmit="return confirmarContrasena('eliminar')">
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña" required>
                 </div><br>
                 <button type="submit" class="btn btn-danger" name="eliminarPerfil">Confirmar Eliminación</button>
-                <input type="hidden" name="accion" value="eliminar">
             </form>
         </div>
             </div>

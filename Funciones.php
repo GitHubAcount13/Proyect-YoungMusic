@@ -344,7 +344,7 @@ function editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, 
     }
 
     // Actualizar los datos del usuario
-    $consulta = "UPDATE artistas INNER JOIN usuarios SET NombArtis = '$nuevoNombre', Biografia = '$nuevaBiografia' $fotoGuardada WHERE Correo = '$email'";
+    $consulta = "UPDATE usuarios INNER JOIN artistas SET NombArtis = '$nuevoNombre', Biografia = '$nuevaBiografia' $fotoGuardada WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
 
     if ($resultado) {

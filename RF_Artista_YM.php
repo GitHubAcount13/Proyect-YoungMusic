@@ -4,14 +4,13 @@ require_once("conexion.php");
 require("Funciones.php");
 require_once("RF_Álbumes_YM.php");
 
-if (!isset($_SESSION["email"])) {
+if (!isset($_SESSION["email"])) {   
     header("Location: Login_YM.php");
     exit();
 }
 
 $email = $_SESSION["email"];
 
-// Verificar si el artista está verificado
 $Consulta = "SELECT CorrArti FROM artistas WHERE CorrArti = ? AND Verificacion IS NOT NULL";
 $Resultado = $con->prepare($Consulta);
 $Resultado->bind_param("s", $email);
@@ -19,13 +18,14 @@ $Resultado->execute();
 $Resultado->store_result();
 
 if ($Resultado->num_rows == 0) {
+
     header("Location: Login_YM.php");
     exit();
 }
 
 $Resultado->close();
 
-// Obtener datos del artista
+$email = $_SESSION["email"];
 $usuario = obtenerDatosArtista($email);
 
 if ($usuario) {
@@ -37,66 +37,49 @@ if ($usuario) {
     echo "Error al obtener los datos del usuario.";
     exit();
 }
+$albumes = obtenerAlbumes($email);
+if (isset($_POST['editarPerfil']) || isset($_POST['eliminarPerfil'])) {
+    $password = $_POST['password'];
+    $email = $_SESSION['email']; // Asegúrate de tener el correo de sesión
 
-// Función para editar perfil
-function procesarEdicionPerfil($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, $redes) {
-    if (isset($_GET['password']) && verificarContrasena($email, $_GET['password'])) {
+    if (verificarContrasena($email, $password)) {
+if (isset($_POST['editarPerfil'])) {
+    $nuevoNombre = $_POST['nuevoNombre'];
+    $nuevaBiografia = $_POST['nuevaBiografia'];
+    $nuevaFoto = $_FILES['nuevaFoto'];
+    $password = $_POST['password'];
+    $redes = [$_POST['Red1'], $_POST['Red2'], $_POST['Red3'], $_POST['Red4']];
+
+    if (verificarContrasena($email, $password)) {
         if (editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, $redes)) {
-            header("Location: Artista_YM.php?mensaje=Perfil actualizado correctamente");
+            echo "Perfil actualizado correctamente.";
+            header("Location: Artista_YM.php");
             exit();
         } else {
-            header("Location: Artista_YM.php?error=Error al actualizar el perfil");
-            exit();
+            echo "Error al actualizar el perfil.";
         }
     } else {
-        header("Location: Artista_YM.php?error=Contraseña incorrecta");
-        exit();
+        $_SESSION['error_message'] = "Contraseña incorrecta."; // Establecer el mensaje en la sesión
     }
 }
 
-// Función para eliminar perfil
-function procesarEliminacionPerfil($email) {
-    if (isset($_GET['password']) && verificarContrasena($email, $_GET['password'])) {
+if (isset($_POST['eliminarPerfil'])) {
+    $password = $_POST['password'];
+
+    if (verificarContrasena($email, $password)) {
         if (eliminarPerfil($email)) {
             session_destroy();
-            header("Location: Registro_YM.php?mensaje=Perfil eliminado correctamente");
+            echo "Perfil eliminado correctamente.";
+            header("Location: Registro_YM.php");
             exit();
         } else {
-            header("Location: Artista_YM.php?error=Error al eliminar el perfil");
-            exit();
+            echo "Error al eliminar el perfil.";
         }
     } else {
-        header("Location: Artista_YM.php?error=Contraseña incorrecta");
-        exit();
+        $_SESSION['error_message'] = "Contraseña incorrecta."; // Establecer el mensaje en la sesión
     }
 }
-
-// Manejar las operaciones mediante GET
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['accion'])) {
-        switch ($_GET['accion']) {
-            case 'editar':
-                procesarEdicionPerfil(
-                    $email,
-                    $_GET['nuevoNombre'],
-                    $_GET['nuevaBiografia'],
-                    $_FILES['nuevaFoto'] ?? null,
-                    [
-                        $_GET['Red1'] ?? '',
-                        $_GET['Red2'] ?? '',
-                        $_GET['Red3'] ?? '',
-                        $_GET['Red4'] ?? ''
-                    ]
-                );
-                break;
-
-            case 'eliminar':
-                procesarEliminacionPerfil($email);
-                break;
-        }
-    }
+} else {
+    echo 'Contraseña incorrecta'; // Respuesta para el error de contraseña
 }
-
-// Obtener álbumes
-$albumes = obtenerAlbumes($email);
-?>
+}
