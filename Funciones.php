@@ -306,7 +306,7 @@ function editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, 
             $fotoActual = mysqli_fetch_assoc($resultadoFoto);
 
             // Si existe una foto anterior, eliminarla de Cloudinary
-            if (!empty($fotoActual['FotoPerf'])) {
+            if (!empty($fotoActual['FotoPerf']) && strpos($fotoActual['FotoPerf'], 'cloudinary') !== false) {
                 try {
                     // Extraer el public_id de la URL
                     $urlPartes = explode('/', $fotoActual['FotoPerf']);
@@ -317,7 +317,7 @@ function editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, 
                     $admin = new AdminApi();
                     $admin->deleteAssets($publicId);
                 } catch (Exception $e) {
-                    echo "Advertencia: No se pudo eliminar la imagen anterior: " . $e->getMessage();
+                    error_log("Advertencia: No se pudo eliminar la imagen anterior: " . $e->getMessage());
                     // Continuamos con la ejecución aunque falle la eliminación
                 }
             }
@@ -331,15 +331,20 @@ function editarPerfilArtista($email, $nuevoNombre, $nuevaBiografia, $nuevaFoto, 
 
             // Obtener la URL de la imagen subida
             $fotoGuardada = ", FotoPerf = '" . $resultado['secure_url'] . "'";
-            echo "Foto de perfil actualizada exitosamente en Cloudinary.";
+            
+            // Verificar si existe una foto local antigua y eliminarla
+            if (!empty($fotoActual['FotoPerf']) && file_exists($fotoActual['FotoPerf']) && strpos($fotoActual['FotoPerf'], 'Subida/') === 0) {
+                unlink($fotoActual['FotoPerf']);
+            }
+
         } catch (Exception $e) {
-            echo "Error al subir la foto a Cloudinary: " . $e->getMessage();
+            error_log("Error al subir la foto a Cloudinary: " . $e->getMessage());
             return false;
         }
     }
 
     // Actualizar los datos del usuario
-    $consulta = "UPDATE usuarios SET NomrUsua = '$nuevoNombre', Biografia = '$nuevaBiografia' $fotoGuardada WHERE Correo = '$email'";
+    $consulta = "UPDATE artistas INNER JOIN usuarios SET NombArtis = '$nuevoNombre', Biografia = '$nuevaBiografia' $fotoGuardada WHERE Correo = '$email'";
     $resultado = mysqli_query($con, $consulta);
 
     if ($resultado) {
