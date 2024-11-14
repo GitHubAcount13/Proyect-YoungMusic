@@ -52,7 +52,7 @@ if (isset($_POST['editarPerfil'])) {
             echo "Error al actualizar el perfil.";
         }
     } else {
-        echo "Contraseña incorrecta.";
+        header("Location: Usuario_YM.php"); 
     }
 }
 
@@ -69,6 +69,6 @@ if (isset($_POST['eliminarPerfil'])) {
             echo "Error al eliminar el perfil.";
         }
     } else {
-        echo "Contraseña incorrecta.";
+        header("Location: Usuario_YM.php");
     }
 }

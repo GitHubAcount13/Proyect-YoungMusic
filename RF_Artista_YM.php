@@ -76,10 +76,10 @@ if (isset($_POST['eliminarPerfil'])) {
             echo "Error al eliminar el perfil.";
         }
     } else {
-        $_SESSION['error_message'] = "Contraseña incorrecta."; // Establecer el mensaje en la sesión
+        header("Location: Artista_YM.php"); // Establecer el mensaje en la sesión
     }
 }
 } else {
-    echo 'Contraseña incorrecta'; // Respuesta para el error de contraseña
+    header("Location: Artista_YM.php"); // Respuesta para el error de contraseña
 }
 }
